@@ -122,32 +122,3 @@ function Home() {
 }
 
 export default Home;
-
-{
-  /* { <section className="py-16 bg-white" id="about">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
-          <img
-            src="/images/record-2.jpg"
-            alt="Inside the Shop"
-            className="w-full md:w-1/2 rounded-xl shadow-lg object-cover"
-          />
-          <div className="md:w-1/2 text-gray-800">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">
-              About Our Shop
-            </h2>
-            <p className="text-lg leading-relaxed">
-              At <span className="font-semibold">Spin The Rhythm</span>, we’re
-              more than just a vinyl store — we’re a celebration of analog music
-              and timeless sound. Whether you're a seasoned collector or a new
-              vinyl enthusiast, our curated selection of records and turntables
-              will take you on a nostalgic journey through musical history.
-            </p>
-            <p className="mt-4 text-lg">
-              Located in the heart of the city, our shop is a cozy space filled
-              with good vibes, passionate music lovers, and iconic records from
-              every era.
-            </p>
-          </div>
-        </div>
-      </section> } */
-}
