@@ -1,7 +1,6 @@
 import FAQSection from "./FAQSection";
 import Featured from "./Featured";
 import Footer from "./Footer";
-import Header from "./Header";
 import TestimonialSection from "./TestimonialSection";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -22,8 +21,7 @@ function Home() {
   });
   return (
     <div>
-      <Header />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 -mt-8">
         <div
           className="min-h-screen bg-cover bg-center flex flex-col justify-center items-center text-white p-6"
           style={{ backgroundImage: `url("/images/record-1.jpg")` }}

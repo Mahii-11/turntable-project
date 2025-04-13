@@ -30,7 +30,7 @@ function Cart() {
 
   return (
     <div>
-      <Link to="/menu">&larr; Back to menu</Link>
+      <Link to="/products">&larr; Back to menu</Link>
 
       <h2>Your cart, %NAME%</h2>
 

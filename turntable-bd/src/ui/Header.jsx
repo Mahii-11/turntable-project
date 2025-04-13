@@ -13,7 +13,9 @@ import {
 } from "react-icons/fa";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
+import { NavLink } from "react-router-dom";
+import CartOverview from "../features/cart/CartOverview";
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -38,45 +40,45 @@ const Header = () => {
     <header className="bg-white shadow-sm z-20 fixed left-0 right-0 ">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <NavLink to="/" className="flex items-center space-x-2">
             <FaRecordVinyl className="text-amber-500 text-2xl" />
             <h1 className="text-2xl font-bold text-gray-900">BD Turntable</h1>
-          </Link>
+          </NavLink>
         </div>
 
         <nav className="hidden md:flex space-x-8">
-          <Link
-            href="/"
+          <NavLink
+            to="/"
             className={`font-medium transition-colors ${
               isActive("/") ? "text-amber-500" : "hover:text-amber-500"
             }`}
           >
             Home
-          </Link>
-          <Link
-            href="/products"
+          </NavLink>
+          <NavLink
+            to="/products"
             className={`font-medium transition-colors ${
               isActive("/products") ? "text-amber-500" : "hover:text-amber-500"
             }`}
           >
             Products
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             href="/services"
             className={`font-medium transition-colors ${
               isActive("/services") ? "text-amber-500" : "hover:text-amber-500"
             }`}
           >
             Services
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             href="/contact"
             className={`font-medium transition-colors ${
               isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
             }`}
           >
             Contact
-          </Link>
+          </NavLink>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -87,21 +89,18 @@ const Header = () => {
           >
             <FaSearch />
           </button>
-          <Link
+          <NavLink
             href="/account"
             className="hover:text-amber-500 transition-colors"
           >
             <FaUser />
-          </Link>
-          <Link
-            href="/cart"
+          </NavLink>
+          <NavLink
+            to="/cart"
             className="hover:text-amber-500 transition-colors relative"
           >
-            <FaShoppingCart />
-            <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              3
-            </span>
-          </Link>
+            <CartOverview />
+          </NavLink>
           <Button
             variant="ghost"
             size="icon"
@@ -167,8 +166,8 @@ const Header = () => {
         <nav className="p-4">
           <ul className="space-y-4">
             <li>
-              <Link
-                href="/"
+              <NavLink
+                to="/"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/")
                     ? "bg-amber-100 text-amber-700"
@@ -178,11 +177,11 @@ const Header = () => {
               >
                 <FaHome />
                 <span>Home</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                href="/products"
+              <NavLink
+                to="/products"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/products")
                     ? "bg-amber-100 text-amber-700"
@@ -192,10 +191,10 @@ const Header = () => {
               >
                 <FaBoxOpen />
                 <span>Products</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 href="/services"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/services")
@@ -206,10 +205,10 @@ const Header = () => {
               >
                 <FaTools />
                 <span>Services</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 href="/contact"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/contact")
@@ -220,27 +219,28 @@ const Header = () => {
               >
                 <FaPhone />
                 <span>Contact</span>
-              </Link>
+              </NavLink>
             </li>
             <li className="border-t border-gray-200 pt-4 mt-4">
-              <Link
+              {/*  <Link
                 href="/account"
                 className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
                 onClick={() => setSidebarOpen(false)}
               >
                 <FaUser />
                 <span>My Account</span>
-              </Link>
+              </Link> */}
             </li>
             <li>
-              <Link
-                href="/cart"
+              <NavLink
+                to="/cart"
                 className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
                 onClick={() => setSidebarOpen(false)}
               >
                 <FaShoppingCart />
-                <span>Shopping Cart (3)</span>
-              </Link>
+                <span>Shopping Cart</span>
+                <CartOverview />
+              </NavLink>
             </li>
           </ul>
         </nav>
