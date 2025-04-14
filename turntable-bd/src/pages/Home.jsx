@@ -9,7 +9,6 @@ import React from "react";
 import Featured from "../ui/Featured";
 import TestimonialSection from "../ui/TestimonialSection";
 import FAQSection from "../ui/FAQSection";
-import Footer from "../ui/Footer";
 
 export default function Home() {
   // Implement smooth scrolling for anchor links
@@ -48,7 +47,6 @@ export default function Home() {
       <Featured />
       <TestimonialSection />
       <FAQSection />
-      <Footer />
     </div>
   );
 }

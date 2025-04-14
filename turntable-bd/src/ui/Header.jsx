@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaRecordVinyl,
   FaSearch,
@@ -20,17 +21,16 @@ import CartOverview from "../features/cart/CartOverview";
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [location] = useLocation();
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      alert(`Searching for: ${searchQuery}`);
-      setSearchQuery("");
-      setSearchOpen(false);
-    }
-  };
+    if (!query.trim()) return;
+    navigate(`/order/${query}`);
+    setQuery("");
+  }
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
@@ -121,15 +121,15 @@ const Header = () => {
       {searchOpen && (
         <div className="absolute top-full left-0 right-0 bg-white shadow-md p-4 z-20 animate-in slide-in-from-top-5 duration-300 ">
           <form
-            onSubmit={handleSearch}
+            onSubmit={handleSubmit}
             className="container mx-auto flex items-center"
           >
             <Input
               type="text"
-              placeholder="Search for products..."
+              placeholder="Check order status..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               className="flex-grow"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
               autoFocus
             />
             <Button
