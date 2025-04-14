@@ -174,11 +174,11 @@ const TestimonialSection = () => {
           }`}
         >
           <h3 className="text-lg md:text-xl font-semibold mb-2">"{quote}"</h3>
-          <div className="text-black text-lg mb-4">
+          <div className="text-yellow-300 text-lg mb-4">
             {"★".repeat(rating)}
             {"☆".repeat(5 - rating)}
           </div>
-          <p className="text-gray-700 text-base leading-relaxed">{content}</p>
+          <p className="text-slate-200 text-base leading-relaxed">{content}</p>
         </div>
 
         <div className="flex justify-center mt-6 gap-4">

@@ -24,10 +24,10 @@ function FeaturedCard({ product, index }) {
         className="w-full h-60 object-cover"
       />
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+        <h3 className="text-xl font-semibold text-stone-200 mb-2">
           {product.name}
         </h3>
-        <p className="text-gray-600 mb-4">{product.description}</p>
+        <p className="text-white mb-4">{product.description}</p>
         <div className="flex justify-end">
           <button
             onClick={() => navigate(`/products/${product.id}`)}

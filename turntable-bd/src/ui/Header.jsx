@@ -37,12 +37,17 @@ const Header = () => {
   const isActive = (path) => location === path;
 
   return (
-    <header className="bg-white shadow-sm z-20 fixed left-0 right-0 ">
+    <header className="bg-gradient-to-b from-[#1b0b0b] to-transparent shadow-sm z-20 fixed left-0 right-0 ">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <NavLink to="/" className="flex items-center space-x-2">
             <FaRecordVinyl className="text-amber-500 text-2xl" />
-            <h1 className="text-2xl font-bold text-gray-900">BD Turntable</h1>
+            <h1
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-2xl font-bold text-yellow-400"
+            >
+              BD Turntable
+            </h1>
           </NavLink>
         </div>
 
