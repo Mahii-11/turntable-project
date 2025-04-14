@@ -63,7 +63,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-12 px-4 md:px-8 lg:px-16 bg-white">
+    <section className="py-12 px-4 md:px-8 lg:px-16 bg-black">
       <h2 className="text-3xl font-semibold mb-10 text-center">FAQs</h2>
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, index) => (
@@ -78,7 +78,7 @@ const FAQSection = () => {
               </span>
             </div>
             <div
-              className={`text-gray-600 mt-2 text-base transition-all duration-300 ease-in-out ${
+              className={`text-stone-100 mt-2 text-base transition-all duration-300 ease-in-out ${
                 openIndex === index
                   ? "max-h-screen opacity-100"
                   : "max-h-0 opacity-0 overflow-hidden"

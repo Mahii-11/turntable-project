@@ -26,25 +26,45 @@ function Home() {
           className="min-h-screen bg-cover bg-center flex flex-col justify-center items-center text-white p-6"
           style={{ backgroundImage: `url("/images/record-1.jpg")` }}
         >
-          <div className="bg-black bg-opacity-60 p-10 rounded-xl text-center max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-yellow-300">
-              Spin the Rhythm 🎶
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200">
-              Experience the raw magic of vinyl. Classic sound, modern passion.
-              Let's vibe with every beat, every spin.
-            </p>
-            <button
-              className="mt-6 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full transition duration-300 cursor-pointer"
-              onClick={() => {
-                const el = document.getElementById("products");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+          <div className="min-h-screen flex items-center justify-center bg-gradient-to-br px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="p-4 rounded-2xl text-center max-w-3xl shadow-2xl mb-28"
             >
-              Explore Collection
-            </button>
+              <motion.h1
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-4xl md:text-6xl font-extrabold mb-5 text-yellow-300 tracking-tight font-sans"
+              >
+                Spin the Rhythm 🎶
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-lg md:text-xl text-gray-200 font-light leading-relaxed"
+              >
+                Experience the raw magic of vinyl. Classic sound, modern
+                passion. Let's vibe with every beat, every spin.
+              </motion.p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => {
+                  const el = document.getElementById("products");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="mt-8 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full shadow-md transition duration-300"
+              >
+                Explore Collection
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </div>
