@@ -6,7 +6,7 @@ function Error() {
   const error = useRouteError();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex flex-col items-center justify-center text-white px-4 text-center font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex flex-col items-center justify-center text-white px-4 text-center font-sans sm:-mt-8 -mt-12">
       {/* Spinning Vinyl */}
       <motion.div
         initial={{ scale: 0 }}
