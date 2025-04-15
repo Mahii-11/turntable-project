@@ -51,7 +51,7 @@ function Order() {
 
 export async function loader({ params }) {
   try {
-    const order = await getOrder(params.orderId);
+    const order = await getOrder(params.id);
     return order || null;
   } catch (error) {
     console.error("Failed to load order:", error);
