@@ -65,6 +65,7 @@ const Header = () => {
             className={`font-medium transition-colors ${
               isActive("/products") ? "text-amber-500" : "hover:text-amber-500"
             }`}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Products
           </NavLink>
@@ -73,6 +74,7 @@ const Header = () => {
             className={`font-medium transition-colors ${
               isActive("/services") ? "text-amber-500" : "hover:text-amber-500"
             }`}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Services
           </NavLink>
@@ -81,6 +83,7 @@ const Header = () => {
             className={`font-medium transition-colors ${
               isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
             }`}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Contact
           </NavLink>
@@ -103,6 +106,7 @@ const Header = () => {
           <NavLink
             to="/cart"
             className="hover:text-amber-500 transition-colors relative"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <CartOverview />
           </NavLink>
@@ -170,7 +174,7 @@ const Header = () => {
 
         <nav className="p-4">
           <ul className="space-y-4">
-            <li>
+            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
@@ -184,7 +188,7 @@ const Header = () => {
                 <span>Home</span>
               </NavLink>
             </li>
-            <li>
+            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/products"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
