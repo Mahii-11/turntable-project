@@ -48,6 +48,11 @@ function CreateOrder() {
         </div>
 
         <div>
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+
+        <div>
           <label>Phone number</label>
           <div>
             <input type="tel" name="phone" required />
