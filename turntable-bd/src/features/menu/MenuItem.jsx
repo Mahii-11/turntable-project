@@ -16,6 +16,7 @@ function MenuItem({ item }) {
     features,
     specifications,
     discount,
+    soldOut,
   } = item;
 
   const finalPrice = discount
@@ -27,9 +28,15 @@ function MenuItem({ item }) {
       key={id}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.03 }}
+      //whileHover={{ scale: 1.03 }}
+      whileHover={!soldOut ? { scale: 1.03 } : {}}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+      className={`rounded-2xl shadow-md overflow-hidden transition-shadow flex flex-col ${
+        soldOut
+          ? "bg-black text-white opacity-60 cursor-not-allowed"
+          : "bg-white hover:shadow-lg"
+      }`}
+      //  className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
     >
       <div className="relative">
         <img
@@ -37,9 +44,15 @@ function MenuItem({ item }) {
           alt={name}
           className="w-full h-48 object-cover rounded-t-2xl"
         />
-        {discount && (
+        {!soldOut && discount && (
           <span className="absolute bg-amber-500 text-white text-xs px-2 py-1 rounded-full top-2 left-2">
             {discount.percent}% OFF
+          </span>
+        )}
+
+        {soldOut && (
+          <span className="absolute bg-white text-black text-xs px-3 py-1 rounded-full top-2 left-2 font-bold">
+            SOLD OUT
           </span>
         )}
       </div>
@@ -47,21 +60,23 @@ function MenuItem({ item }) {
       <div className="flex flex-col justify-between h-full p-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-800">
-            {name}{" "}
+            {name}
             <span className="text-sm text-gray-500 font-normal">({brand})</span>
           </h3>
 
-          <p className="mt-1 text-sm text-gray-600">
-            <strong>Price: </strong>
-            <span className="text-amber-600 font-semibold">
-              {formatCurrency(finalPrice)}
-            </span>
-            {discount && (
-              <del className="ml-2 text-gray-400 text-sm">
-                {formatCurrency(price)}
-              </del>
-            )}
-          </p>
+          {!soldOut && (
+            <p className="mt-1 text-sm text-gray-600">
+              <strong>Price: </strong>
+              <span className="text-amber-600 font-semibold">
+                {formatCurrency(finalPrice)}
+              </span>
+              {discount && (
+                <del className="ml-2 text-gray-400 text-sm">
+                  {formatCurrency(price)}
+                </del>
+              )}
+            </p>
+          )}
 
           <p className="text-sm mt-1">
             <strong>Rating:</strong> ⭐ {rating}
@@ -77,7 +92,7 @@ function MenuItem({ item }) {
           <p className="text-sm mt-1 text-gray-600">{description}</p>
         </div>
 
-        {features?.length > 0 && (
+        {!soldOut && features?.length > 0 && (
           <ul className="mt-3 list-disc list-inside text-sm text-gray-700">
             {features.slice(0, 3).map((f, idx) => (
               <li key={idx}>🔹 {f}</li>
@@ -85,13 +100,15 @@ function MenuItem({ item }) {
           </ul>
         )}
 
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          className="mt-4 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg transition-colors"
-        >
-          <FaShoppingCart />
-          Add to Cart
-        </motion.button>
+        {!soldOut && (
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="mt-4 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            <FaShoppingCart />
+            Add to Cart
+          </motion.button>
+        )}
       </div>
     </motion.li>
   );
