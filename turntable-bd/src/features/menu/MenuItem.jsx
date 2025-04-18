@@ -2,8 +2,11 @@
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../cart/cartSlice";
 
 function MenuItem({ item }) {
+  const dispatch = useDispatch();
   const {
     id,
     name,
@@ -18,6 +21,18 @@ function MenuItem({ item }) {
     discount,
     soldOut,
   } = item;
+
+  function handleAddToCart() {
+    const newItem = {
+      id: id,
+      image,
+      name,
+      quantity: 1,
+      price,
+      totalPrice: price * 1,
+    };
+    dispatch(addItem(newItem));
+  }
 
   const finalPrice = discount
     ? (price - price * (discount.percent / 100)).toFixed(2)
@@ -102,8 +117,9 @@ function MenuItem({ item }) {
 
         {!soldOut && (
           <motion.button
+            onClick={handleAddToCart}
             whileTap={{ scale: 0.95 }}
-            className="mt-4 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg transition-colors"
+            className="mt-4 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg transition-colors cursor-pointer"
           >
             <FaShoppingCart />
             Add to Cart

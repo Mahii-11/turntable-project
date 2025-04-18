@@ -2,36 +2,16 @@
 import { Link } from "react-router-dom";
 import { Trash2, ArrowLeftCircle, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
-
-const fakeCart = [
-  {
-    id: "1",
-    name: "Audio-Technica AT-LP120XUSB",
-    quantity: 1,
-    unitPrice: 249.99,
-    totalPrice: 249.99,
-    image: "https://turntable-pi.vercel.app/images/turntable-1.jpg",
-  },
-  {
-    id: "2",
-    name: "Pro-Ject Debut Carbon EVO",
-    quantity: 2,
-    unitPrice: 499.99,
-    totalPrice: 999.98,
-    image: "https://turntable-pi.vercel.app/images/turntable-2.jpg",
-  },
-  {
-    id: "3",
-    name: "Rega Planar 1 Plus",
-    quantity: 1,
-    unitPrice: 399.99,
-    totalPrice: 399.99,
-    image: "https://turntable-pi.vercel.app/images/turntable-3.jpg",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, getCart } from "./cartSlice";
+import { formatCurrency } from "../../utils/helpers";
+import EmptyCart from "./EmptyCart";
 
 function Cart() {
-  const cart = fakeCart;
+  const cart = useSelector(getCart);
+  const dispatch = useDispatch();
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-100">
@@ -49,7 +29,7 @@ function Cart() {
         className="text-3xl font-bold mb-8 flex items-center gap-2"
       >
         <ShoppingCart className="w-7 h-7 text-purple-400" />
-        Your Cart, %NAME%
+        Your Cart
       </motion.h2>
 
       <div className="bg-gray-800 rounded-2xl shadow-xl p-6 mb-10 space-y-6">
@@ -71,11 +51,13 @@ function Cart() {
                   {item.quantity}× {item.name}
                 </p>
                 <p className="text-sm text-gray-400">
-                  Unit: ${item.unitPrice.toFixed(2)}
+                  Unit: {formatCurrency(item?.unitPrice ?? 0)}
                 </p>
               </div>
             </div>
-            <p className="text-lg font-bold">${item.totalPrice.toFixed(2)}</p>
+            <p className="text-lg font-bold">
+              {formatCurrency(item?.totalPrice ?? 0)}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -87,7 +69,10 @@ function Cart() {
         >
           Order Turntables
         </Link>
-        <button className="flex items-center gap-2 text-red-500 hover:text-red-400 transition">
+        <button
+          onClick={() => dispatch(clearCart())}
+          className="flex items-center gap-2 text-red-500 hover:text-red-400 transition cursor-pointer"
+        >
           <Trash2 className="w-5 h-5" />
           Clear Cart
         </button>
