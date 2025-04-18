@@ -117,7 +117,7 @@ function CreateOrder() {
           whileTap={{ scale: 0.95 }}
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg"
+          className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg cursor-pointer"
         >
           {isSubmitting ? "Placing order..." : "🛍️ Confirm Order"}
         </motion.button>

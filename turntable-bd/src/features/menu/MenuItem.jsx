@@ -2,11 +2,11 @@
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addItem } from "../cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
+import DeleteItem from "./DeleteItem";
 
 function MenuItem({ item }) {
-  const dispatch = useDispatch();
   const {
     id,
     name,
@@ -21,7 +21,9 @@ function MenuItem({ item }) {
     discount,
     soldOut,
   } = item;
-
+  const dispatch = useDispatch();
+  const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const isInCart = currentQuantity > 0;
   function handleAddToCart() {
     const newItem = {
       id: id,
@@ -115,7 +117,9 @@ function MenuItem({ item }) {
           </ul>
         )}
 
-        {!soldOut && (
+        {isInCart && <DeleteItem id={id} />}
+
+        {!soldOut && !isInCart && (
           <motion.button
             onClick={handleAddToCart}
             whileTap={{ scale: 0.95 }}

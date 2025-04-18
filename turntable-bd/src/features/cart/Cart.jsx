@@ -65,7 +65,7 @@ function Cart() {
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         <Link
           to="/order/new"
-          className="bg-purple-600 hover:bg-purple-700 transition px-6 py-3 rounded-full font-semibold text-white shadow-md"
+          className="bg-purple-600 hover:bg-purple-700 transition px-6 py-3 rounded-full font-semibold text-white shadow-md cursor-pointer"
         >
           Order Turntables
         </Link>
