@@ -5,41 +5,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Mail, Phone, MapPin, Star } from "lucide-react";
 import { ShoppingBag } from "lucide-react";
+import { useSelector } from "react-redux";
+import { getCart } from "../cart/cartSlice";
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
     str
   );
 
-const fakeCart = [
-  {
-    id: "1",
-    name: "Audio-Technica AT-LP120XUSB",
-    quantity: 1,
-    unitPrice: 249.99,
-    totalPrice: 249.99,
-    image: "https://turntable-pi.vercel.app/images/turntable-1.jpg",
-  },
-  {
-    id: "2",
-    name: "Pro-Ject Debut Carbon EVO",
-    quantity: 2,
-    unitPrice: 499.99,
-    totalPrice: 999.98,
-    image: "https://turntable-pi.vercel.app/images/turntable-2.jpg",
-  },
-  {
-    id: "3",
-    name: "Rega Planar 1 Plus",
-    quantity: 1,
-    unitPrice: 399.99,
-    totalPrice: 399.99,
-    image: "https://turntable-pi.vercel.app/images/turntable-3.jpg",
-  },
-];
-
 function CreateOrder() {
-  const cart = fakeCart;
+  const cart = useSelector(getCart);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const formErrors = useActionData();
