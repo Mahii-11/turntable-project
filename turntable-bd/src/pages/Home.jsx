@@ -6,7 +6,6 @@ import Gallery from "../components/home/Gallery";
 import CallToAction from "../components/home/CallToAction";
 import { useEffect } from "react";
 import React from "react";
-import Featured from "../ui/Featured";
 import TestimonialSection from "../ui/TestimonialSection";
 import FAQSection from "../ui/FAQSection";
 
@@ -44,7 +43,6 @@ export default function Home() {
       <Experience />
       <Gallery />
       <CallToAction />
-      <Featured />
       <TestimonialSection />
       <FAQSection />
     </div>
