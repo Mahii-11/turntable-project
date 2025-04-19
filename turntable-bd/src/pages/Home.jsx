@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-sans bg-black text-white overflow-x-hidden -mt-9">
+    <div className="font-sans bg-black text-white overflow-x-hidden -mt-8">
       <Hero />
       <Showcase />
       <Features />

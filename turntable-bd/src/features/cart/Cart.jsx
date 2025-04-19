@@ -47,12 +47,7 @@ function Cart() {
                 className="w-20 h-20 rounded-xl object-cover shadow"
               />
               <div>
-                <p className="font-semibold text-lg">
-                  {item.quantity}× {item.name}
-                </p>
-                <p className="text-sm text-gray-400">
-                  Unit: {formatCurrency(item?.unitPrice ?? 0)}
-                </p>
+                <p className="font-semibold text-lg">{item.name}</p>
               </div>
             </div>
             <p className="text-lg font-bold">

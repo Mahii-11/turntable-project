@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { motion } from "framer-motion";
 import { useScrollAnimation, slideUp } from "@/lib/animations";
-
+import { Link } from "react-router-dom";
 export default function CallToAction() {
   const { ref, controls } = useScrollAnimation();
 
@@ -32,12 +32,12 @@ export default function CallToAction() {
               Experience the authentic sound of vinyl with our premium
               turntables. Elevate your listening experience today.
             </p>
-            <a
-              href="#"
+            <Link
+              to="/products"
               className="inline-block bg-[#D4AF37] text-black font-medium px-10 py-4 rounded-full text-lg hover:bg-white transition duration-300"
             >
               Explore Collection
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

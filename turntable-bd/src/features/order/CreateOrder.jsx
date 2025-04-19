@@ -6,7 +6,10 @@ import { motion } from "framer-motion";
 import { CheckCircle, Mail, Phone, MapPin, Star } from "lucide-react";
 import { ShoppingBag } from "lucide-react";
 import { useSelector } from "react-redux";
-import { getCart } from "../cart/cartSlice";
+import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
+import EmptyCart from "../cart/EmptyCart";
+import store from "../../store";
+import { formatCurrency } from "../../utils/helpers";
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -15,10 +18,13 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const cart = useSelector(getCart);
+  const [priority, setPriority] = useState(false);
+  const totalCartPrice = useSelector(getTotalCartPrice);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const formErrors = useActionData();
-  const [priority, setPriority] = useState(false);
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <motion.div
@@ -119,7 +125,9 @@ function CreateOrder() {
           disabled={isSubmitting}
           className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg cursor-pointer"
         >
-          {isSubmitting ? "Placing order..." : "🛍️ Confirm Order"}
+          {isSubmitting
+            ? "Placing order..."
+            : `🛍️ Order now from ${formatCurrency(totalCartPrice)}`}
         </motion.button>
       </Form>
     </motion.div>
@@ -145,7 +153,7 @@ export async function action({ request }) {
   if (Object.keys(errors).length > 0) return errors;
 
   const newOrder = await createOrder(order);
-
+  store.dispatch(clearCart());
   return redirect(`/order/${newOrder.id}`);
 }
 

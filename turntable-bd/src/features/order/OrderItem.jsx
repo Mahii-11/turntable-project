@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
-import { BadgeCheck, Star } from "lucide-react";
+//import { BadgeCheck, Star } from "lucide-react";
 
 function OrderItem({ item }) {
-  const { image, quantity, name, totalPrice, toppings = [] } = item;
+  const { image, name, totalPrice, toppings = [] } = item;
 
   return (
     <motion.li
@@ -21,7 +21,7 @@ function OrderItem({ item }) {
         />
         <div>
           <p className="text-lg font-semibold text-white">
-            <span className="text-yellow-400">{quantity}×</span> {name}
+            <span className="text-yellow-400"></span> {name}
           </p>
           {toppings.length > 0 && (
             <p className="text-sm text-gray-400">

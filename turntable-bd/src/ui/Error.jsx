@@ -1,6 +1,5 @@
 import { useNavigate, useRouteError } from "react-router-dom";
 import { motion } from "framer-motion";
-import Footer from "./Footer";
 
 function Error() {
   const navigate = useNavigate();
@@ -8,7 +7,7 @@ function Error() {
 
   return (
     <div>
-      <div className="min-h-screen   bg-gradient-to-b from-black via-gray-900 to-black flex flex-col items-center justify-center text-white px-4 text-center font-sans sm:-mt-8 -mt-10">
+      <div className="min-h-screen   bg-gradient-to-b from-black via-gray-900 to-black flex flex-col items-center justify-center text-white px-4 text-center font-sans -mt-8">
         {/* Spinning Vinyl */}
         <motion.div
           initial={{ scale: 0 }}
@@ -40,12 +39,11 @@ function Error() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate(-1)}
-          className="mt-8 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-full shadow-md transition duration-300"
+          className="mt-8 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-full shadow-md transition duration-300 cursor-pointer"
         >
           &larr; Spin Back
         </motion.button>
       </div>
-      <Footer />
     </div>
   );
 }
