@@ -41,6 +41,10 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
   const isLate = deliveryIn < 0;
 
+  // Dynamically update status after estimated time
+  const displayStatus =
+    status === "pending" && deliveryIn <= 0 ? "confirmed" : status;
+
   return (
     <motion.div
       className="max-w-4xl mx-auto px-4 py-10 text-white"
@@ -63,20 +67,25 @@ function Order() {
         </div>
         <div className="flex items-center gap-3">
           {priority && (
-            <span className="text-sm bg-red-600 text-white px-2 py-1 rounded-full">
-              Priority
+            <span className="text-sm bg-red-600 text-white px-2 py-1 rounded-full flex items-center gap-1">
+              <AlertTriangle size={14} /> Priority
             </span>
           )}
           <span
-            className={`text-sm px-2 py-1 rounded-full ${
-              status === "confirmed"
+            className={`text-sm px-2 py-1 rounded-full flex items-center gap-1 ${
+              displayStatus === "confirmed"
                 ? "bg-green-600"
-                : status === "pending"
+                : displayStatus === "pending"
                 ? "bg-yellow-500"
                 : "bg-gray-500"
             }`}
           >
-            {status.toUpperCase()}
+            {displayStatus === "confirmed" ? (
+              <CheckCircle2 size={14} />
+            ) : (
+              <Clock size={14} />
+            )}
+            {displayStatus.toUpperCase()}
           </span>
         </div>
       </div>
@@ -89,9 +98,15 @@ function Order() {
         </div>
         <p className="text-sm text-gray-300">
           {isLate ? (
-            <span className="text-red-400">Order should have arrived</span>
+            <span className="text-red-400">
+              <AlertTriangle className="inline-block mr-1" size={16} />
+              Order should have arrived
+            </span>
           ) : (
-            `Only ${deliveryIn} minutes left 😃`
+            <>
+              <Clock className="inline-block mr-1" size={16} />
+              Only {deliveryIn} minutes left 😃
+            </>
           )}
         </p>
         <p className="text-gray-500 text-sm">
