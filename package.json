@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@radix-ui/react-separator": "^1.1.4",
+    "lucide-react": "^0.501.0"
+  }
+}
