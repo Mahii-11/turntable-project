@@ -34,7 +34,7 @@ const ContactPage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        "https://turntable-restapi.onrender.com/contact",
+        "https://turntable-restapi.onrender.com/api/contact",
         {
           method: "POST",
           headers: {
@@ -81,9 +81,9 @@ const ContactPage = () => {
           Once you click submit on our email inquiry, we will reach out to you
           as soon as possible.
           <br />
-          <strong>Email:</strong> connorfortheturntableshop@gmail.com
+          <strong>Email:</strong> bangladeshturntable@gmail.com
           <br />
-          <strong>Phone:</strong> 604-809-5324
+          <strong>Phone:</strong> 01715-616234
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
