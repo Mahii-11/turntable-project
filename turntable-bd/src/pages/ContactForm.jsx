@@ -123,7 +123,7 @@ const ContactPage = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             disabled={loading}
-            className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition-colors px-6 py-3 rounded-xl font-semibold text-white"
+            className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition-colors px-6 py-3 rounded-xl font-semibold text-white cursor-pointer"
           >
             {loading ? "Sending..." : "Send Message"}
             <SendHorizonal size={20} />
