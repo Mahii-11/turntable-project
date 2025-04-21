@@ -9,6 +9,7 @@ import Order, { loader as orderLoader } from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 import ServicesPage from "./pages/ServicesPage";
+import ContactForm from "./pages/ContactForm";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <ServicesPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactForm />,
       },
       { path: "/cart", element: <Cart /> },
       {

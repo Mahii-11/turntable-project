@@ -79,7 +79,7 @@ const Header = () => {
             Services
           </NavLink>
           <NavLink
-            href="/contact"
+            to="/contact"
             className={`font-medium transition-colors ${
               isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
             }`}
@@ -218,7 +218,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                href="/contact"
+                to="/contact"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/contact")
                     ? "bg-amber-100 text-amber-700"
