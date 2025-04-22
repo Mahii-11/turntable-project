@@ -53,6 +53,22 @@ const faqs = [
     answer:
       "Yes, but we recommend discussing it with our technicians first to ensure compatibility and safety.",
   },
+  {
+    question: "Do you selling cartridges, pin and stylus?",
+    answer:
+      "Yes we sale, repair and modify cartridges, stylus and headshell. Charges are depend on quality.",
+  },
+  {
+    question:
+      "Do you have dust cover, hinges, motor, belts and other accessories?",
+    answer:
+      "Yes, we have vintage and modern enormous quantities of accessories. All solutions under one roof.",
+  },
+  {
+    question: "Do you build new chassis and plinth?",
+    answer:
+      "Yes, we have more than 15 years of experience to built old and malfunctioning turntables, changer and record player refurbishment work to make it brand new condition..",
+  },
 ];
 
 const FAQSection = () => {

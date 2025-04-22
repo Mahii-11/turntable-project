@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import React from "react";
 import TestimonialSection from "../ui/TestimonialSection";
 import FAQSection from "../ui/FAQSection";
+import AnimatedHeader from "../ui/AnimatedHeader";
 
 export default function Home() {
   // Implement smooth scrolling for anchor links
@@ -37,6 +38,7 @@ export default function Home() {
 
   return (
     <div className="font-sans bg-black text-white overflow-x-hidden -mt-8">
+      <AnimatedHeader />
       <Hero />
       <Showcase />
       <Features />
