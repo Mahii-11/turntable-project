@@ -10,6 +10,7 @@ import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 import ServicesPage from "./pages/ServicesPage";
 import ContactForm from "./pages/ContactForm";
+import MeetOurFounder from "./pages/MeetOurFounder";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactForm />,
+      },
+      {
+        path: "/founder",
+        element: <MeetOurFounder />,
       },
       { path: "/cart", element: <Cart /> },
       {
