@@ -11,7 +11,6 @@ import FAQSection from "../ui/FAQSection";
 import AnimatedHeader from "../ui/AnimatedHeader";
 
 export default function Home() {
-  // Implement smooth scrolling for anchor links
   useEffect(() => {
     const handleAnchorClick = (e) => {
       const target = e.target;

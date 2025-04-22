@@ -36,7 +36,7 @@ export default function AnimatedHeader() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="w-full bg-black text-white h-12 flex items-center justify-center overflow-hidden border-b border-gray-800 relative z-50 fixed top-0 left-0"
+          className="w-full bg-black text-white h-12 flex items-center justify-center overflow-hidden border-b border-gray-800 z-50  top-0 left-0"
         >
           <AnimatePresence mode="wait">
             <motion.div
