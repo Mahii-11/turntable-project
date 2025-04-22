@@ -11,6 +11,9 @@ import Error from "./ui/Error";
 import ServicesPage from "./pages/ServicesPage";
 import ContactForm from "./pages/ContactForm";
 import MeetOurFounder from "./pages/MeetOurFounder";
+import TurntableMenu, {
+  loader as turntableLoader,
+} from "./features/menu/TurntableMenu";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +27,13 @@ const router = createBrowserRouter([
         loader: menuLoader,
         errorElement: <Error />,
       },
+
+      {
+        path: "/products-two",
+        element: <TurntableMenu />,
+        loader: turntableLoader,
+        errorElement: <Error />,
+      },
       {
         path: "/services",
         element: <ServicesPage />,
@@ -33,7 +43,7 @@ const router = createBrowserRouter([
         element: <ContactForm />,
       },
       {
-        path: "/founder",
+        path: "/meet-our-founder",
         element: <MeetOurFounder />,
       },
       { path: "/cart", element: <Cart /> },

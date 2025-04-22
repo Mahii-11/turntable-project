@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import {
   FaRecordVinyl,
   FaSearch,
-  FaUser,
+  FaUserTie,
   FaShoppingCart,
   FaBars,
   FaTimes,
-  FaHome,
+  // FaHome,
   FaTools,
   FaPhone,
   FaBoxOpen,
@@ -52,14 +52,14 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex space-x-8">
-          <NavLink
+          {/*  <NavLink
             to="/"
             className={`font-medium transition-colors ${
               isActive("/") ? "text-amber-500" : "hover:text-amber-500"
             }`}
           >
             Home
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/products"
             className={`font-medium transition-colors ${
@@ -98,11 +98,14 @@ const Header = () => {
             <FaSearch />
           </button>
           <NavLink
-            href="/account"
+            to="/meet-our-founder"
             className="hover:text-amber-500 transition-colors"
           >
-            <FaUser />
+            <FaUserTie />
+
+            {/* Optional: change icon to something like FaUserTie or FaUsers */}
           </NavLink>
+
           <NavLink
             to="/cart"
             className="hover:text-amber-500 transition-colors relative"
@@ -175,7 +178,7 @@ const Header = () => {
         <nav className="p-4">
           <ul className="space-y-4">
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
+              {/*  <NavLink
                 to="/"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
                   isActive("/")
@@ -186,7 +189,7 @@ const Header = () => {
               >
                 <FaHome />
                 <span>Home</span>
-              </NavLink>
+              </NavLink> */}
             </li>
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
