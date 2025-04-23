@@ -203,7 +203,7 @@ const Header = () => {
                 🎵 Turntables
               </NavLink>
             </li>
-            <li>
+            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/services"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
@@ -217,7 +217,7 @@ const Header = () => {
                 <span>Services</span>
               </NavLink>
             </li>
-            <li>
+            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/contact"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
@@ -236,7 +236,7 @@ const Header = () => {
               <NavLink
                 to="/cart"
                 className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
-                onClick={() => setSidebarOpen(false)}
+                //  onClick={() => setSidebarOpen(false)}
               >
                 <FaShoppingCart />
                 <span>Shopping Cart</span>

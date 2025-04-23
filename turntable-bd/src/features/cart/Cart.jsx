@@ -17,6 +17,7 @@ function Cart() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 text-gray-900">
       <Link
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         to="/🎵Turntables"
         className="flex items-center text-blue-600 hover:underline mb-6"
       >
@@ -34,7 +35,6 @@ function Cart() {
       </motion.h2>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Left - Cart Items */}
         <div className="flex-1 bg-white rounded-xl shadow-md p-6 space-y-6">
           {cart.map((item) => (
             <motion.div
@@ -91,6 +91,7 @@ function Cart() {
           </div>
 
           <Link
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/order/new"
             className="block bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 text-center rounded-md font-semibold text-white w-full mt-6"
           >
