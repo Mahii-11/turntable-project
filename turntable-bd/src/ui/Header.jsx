@@ -236,7 +236,7 @@ const Header = () => {
               <NavLink
                 to="/cart"
                 className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
-                //  onClick={() => setSidebarOpen(false)}
+                onClick={() => setSidebarOpen(false)}
               >
                 <FaShoppingCart />
                 <span>Shopping Cart</span>
