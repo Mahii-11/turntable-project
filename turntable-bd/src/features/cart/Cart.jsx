@@ -59,10 +59,9 @@ function Cart() {
                 {formatCurrency(item?.totalPrice ?? 0)}
               </p>
 
-              {/* Cancel / Remove Button */}
               <button
                 onClick={() => dispatch(removeItem(item.id))}
-                className="absolute top-0 right-0 mt-2 mr-2 text-red-500 hover:text-red-400 cursor-pointer"
+                className="absolute top-0 right-0 mt-2 -mr-3 text-red-500 hover:text-red-400 cursor-pointer"
                 aria-label="Remove item"
               >
                 <X className="w-5 h-5" />
