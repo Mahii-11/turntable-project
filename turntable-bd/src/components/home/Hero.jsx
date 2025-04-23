@@ -7,7 +7,6 @@ export default function Hero() {
       id="hero"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1545128485-c400e7702796?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
@@ -44,7 +43,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.9 }}
           >
             <Link
-              to="/products"
+              to="/🎵Turntables"
               className="inline-block bg-[#D4AF37] text-black font-medium px-8 py-4 rounded-full hover:bg-white transition duration-300 mr-4 mb-4 md:mb-0"
             >
               Explore Collection

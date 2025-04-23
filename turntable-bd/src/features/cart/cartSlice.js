@@ -26,6 +26,11 @@ const cartSlice = createSlice({
 
       if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
     },
+
+    removeItem(state, action) {
+      const id = action.payload;
+      state.cart = state.cart.filter((item) => item.id !== id); // Mutation instead of return
+    },
     clearCart(state) {
       state.cart = [];
     },
@@ -37,6 +42,7 @@ export const {
   deleteItem,
   increaseItemQuantity,
   decreaseItemQuantity,
+  removeItem,
   clearCart,
 } = cartSlice.actions;
 
