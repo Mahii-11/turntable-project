@@ -75,28 +75,38 @@ const MeetOurFounder = () => {
         How BD Turntable Was Born
       </h3>
       <motion.p
-        className="max-w-3xl mx-auto text-center text-gray-300"
+        className="max-w-3xl mx-auto text-center text-gray-300 px-4 sm:px-8 md:px-12 leading-relaxed space-y-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        My journey began with a deep fascination for the timeless design and
-        engineering of Technics turntables. What started as an attempt to revive
-        a single worn-out unit slowly unfolded into something far more
-        meaningful. That first project wasn’t just a repair — it was a doorway
-        into a world I’d unknowingly been searching for. As I restored more
-        turntables, word quietly spread. Inquiries came in — not just for
-        buying, but for repairing, restoring, and preserving these analog
-        masterpieces. The passion only intensified with each build, each unique
-        model, each story a customer shared about their turntable. Driven by a
-        desire to give vintage audio a second life, I officially founded BD
-        Turntable. Over the years, I’ve had the privilege of servicing hundreds
-        of models from legendary names in the industry. Each restoration isn't
-        just a technical task — it's a chance to preserve history, revive sound,
-        and deliver nostalgia in its purest form. This isn’t just a business.
-        It’s a commitment to those who believe music deserves to be heard the
-        way it was meant to — warm, rich, and real. — Mohammed Al Amin, Founder
-        of BD Turntable
+        <span className="block text-lg sm:text-xl md:text-2xl font-semibold text-purple-400">
+          My journey began with a deep fascination for the timeless design and
+          engineering of Technics turntables. What started as an attempt to
+          revive a single worn-out unit slowly unfolded into something far more
+          meaningful.
+        </span>
+        <span className="block text-base sm:text-lg md:text-xl font-light">
+          That first project wasn’t just a repair — it was a doorway into a
+          world I’d unknowingly been searching for. As I restored more
+          turntables, word quietly spread. Inquiries came in — not just for
+          buying, but for repairing, restoring, and preserving these analog
+          masterpieces. The passion only intensified with each build, each
+          unique model, each story a customer shared about their turntable.
+        </span>
+        <span className="block text-base sm:text-lg md:text-xl font-light">
+          Driven by a desire to give vintage audio a second life, I officially
+          founded BD Turntable. Over the years, I’ve had the privilege of
+          servicing hundreds of models from legendary names in the industry.
+          Each restoration isn't just a technical task — it's a chance to
+          preserve history, revive sound, and deliver nostalgia in its purest
+          form. This isn’t just a business. It’s a commitment to those who
+          believe music deserves to be heard the way it was meant to — warm,
+          rich, and real.
+        </span>
+        <span className="block mt-4 text-xl font-bold text-purple-500">
+          — Mohammed Al Amin, Founder of BD Turntable
+        </span>
       </motion.p>
 
       <motion.div
