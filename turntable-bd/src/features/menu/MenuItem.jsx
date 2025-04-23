@@ -98,10 +98,12 @@ function MenuItem({ item }) {
           <p className="text-sm mt-1">
             <strong>Rating:</strong> ⭐ {rating}
           </p>
-          <p className="text-sm">
-            <strong>Stock:</strong>{" "}
-            {stock > 0 ? `${stock} available` : "Out of stock"}
-          </p>
+          {!soldOut && (
+            <p className="text-sm">
+              <strong>Stock:</strong>{" "}
+              {stock > 0 ? `${stock} available` : "Out of stock"}
+            </p>
+          )}
           <p className="text-sm">
             <strong>Drive:</strong> {specifications?.driveType}
           </p>

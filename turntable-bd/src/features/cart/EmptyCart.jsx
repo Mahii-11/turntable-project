@@ -12,16 +12,13 @@ function EmptyCart() {
         className="text-center space-y-6"
       >
         <ShoppingCart className="w-16 h-16 mx-auto text-purple-500 animate-spin-slow" />
-
         <h2 className="text-3xl font-bold">Your Cart is Spinning Empty</h2>
-
         <p className="text-gray-400 max-w-md mx-auto">
           Looks like you haven’t added any turntables yet. Crank up your style
           and add some vinyl magic to your collection!
         </p>
-
         <Link
-          to="/products"
+          to="/🎵Turntables"
           className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition-all duration-300"
         >
           <ArrowLeftCircle className="w-5 h-5" />

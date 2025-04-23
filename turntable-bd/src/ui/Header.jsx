@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Settings as GearIcon } from "lucide-react";
 import {
   FaRecordVinyl,
   FaSearch,
@@ -7,10 +8,8 @@ import {
   FaShoppingCart,
   FaBars,
   FaTimes,
-  // FaHome,
   FaTools,
   FaPhone,
-  FaBoxOpen,
 } from "react-icons/fa";
 import { Button } from "./Button";
 import { Input } from "./Input";
@@ -50,24 +49,26 @@ const Header = () => {
             </h1>
           </NavLink>
         </div>
-
         <nav className="hidden md:flex space-x-8">
-          {/*  <NavLink
-            to="/"
-            className={`font-medium transition-colors ${
-              isActive("/") ? "text-amber-500" : "hover:text-amber-500"
-            }`}
-          >
-            Home
-          </NavLink> */}
           <NavLink
-            to="/products"
+            to="/🎵Turntables"
             className={`font-medium transition-colors ${
-              isActive("/products") ? "text-amber-500" : "hover:text-amber-500"
+              isActive("/🎵Turntables")
+                ? "text-amber-500"
+                : "hover:text-amber-500"
             }`}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            Products
+            🎵 Turntables
+          </NavLink>
+          <NavLink
+            to="/PartsHub"
+            className={`font-medium transition-colors ${
+              isActive("/PartsHub") ? "text-amber-500" : "hover:text-amber-500"
+            }`}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Parts Hub
           </NavLink>
           <NavLink
             to="/services"
@@ -102,8 +103,6 @@ const Header = () => {
             className="hover:text-amber-500 transition-colors"
           >
             <FaUserTie />
-
-            {/* Optional: change icon to something like FaUserTie or FaUsers */}
           </NavLink>
 
           <NavLink
@@ -178,31 +177,30 @@ const Header = () => {
         <nav className="p-4">
           <ul className="space-y-4">
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              {/*  <NavLink
-                to="/"
+              <NavLink
+                to="/PartsHub"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/")
+                  isActive("/PartsHub")
                     ? "bg-amber-100 text-amber-700"
                     : "hover:bg-gray-100"
                 }`}
                 onClick={() => setSidebarOpen(false)}
               >
-                <FaHome />
-                <span>Home</span>
-              </NavLink> */}
+                <GearIcon className="w-6 h-6 text-gray-700" />
+                <span> Parts Hub</span>
+              </NavLink>
             </li>
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
-                to="/products"
+                to="/🎵Turntables"
                 className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/products")
+                  isActive("/🎵Turntables")
                     ? "bg-amber-100 text-amber-700"
                     : "hover:bg-gray-100"
                 }`}
                 onClick={() => setSidebarOpen(false)}
               >
-                <FaBoxOpen />
-                <span>Products</span>
+                🎵 Turntables
               </NavLink>
             </li>
             <li>
@@ -233,16 +231,7 @@ const Header = () => {
                 <span>Contact</span>
               </NavLink>
             </li>
-            <li className="border-t border-gray-200 pt-4 mt-4">
-              {/*  <Link
-                href="/account"
-                className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FaUser />
-                <span>My Account</span>
-              </Link> */}
-            </li>
+            <li className="border-t border-gray-200 pt-4 mt-4"></li>
             <li>
               <NavLink
                 to="/cart"

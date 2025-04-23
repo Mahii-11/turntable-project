@@ -16,7 +16,7 @@ function Cart() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-100">
       <Link
-        to="/products"
+        to="/🎵Turntables"
         className="flex items-center text-purple-400 hover:text-purple-300 mb-6 transition-all"
       >
         <ArrowLeftCircle className="mr-2 w-5 h-5" />

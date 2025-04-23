@@ -22,14 +22,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       {
-        path: "/products",
+        path: "/🎵Turntables",
         element: <Menu />,
         loader: menuLoader,
         errorElement: <Error />,
       },
 
       {
-        path: "/products-two",
+        path: "/PartsHub",
         element: <TurntableMenu />,
         loader: turntableLoader,
         errorElement: <Error />,

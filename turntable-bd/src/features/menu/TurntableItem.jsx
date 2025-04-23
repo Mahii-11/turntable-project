@@ -44,7 +44,7 @@ function TurntableItem({ item }) {
         />
 
         {soldOut && (
-          <span className="absolute bg-white text-black text-xs px-3 py-1 rounded-full top-2 left-2 font-bold">
+          <span className="absolute bg-orange-700 text-black text-xs px-3 py-1 rounded-full top-2 left-2 font-bold">
             SOLD OUT
           </span>
         )}
@@ -63,10 +63,12 @@ function TurntableItem({ item }) {
             </p>
           )}
 
-          <p className="text-sm">
-            <strong>Stock:</strong>{" "}
-            {stock > 0 ? `${stock} available` : "Out of stock"}
-          </p>
+          {!soldOut && (
+            <p className="text-sm">
+              <strong>Stock:</strong>
+              {stock > 0 ? `${stock} available` : "Out of stock"}
+            </p>
+          )}
 
           <p className="text-sm mt-1 text-gray-600">{description}</p>
         </div>
