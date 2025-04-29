@@ -15,12 +15,15 @@ import TurntableMenu, {
   loader as turntableLoader,
 } from "./features/menu/TurntableMenu";
 
+import AdminLogin from "./pages/AdminLogin";
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "/login", element: <AdminLogin /> },
       {
         path: "/🎵Turntables",
         element: <Menu />,
@@ -42,11 +45,13 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <ContactForm />,
       },
+
       {
         path: "/meet-our-founder",
         element: <MeetOurFounder />,
       },
       { path: "/cart", element: <Cart /> },
+      { path: "/login", element: <AdminLogin /> },
       {
         path: "/order/new",
         element: <CreateOrder />,

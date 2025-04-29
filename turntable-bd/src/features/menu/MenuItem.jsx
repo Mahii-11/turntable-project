@@ -1,4 +1,4 @@
-// eslint-disable react/prop-types
+/* eslint-disable react/prop-types */
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart, FaStar } from "react-icons/fa";

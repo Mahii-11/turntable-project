@@ -88,6 +88,16 @@ const Header = () => {
           >
             Contact
           </NavLink>
+
+          <NavLink
+            to="/login"
+            className={`font-medium transition-colors ${
+              isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
+            }`}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Login
+          </NavLink>
         </nav>
 
         <div className="flex items-center space-x-4">
