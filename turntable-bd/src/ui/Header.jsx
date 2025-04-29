@@ -8,6 +8,7 @@ import {
   FaShoppingCart,
   FaBars,
   FaTimes,
+  FaSignInAlt,
   FaTools,
   FaPhone,
 } from "react-icons/fa";
@@ -241,6 +242,8 @@ const Header = () => {
                 <span>Contact</span>
               </NavLink>
             </li>
+
+            <li className="border-t border-gray-200 pt-4 mt-4"></li>
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/login"
@@ -249,12 +252,12 @@ const Header = () => {
                     ? "text-amber-500"
                     : "hover:text-amber-500"
                 }`}
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={() => setSidebarOpen(false)}
               >
-                Login
+                <FaSignInAlt />
+                <span>Login</span>
               </NavLink>
             </li>
-            <li className="border-t border-gray-200 pt-4 mt-4"></li>
             <li>
               <NavLink
                 to="/cart"
