@@ -3,20 +3,6 @@ const API_URL = "https://turntable-restapi-4.onrender.com/api";
 //const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 //const API_URL = "https://fast-food-restapi-ol6p.vercel.app/api";
 
-export async function getMenu() {
-  const res = await fetch(`${API_URL}/turntable`);
-  if (!res.ok) throw Error("Failed getting menu");
-  const data = await res.json();
-  return data;
-}
-
-export async function getTurntable() {
-  const res = await fetch(`${API_URL}/turntablemenu`);
-  if (!res.ok) throw Error("Failed getting menu");
-  const data = await res.json();
-  return data;
-}
-
 export async function getOrder(id) {
   const res = await fetch(`${API_URL}/order/${id}`);
 
@@ -80,6 +66,13 @@ export async function adminLogin(credentials) {
 
 //Turntable Product CRUD
 
+export async function getMenu() {
+  const res = await fetch(`${API_URL}/turntable`);
+  if (!res.ok) throw Error("Failed getting menu");
+  const data = await res.json();
+  return data;
+}
+
 export async function addTurntable(data, token) {
   const res = await fetch(`${API_URL}/turntable`, {
     method: "POST",
@@ -123,6 +116,12 @@ export async function deleteTurntable(id, token) {
 }
 
 //Turntable Menu Parts CRUD
+export async function getTurntable() {
+  const res = await fetch(`${API_URL}/turntablemenu`);
+  if (!res.ok) throw Error("Failed getting menu");
+  const data = await res.json();
+  return data;
+}
 
 export async function addPart(data, token) {
   const res = await fetch(`${API_URL}/turntablemenu`, {

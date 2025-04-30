@@ -16,6 +16,9 @@ import TurntableMenu, {
 } from "./features/menu/TurntableMenu";
 
 import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./features/admin/AdminDashboard";
+import ManageTurntables from "./features/admin/ManageTurntables ";
+import ProtectedRoute from "./components/ProtectedRoute"; // Correct path based on your folder structure
 
 const router = createBrowserRouter([
   {
@@ -51,7 +54,7 @@ const router = createBrowserRouter([
         element: <MeetOurFounder />,
       },
       { path: "/cart", element: <Cart /> },
-      { path: "/login", element: <AdminLogin /> },
+      // { path: "/login", element: <AdminLogin /> },
       {
         path: "/order/new",
         element: <CreateOrder />,
@@ -63,6 +66,18 @@ const router = createBrowserRouter([
         loader: orderLoader,
         errorElement: <Error />,
       },
+    ],
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute>
+        <AdminDashboard />
+      </ProtectedRoute>
+    ), // Admin Dashboard protected by ProtectedRoute
+    children: [
+      { path: "turntables", element: <ManageTurntables /> },
+      //  { path: "parts", element: <ManageParts /> },
     ],
   },
 ]);

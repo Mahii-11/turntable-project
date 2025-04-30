@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { adminLogin } from "../services/apiRestaurant";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   ShieldCheck,
   KeyRound,
@@ -10,6 +11,7 @@ import {
 } from "lucide-react";
 
 const AdminLogin = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,6 +29,7 @@ const AdminLogin = () => {
       const data = await adminLogin(credentials);
       localStorage.setItem("adminToken", data.token);
       setSuccess(true);
+      navigate("/admin");
     } catch (err) {
       setError("Invalid login credentials. Please try again.");
     } finally {
