@@ -1,3 +1,4 @@
+/*export default AdminLogin; */
 import React, { useState } from "react";
 import { adminLogin } from "../services/apiRestaurant";
 import { motion } from "framer-motion";
@@ -14,6 +15,8 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showEmail, setShowEmail] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,6 +58,7 @@ const AdminLogin = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Input */}
           <div>
             <label htmlFor="email" className="block text-sm mb-1">
               Email
@@ -63,16 +67,25 @@ const AdminLogin = () => {
               <Mail size={18} className="text-gray-300 mr-2" />
               <input
                 id="email"
-                type="email"
+                type={showEmail ? "text" : "password"}
                 className="w-full py-2 bg-transparent outline-none text-white placeholder:text-gray-400"
-                placeholder="admin@example.com"
+                placeholder="••••••••"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowEmail((prev) => !prev)}
+                className="text-gray-300 ml-2 focus:outline-none text-lg"
+                title={showEmail ? "Hide Email" : "Show Email"}
+              >
+                {showEmail ? "🙈" : "👁️"}
+              </button>
             </div>
           </div>
 
+          {/* Password Input */}
           <div>
             <label htmlFor="password" className="block text-sm mb-1">
               Password
@@ -81,16 +94,25 @@ const AdminLogin = () => {
               <KeyRound size={18} className="text-gray-300 mr-2" />
               <input
                 id="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="w-full py-2 bg-transparent outline-none text-white placeholder:text-gray-400"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="text-gray-300 ml-2 focus:outline-none text-lg"
+                title={showPassword ? "Hide Password" : "Show Password"}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
             </div>
           </div>
 
+          {/* Error */}
           {error && (
             <motion.p
               className="text-red-400 flex items-center justify-center text-sm gap-1"
@@ -101,6 +123,7 @@ const AdminLogin = () => {
             </motion.p>
           )}
 
+          {/* Success */}
           {success && (
             <motion.p
               className="text-green-400 text-sm text-center"
@@ -111,6 +134,7 @@ const AdminLogin = () => {
             </motion.p>
           )}
 
+          {/* Submit Button */}
           <motion.button
             type="submit"
             whileTap={{ scale: 0.97 }}
