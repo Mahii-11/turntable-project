@@ -73,7 +73,7 @@ export async function getMenu() {
   return data;
 }
 
-export async function addTurntable(data, token) {
+/*export async function addTurntable(data, token) {
   const res = await fetch(`${API_URL}/turntable`, {
     method: "POST",
     headers: {
@@ -86,9 +86,36 @@ export async function addTurntable(data, token) {
   if (!res.ok) throw Error("Failed to add product");
   const result = await res.json();
   return result;
-}
+}  */
 
-export async function updateTurntable(id, data, token) {
+export const addTurntable = async (productData) => {
+  try {
+    const response = await fetch(`${API_URL}/turntable`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+      },
+      body: JSON.stringify(productData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to add product");
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Add Product Error:", error);
+    throw error;
+  }
+};
+
+const token = localStorage.getItem("adminToken");
+
+// Update Turntable
+export async function updateTurntable(id, data) {
   const res = await fetch(`${API_URL}/turntable/${id}`, {
     method: "PUT",
     headers: {
@@ -98,12 +125,17 @@ export async function updateTurntable(id, data, token) {
     body: JSON.stringify(data),
   });
 
-  if (!res.ok) throw Error("Failed to update product");
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Failed to update product");
+  }
+
   const result = await res.json();
   return result;
 }
 
-export async function deleteTurntable(id, token) {
+// Delete Turntable
+export async function deleteTurntable(id) {
   const res = await fetch(`${API_URL}/turntable/${id}`, {
     method: "DELETE",
     headers: {
@@ -111,7 +143,11 @@ export async function deleteTurntable(id, token) {
     },
   });
 
-  if (!res.ok) throw Error("Failed to delete product");
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Failed to delete product");
+  }
+
   return true;
 }
 
