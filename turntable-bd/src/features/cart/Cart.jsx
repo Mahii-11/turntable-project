@@ -38,7 +38,7 @@ function Cart() {
         <div className="flex-1 bg-white rounded-xl shadow-md p-6 space-y-6">
           {cart.map((item) => (
             <motion.div
-              key={item.id}
+              key={item._id}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 border-b pb-4 relative"
@@ -60,7 +60,7 @@ function Cart() {
               </p>
 
               <button
-                onClick={() => dispatch(removeItem(item.id))}
+                onClick={() => dispatch(removeItem(item._id))}
                 className="absolute top-0 right-0 mt-2 -mr-3 text-red-500 hover:text-red-400 cursor-pointer"
                 aria-label="Remove item"
               >

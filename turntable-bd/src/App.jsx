@@ -19,6 +19,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./features/admin/AdminDashboard";
 import ManageTurntables from "./features/admin/ManageTurntables ";
 import ProtectedRoute from "./components/ProtectedRoute"; // Correct path based on your folder structure
+import ManageParts from "./features/admin/ManageParts";
 
 const router = createBrowserRouter([
   {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
     ), // Admin Dashboard protected by ProtectedRoute
     children: [
       { path: "turntables", element: <ManageTurntables /> },
-      //  { path: "parts", element: <ManageParts /> },
+      { path: "parts", element: <ManageParts /> },
     ],
   },
 ]);

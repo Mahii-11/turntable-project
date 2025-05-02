@@ -9,7 +9,7 @@ function Menu() {
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6  -mt-8">
       {menu.map((item) => (
-        <MenuItem item={item} key={item.id} />
+        <MenuItem item={item} key={item._id} />
       ))}
     </ul>
   );
@@ -18,7 +18,7 @@ function Menu() {
 export async function loader() {
   try {
     const menu = await getMenu();
-    return menu ?? []; // Fallback to empty array
+    return menu ?? [];
   } catch (err) {
     console.error("Loader error:", err);
     return [];

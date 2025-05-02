@@ -12,15 +12,15 @@ const cartSlice = createSlice({
       state.cart.push(action.payload);
     },
     deleteItem(state, action) {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      state.cart = state.cart.filter((item) => item._id !== action.payload);
     },
     increaseItemQuantity(state, action) {
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((item) => item._id === action.payload);
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
     },
     decreaseItemQuantity(state, action) {
-      const item = state.cart.find((item) => item.id === action.payload);
+      const item = state.cart.find((item) => item._id === action.payload);
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;
 
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
 
     removeItem(state, action) {
       const id = action.payload;
-      state.cart = state.cart.filter((item) => item.id !== id); // Mutation instead of return
+      state.cart = state.cart.filter((item) => item._id !== id); // Mutation instead of return
     },
     clearCart(state) {
       state.cart = [];
@@ -54,7 +54,7 @@ export const getTotalCartQuantity = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 
 export const getCurrentQuantityById = (id) => (state) =>
-  state.cart.cart.find((item) => item.id === id)?.quantity ?? 0;
+  state.cart.cart.find((item) => item._id === id)?.quantity ?? 0;
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);

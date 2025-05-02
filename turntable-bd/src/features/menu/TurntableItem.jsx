@@ -7,14 +7,14 @@ import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
 
 function TurntableItem({ item }) {
-  const { id, name, price, image, description, stock, soldOut } = item;
+  const { _id, name, price, image, description, stock, soldOut } = item;
   const dispatch = useDispatch();
-  const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
 
   function handleAddToCart() {
     const newItem = {
-      id: id,
+      _id,
       image,
       name,
       quantity: 1,
@@ -26,7 +26,7 @@ function TurntableItem({ item }) {
 
   return (
     <motion.li
-      key={id}
+      key={_id}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={!soldOut ? { scale: 1.02 } : {}}
@@ -81,7 +81,7 @@ function TurntableItem({ item }) {
           <p className="text-sm text-gray-600 line-clamp-3">{description}</p>
         </div>
 
-        {isInCart && <DeleteItem id={id} />}
+        {isInCart && <DeleteItem id={_id} />}
 
         {!soldOut && !isInCart && (
           <motion.button

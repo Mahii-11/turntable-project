@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   getMenu,
   addTurntable,
@@ -8,6 +9,7 @@ import {
 
 export default function ManageTurntables() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     brand: "",
@@ -15,9 +17,11 @@ export default function ManageTurntables() {
     image: "",
     description: "",
     category: "",
+    specifications: "",
     stock: "",
     features: "",
     warranty: "",
+    rating: "",
   });
   const [editId, setEditId] = useState(null);
   const [message, setMessage] = useState("");
@@ -28,7 +32,6 @@ export default function ManageTurntables() {
 
   const fetchTurntables = async () => {
     const data = await getMenu();
-    console.log(data);
     setProducts(data);
   };
 
@@ -38,18 +41,38 @@ export default function ManageTurntables() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (editId) {
         await updateTurntable(editId, formData);
-        setMessage("Product updated successfully!");
+        setMessage("✅ Product updated successfully!");
       } else {
         await addTurntable(formData);
-        setMessage("Product added successfully!");
+        setMessage("✅ Product added successfully!");
       }
-      fetchTurntables();
+
+      setTimeout(() => {
+        setLoading(false);
+        setFormData({
+          name: "",
+          brand: "",
+          price: "",
+          image: "",
+          description: "",
+          category: "",
+          specifications: "",
+          stock: "",
+          features: "",
+          warranty: "",
+          rating: "",
+        });
+
+        setEditId(null);
+        fetchTurntables();
+      }, 500);
     } catch (err) {
-      console.error("Save Error:", err.message);
-      setMessage(`Error saving product: ${err.message}`);
+      console.error("Error saving product:", err.message);
+      setLoading(false);
     }
   };
 
@@ -65,223 +88,121 @@ export default function ManageTurntables() {
     setEditId(product._id);
   };
 
-  return (
-    <div className="p-4 text-white">
-      <h2 className="text-2xl font-bold mb-4">Manage Turntables</h2>
+  const handleCancelEdit = () => {
+    setFormData({
+      name: "",
+      brand: "",
+      price: "",
+      image: "",
+      description: "",
+      category: "",
+      specifications: "",
+      stock: "",
+      features: "",
+      warranty: "",
+      rating: "",
+    });
+    setEditId(null);
+  };
 
-      <form
+  return (
+    <div className="p-6 text-white bg-gradient-to-tr from-gray-900 via-black to-gray-800 min-h-screen">
+      <h2 className="text-3xl font-extrabold mb-6 text-center tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+        🎛️ Manage Turntables
+      </h2>
+
+      <motion.form
         onSubmit={handleSubmit}
-        className="grid grid-cols-2 gap-4 bg-gray-800 p-4 rounded-xl"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/50 backdrop-blur-md p-6 rounded-2xl border border-gray-700 shadow-xl"
       >
-        {Object.keys(formData).map((key) => (
+        {Object.keys(formData).map((key, idx) => (
           <input
-            key={key}
+            key={idx}
             name={key}
             placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
             value={formData[key]}
             onChange={handleChange}
-            className="p-2 rounded bg-gray-700"
+            className="p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+            required
           />
         ))}
-        <button
-          type="submit"
-          className="col-span-2 bg-green-600 hover:bg-green-700 rounded p-2"
-        >
-          {editId ? "Update Product" : "Add Product"}
-        </button>
-      </form>
 
-      {message && <p className="mt-2 text-yellow-400">{message}</p>}
+        <div className="col-span-1 md:col-span-2 flex gap-4 mt-4">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`${
+              loading
+                ? "bg-purple-400 cursor-not-allowed"
+                : "bg-purple-600 hover:bg-purple-700"
+            } text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 w-full shadow-md`}
+          >
+            {loading
+              ? editId
+                ? "Updating..."
+                : "Adding..."
+              : editId
+              ? "Update Product"
+              : "Add Product"}
+          </button>
 
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {editId && (
+            <button
+              type="button"
+              onClick={handleCancelEdit}
+              disabled={loading}
+              className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 w-full shadow-md"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </motion.form>
+
+      {message && (
+        <p className="mt-4 text-green-400 font-medium animate-pulse">
+          {message}
+        </p>
+      )}
+
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
         {products.map((prod) => (
-          <div key={prod._id} className="p-4 bg-gray-700 rounded-lg shadow">
+          <motion.div
+            key={prod._id}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-gray-800 p-5 rounded-xl border border-gray-700 shadow-lg hover:shadow-purple-700/40 transition duration-300"
+          >
             <img
               src={prod.image}
               alt={prod.name}
-              className="w-full h-40 object-cover rounded"
+              className="w-full h-36 object-cover rounded-lg mb-3"
             />
-            <h3 className="text-xl font-semibold mt-2">{prod.name}</h3>
-            <p>Brand: {prod.brand}</p>
-            <p>Price: ${prod.price}</p>
-            <div className="flex mt-2 gap-2">
+            <h3 className="text-lg font-semibold mb-1">{prod.name}</h3>
+            <p className="text-sm text-gray-400">Brand: {prod.brand}</p>
+            <p className="text-sm text-gray-400 mb-3">BDT {prod.price}</p>
+            <div className="flex gap-2">
               <button
                 onClick={() => handleEdit(prod)}
-                className="px-3 py-1 bg-yellow-500 rounded hover:bg-yellow-600"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-1 px-3 rounded-md transition-all duration-300"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(prod._id)}
-                className="px-3 py-1 bg-red-600 rounded hover:bg-red-700"
+                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-md transition-all duration-300"
               >
                 Delete
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
   );
 }
-/*
-import React, { useEffect, useState } from "react";
-import {
-  addTurntable,
-  deleteTurntable,
-  getMenu,
-  updateTurntable,
-} from "../../services/apiRestaurant";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-
-function ManageTurntables() {
-  const [products, setProducts] = useState([]);
-  const [editingProduct, setEditingProduct] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    brand: "",
-    price: "",
-    image: "",
-    description: "",
-    category: "",
-    stock: "",
-    features: "",
-    warranty: "",
-  });
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("adminToken");
-    if (!storedToken) {
-      setTimeout(() => navigate("/login"), 100);
-    } else {
-      fetchProducts();
-    }
-  }, []);
-
-  async function fetchProducts() {
-    try {
-      const data = await getMenu();
-      setProducts(data);
-    } catch (err) {
-      console.error("Error fetching products:", err);
-    }
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-
-    try {
-      if (editingProduct) {
-        await updateTurntable(editingProduct._id, formData, token);
-      } else {
-        await addTurntable(formData, token);
-      }
-      setFormData({
-        name: "",
-        brand: "",
-        price: "",
-        image: "",
-        description: "",
-        category: "",
-        stock: "",
-        features: "",
-        warranty: "",
-      });
-      setEditingProduct(null);
-      fetchProducts();
-    } catch (err) {
-      console.error("Error saving product:", err);
-    }
-  }
-
-  function handleEdit(product) {
-    setFormData(product);
-    setEditingProduct(product);
-  }
-
-  async function handleDelete(id) {
-    const token = localStorage.getItem("token");
-    try {
-      await deleteTurntable(id, token);
-      fetchProducts();
-    } catch (err) {
-      console.error("Error deleting product:", err);
-    }
-  }
-
-  return (
-    <div className="p-4 text-white bg-gray-900 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4">Manage Turntables</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"
-      >
-        {Object.keys(formData).map((key) => (
-          <input
-            key={key}
-            type="text"
-            name={key}
-            placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-            value={formData[key]}
-            onChange={handleChange}
-            className="p-2 rounded bg-gray-800 text-white"
-            required
-          />
-        ))}
-        <button
-          type="submit"
-          className="md:col-span-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded"
-        >
-          {editingProduct ? "Update" : "Add"} Product
-        </button>
-      </form>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <div
-            key={product._id}
-            className="bg-gray-800 p-4 rounded shadow flex flex-col justify-between"
-          >
-            <div>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded mb-2"
-              />
-              <h2 className="text-xl font-semibold">{product.name}</h2>
-              <p>{product.description}</p>
-              <p className="text-green-400">${product.price}</p>
-              <p className="text-sm text-gray-400">Stock: {product.stock}</p>
-            </div>
-            <div className="flex justify-between mt-4">
-              <button
-                onClick={() => handleEdit(product)}
-                className="text-yellow-400 hover:text-yellow-300"
-              >
-                <FaEdit />
-              </button>
-              <button
-                onClick={() => handleDelete(product._id)}
-                className="text-red-500 hover:text-red-400"
-              >
-                <FaTrash />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default ManageTurntables;*/

@@ -3,33 +3,39 @@ import { NavLink, Outlet } from "react-router-dom";
 
 export default function AdminDashboard() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+    <div className="min-h-screen bg-gray-950 text-white px-6 py-8">
+      <h1 className="text-4xl font-bold mb-8 text-center text-blue-400">
+        Admin Dashboard
+      </h1>
 
-      <div className="flex gap-6 mb-8">
+      <div className="flex justify-center gap-6 mb-8">
         <NavLink
           to="turntables"
           className={({ isActive }) =>
-            isActive
-              ? "bg-blue-600 px-4 py-2 rounded"
-              : "bg-gray-700 px-4 py-2 rounded"
+            `px-5 py-2 rounded-xl transition-all duration-300 ${
+              isActive
+                ? "bg-blue-600 text-white shadow-lg"
+                : "bg-gray-800 hover:bg-gray-700"
+            }`
           }
         >
-          Manage Turntables
+          🎵 Manage Turntables
         </NavLink>
         <NavLink
           to="parts"
           className={({ isActive }) =>
-            isActive
-              ? "bg-blue-600 px-4 py-2 rounded"
-              : "bg-gray-700 px-4 py-2 rounded"
+            `px-5 py-2 rounded-xl transition-all duration-300 ${
+              isActive
+                ? "bg-blue-600 text-white shadow-lg"
+                : "bg-gray-800 hover:bg-gray-700"
+            }`
           }
         >
-          Manage Parts
+          ⚙️ Manage Parts
         </NavLink>
       </div>
 
-      <div className="bg-gray-800 p-4 rounded-lg shadow">
+      <div className="bg-gray-900 p-6 rounded-2xl shadow-xl border border-gray-700">
         <Outlet />
       </div>
     </div>

@@ -23,7 +23,7 @@ export default function TurntableProducts() {
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.map((item) => {
-        console.log("Rendering product:", item); // Check each product
+        console.log("Rendering product:", item);
         return <MenuItem key={item._id} item={item} />;
       })}
     </ul>

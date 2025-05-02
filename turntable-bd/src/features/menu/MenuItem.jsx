@@ -8,7 +8,7 @@ import DeleteItem from "./DeleteItem";
 
 function MenuItem({ item }) {
   const {
-    id,
+    _id,
     name,
     brand,
     price,
@@ -18,17 +18,17 @@ function MenuItem({ item }) {
     rating,
     features,
     specifications,
-    discount,
+    // discount,
     soldOut,
   } = item;
 
   const dispatch = useDispatch();
-  const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
 
   function handleAddToCart() {
     const newItem = {
-      id,
+      _id,
       image,
       name,
       quantity: 1,
@@ -38,13 +38,13 @@ function MenuItem({ item }) {
     dispatch(addItem(newItem));
   }
 
-  const finalPrice = discount
-    ? (price - price * (discount.percent / 100)).toFixed(2)
-    : price;
+  // const finalPrice = discount
+  ////  ? (price - price * (discount.percent / 100)).toFixed(2)
+  //  : price;
 
   return (
     <motion.li
-      key={id}
+      key={_id}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={!soldOut ? { scale: 1.02 } : {}}
@@ -62,11 +62,11 @@ function MenuItem({ item }) {
           className="w-full h-52 object-cover rounded-t-xl"
         />
 
-        {!soldOut && discount && (
+        {/*  {!soldOut && discount && (
           <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-full font-semibold shadow">
             {discount.percent}% OFF
           </span>
-        )}
+        )} */}
 
         {soldOut && (
           <span className="absolute top-2 left-2 bg-black text-white text-xs px-3 py-1 rounded-full font-bold shadow">
@@ -78,7 +78,7 @@ function MenuItem({ item }) {
       <div className="p-4 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-base font-semibold text-gray-900">
-            {name}
+            <strong>Name:</strong> {name}
             <span className="text-sm text-gray-500 font-normal ml-1">
               ({brand})
             </span>
@@ -93,15 +93,16 @@ function MenuItem({ item }) {
               <p className="text-sm text-gray-700">
                 <strong>Price:</strong>{" "}
                 <span className="text-red-600 font-semibold">
-                  {formatCurrency(finalPrice)}
+                  {formatCurrency(price)}
                 </span>
-                {discount && (
+                {/*  {discount && (
                   <del className="ml-2 text-gray-400 text-sm">
                     {formatCurrency(price)}
-                  </del>
-                )}
+                  </del>  
+                )} */}
               </p>
               <p className="text-sm text-green-600 font-medium">
+                <strong>Stock:</strong>{" "}
                 {stock > 0 ? `${stock} available` : "Out of stock"}
               </p>
             </>
@@ -116,11 +117,12 @@ function MenuItem({ item }) {
           </p>
 
           <p className="text-sm mt-2 text-gray-600 line-clamp-3">
-            {description}
+            <strong>Description:</strong> {description}
           </p>
 
           {!soldOut && features?.length > 0 && (
             <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
+              <strong>Features:</strong>{" "}
               {features.slice(0, 3).map((f, idx) => (
                 <li key={idx}>🔹 {f}</li>
               ))}
@@ -128,7 +130,7 @@ function MenuItem({ item }) {
           )}
         </div>
 
-        {isInCart && <DeleteItem id={id} />}
+        {isInCart && <DeleteItem id={_id} />}
 
         {!soldOut && !isInCart && (
           <motion.button

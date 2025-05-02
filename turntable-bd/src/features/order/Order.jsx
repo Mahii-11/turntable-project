@@ -145,7 +145,7 @@ function Order() {
         </h2>
         <ul className="space-y-5">
           {cart.map((item) => (
-            <OrderItem item={item} key={item.id} />
+            <OrderItem item={item} key={item._id} />
           ))}
         </ul>
       </div>

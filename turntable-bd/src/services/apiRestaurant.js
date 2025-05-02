@@ -64,7 +64,7 @@ export async function adminLogin(credentials) {
   return data;
 }
 
-//Turntable Product CRUD
+//////////////////////////////// Turntable Product CRUD //////////////////////////
 
 export async function getMenu() {
   const res = await fetch(`${API_URL}/turntable`);
@@ -72,21 +72,6 @@ export async function getMenu() {
   const data = await res.json();
   return data;
 }
-
-/*export async function addTurntable(data, token) {
-  const res = await fetch(`${API_URL}/turntable`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!res.ok) throw Error("Failed to add product");
-  const result = await res.json();
-  return result;
-}  */
 
 export const addTurntable = async (productData) => {
   try {
@@ -151,30 +136,40 @@ export async function deleteTurntable(id) {
   return true;
 }
 
-//Turntable Menu Parts CRUD
-export async function getTurntable() {
+//////////////////////   Turntable Menu Parts CRUD        ///////////////////////////
+
+export async function getTurntableParts() {
   const res = await fetch(`${API_URL}/turntablemenu`);
   if (!res.ok) throw Error("Failed getting menu");
   const data = await res.json();
   return data;
 }
 
-export async function addPart(data, token) {
-  const res = await fetch(`${API_URL}/turntablemenu`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
+export const addTurntablePart = async (productData) => {
+  try {
+    const response = await fetch(`${API_URL}/turntablemenu`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+      },
+      body: JSON.stringify(productData),
+    });
 
-  if (!res.ok) throw Error("Failed to add part");
-  const result = await res.json();
-  return result;
-}
+    const result = await response.json();
 
-export async function updatePart(id, data, token) {
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to add product");
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Add Product Error:", error);
+    throw error;
+  }
+};
+
+export async function updateTurntablePart(id, data) {
   const res = await fetch(`${API_URL}/turntablemenu/${id}`, {
     method: "PUT",
     headers: {
@@ -184,12 +179,16 @@ export async function updatePart(id, data, token) {
     body: JSON.stringify(data),
   });
 
-  if (!res.ok) throw Error("Failed to update part");
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Failed to update product");
+  }
+
   const result = await res.json();
   return result;
 }
 
-export async function deletePart(id, token) {
+export async function deleteTurntablePart(id) {
   const res = await fetch(`${API_URL}/turntablemenu/${id}`, {
     method: "DELETE",
     headers: {
@@ -197,6 +196,10 @@ export async function deletePart(id, token) {
     },
   });
 
-  if (!res.ok) throw Error("Failed to delete part");
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Failed to delete product");
+  }
+
   return true;
 }
