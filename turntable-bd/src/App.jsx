@@ -27,7 +27,6 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/login", element: <AdminLogin /> },
       {
         path: "/🎵Turntables",
         element: <Menu />,
@@ -45,17 +44,11 @@ const router = createBrowserRouter([
         path: "/services",
         element: <ServicesPage />,
       },
-      {
-        path: "/contact",
-        element: <ContactForm />,
-      },
-
-      {
-        path: "/meet-our-founder",
-        element: <MeetOurFounder />,
-      },
+      { path: "/contact", element: <ContactForm /> },
+      { path: "/login", element: <AdminLogin /> },
+      { path: "/meet-our-founder", element: <MeetOurFounder /> },
       { path: "/cart", element: <Cart /> },
-      // { path: "/login", element: <AdminLogin /> },
+
       {
         path: "/order/new",
         element: <CreateOrder />,
@@ -75,7 +68,8 @@ const router = createBrowserRouter([
       <ProtectedRoute>
         <AdminDashboard />
       </ProtectedRoute>
-    ), // Admin Dashboard protected by ProtectedRoute
+    ),
+    errorElement: <Error />,
     children: [
       { path: "turntables", element: <ManageTurntables /> },
       { path: "parts", element: <ManageParts /> },

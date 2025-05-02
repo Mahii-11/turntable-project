@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Link } from "lucide-react";
 import { useScrollAnimation } from "@/lib/animations";
 
 export default function Showcase() {
@@ -37,7 +37,7 @@ export default function Showcase() {
                 className="rounded-lg shadow-2xl"
               />
               <motion.div
-                className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-black rounded-full"
+                className="absolute top-1/3 left-4 w-1/2 h-1/2 bg-black rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
               >
@@ -90,8 +90,8 @@ export default function Showcase() {
                 <span>Anti-vibration aluminum chassis</span>
               </li>
             </ul>
-            <a
-              href="#"
+            <Link
+              to="#"
               className="inline-flex items-center font-medium text-[#D4AF37] hover:underline"
             >
               View Specifications
@@ -109,7 +109,7 @@ export default function Showcase() {
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

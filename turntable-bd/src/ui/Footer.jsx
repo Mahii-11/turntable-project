@@ -190,7 +190,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Bangladesh Turntable. All rights
             reserved.
           </p>
-          <div className="flex justify-center space-x-4 mt-4">
+          {/*  <div className="flex justify-center space-x-4 mt-4">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
               alt="Visa"
@@ -211,7 +211,7 @@ const Footer = () => {
               alt="PayPal"
               className="h-6"
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

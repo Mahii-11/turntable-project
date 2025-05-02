@@ -93,7 +93,7 @@ const Header = () => {
           <NavLink
             to="/login"
             className={`font-medium transition-colors ${
-              isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
+              isActive("/login") ? "text-amber-500" : "hover:text-amber-500"
             }`}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
@@ -243,14 +243,13 @@ const Header = () => {
               </NavLink>
             </li>
 
-            <li className="border-t border-gray-200 pt-4 mt-4"></li>
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
               <NavLink
                 to="/login"
-                className={`font-medium transition-colors ${
-                  isActive("/contact")
-                    ? "text-amber-500"
-                    : "hover:text-amber-500"
+                className={`flex items-center space-x-2 p-2 rounded-md ${
+                  isActive("/login")
+                    ? "bg-amber-100 text-amber-700"
+                    : "hover:bg-gray-100"
                 }`}
                 onClick={() => setSidebarOpen(false)}
               >
@@ -258,6 +257,8 @@ const Header = () => {
                 <span>Login</span>
               </NavLink>
             </li>
+
+            <li className="border-t border-gray-200 pt-4 mt-4"></li>
             <li>
               <NavLink
                 to="/cart"
