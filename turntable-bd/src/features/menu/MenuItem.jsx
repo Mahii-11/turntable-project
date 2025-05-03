@@ -18,7 +18,9 @@ function MenuItem({ item }) {
     rating,
     features,
     specifications,
-    // discount,
+    category,
+    warranty,
+    discount,
     soldOut,
   } = item;
 
@@ -38,9 +40,9 @@ function MenuItem({ item }) {
     dispatch(addItem(newItem));
   }
 
-  // const finalPrice = discount
-  ////  ? (price - price * (discount.percent / 100)).toFixed(2)
-  //  : price;
+  const finalPrice = discount
+    ? (price - price * (discount.percent / 100)).toFixed(2)
+    : price;
 
   return (
     <motion.li
@@ -62,11 +64,11 @@ function MenuItem({ item }) {
           className="w-full h-52 object-cover rounded-t-xl"
         />
 
-        {/*  {!soldOut && discount && (
+        {!soldOut && discount && discount.percent > 0 && (
           <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-full font-semibold shadow">
             {discount.percent}% OFF
           </span>
-        )} */}
+        )}
 
         {soldOut && (
           <span className="absolute top-2 left-2 bg-black text-white text-xs px-3 py-1 rounded-full font-bold shadow">
@@ -83,23 +85,22 @@ function MenuItem({ item }) {
               ({brand})
             </span>
           </h3>
-
-          <div className="text-sm mt-1 text-gray-600 mb-1">
-            <strong>Drive:</strong> {specifications?.driveType}
-          </div>
+          <p className="text-sm text-gray-700 mt-1">
+            <strong>Category:</strong> {category || "N/A"}
+          </p>
 
           {!soldOut && (
             <>
               <p className="text-sm text-gray-700">
                 <strong>Price:</strong>{" "}
                 <span className="text-red-600 font-semibold">
-                  {formatCurrency(price)}
+                  {formatCurrency(finalPrice)}
                 </span>
-                {/*  {discount && (
+                {discount && discount.percent > 0 && (
                   <del className="ml-2 text-gray-400 text-sm">
                     {formatCurrency(price)}
-                  </del>  
-                )} */}
+                  </del>
+                )}
               </p>
               <p className="text-sm text-green-600 font-medium">
                 <strong>Stock:</strong>{" "}
@@ -118,6 +119,22 @@ function MenuItem({ item }) {
 
           <p className="text-sm mt-2 text-gray-600 line-clamp-3">
             <strong>Description:</strong> {description}
+          </p>
+
+          {specifications?.speed && (
+            <p className="text-sm text-gray-700">
+              <strong>Speed:</strong> {specifications.speed}
+            </p>
+          )}
+
+          {specifications?.tonearm && (
+            <p className="text-sm text-gray-700">
+              <strong>Tonearm:</strong> {specifications.tonearm}
+            </p>
+          )}
+
+          <p className="text-sm text-gray-700 mt-1">
+            <strong>Warranty:</strong> {warranty || "No warranty info"}
           </p>
 
           {!soldOut && features?.length > 0 && (

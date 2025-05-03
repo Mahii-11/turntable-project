@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Trash2, X, ArrowLeftCircle, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, getCart, removeItem } from "./cartSlice"; // 👈 make sure removeItem action ache
+import { clearCart, getCart, removeItem } from "./cartSlice";
 import { formatCurrency } from "../../utils/helpers";
 import EmptyCart from "./EmptyCart";
 

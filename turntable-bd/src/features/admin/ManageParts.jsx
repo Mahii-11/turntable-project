@@ -170,7 +170,10 @@ export default function ManageTurntables() {
             <p className="text-sm text-gray-400 mb-3">BDT {prod.price}</p>
             <div className="flex gap-2">
               <button
-                onClick={() => handleEdit(prod)}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  handleEdit(prod);
+                }}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-1 px-3 rounded-md transition-all duration-300"
               >
                 Edit

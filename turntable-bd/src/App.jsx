@@ -18,7 +18,7 @@ import TurntableMenu, {
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./features/admin/AdminDashboard";
 import ManageTurntables from "./features/admin/ManageTurntables ";
-import ProtectedRoute from "./components/ProtectedRoute"; // Correct path based on your folder structure
+import ProtectedRoute from "./components/ProtectedRoute";
 import ManageParts from "./features/admin/ManageParts";
 
 const router = createBrowserRouter([
@@ -33,13 +33,13 @@ const router = createBrowserRouter([
         loader: menuLoader,
         errorElement: <Error />,
       },
-
       {
         path: "/PartsHub",
         element: <TurntableMenu />,
         loader: turntableLoader,
         errorElement: <Error />,
       },
+
       {
         path: "/services",
         element: <ServicesPage />,
