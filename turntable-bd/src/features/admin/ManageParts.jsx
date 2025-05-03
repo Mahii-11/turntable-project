@@ -16,6 +16,7 @@ export default function ManageTurntables() {
     image: "",
     description: "",
     stock: "",
+    soldOut: false,
   });
   const [editId, setEditId] = useState(null);
   const [message, setMessage] = useState("");
@@ -30,38 +31,56 @@ export default function ManageTurntables() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const formattedData = {
+      name: formData.name,
+      price: Number(formData.price),
+      image: formData.image,
+      description: formData.description,
+      stock: Number(formData.stock),
+      soldOut: formData.soldOut,
+    };
+
     try {
       if (editId) {
-        await updateTurntablePart(editId, formData);
+        await updateTurntablePart(editId, formattedData);
         setMessage("✅ Product updated successfully!");
       } else {
-        await addTurntablePart(formData);
+        await addTurntablePart(formattedData);
         setMessage("✅ Product added successfully!");
       }
 
       setTimeout(() => {
         setLoading(false);
-        setFormData({
-          name: "",
-          price: "",
-          image: "",
-          description: "",
-          stock: "",
-        });
-
-        setEditId(null);
+        resetForm();
         fetchTurntables();
       }, 500);
     } catch (err) {
       console.error("Error saving product:", err.message);
       setLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      price: "",
+      image: "",
+      description: "",
+      stock: "",
+      soldOut: false,
+    });
+    setEditId(null);
   };
 
   const handleDelete = async (id) => {
@@ -72,19 +91,19 @@ export default function ManageTurntables() {
   };
 
   const handleEdit = (product) => {
-    setFormData(product);
+    setFormData({
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      description: product.description,
+      stock: product.stock,
+      soldOut: product.soldOut || false,
+    });
     setEditId(product._id);
   };
 
   const handleCancelEdit = () => {
-    setFormData({
-      name: "",
-      price: "",
-      image: "",
-      description: "",
-      stock: "",
-    });
-    setEditId(null);
+    resetForm();
   };
 
   return (
@@ -100,17 +119,29 @@ export default function ManageTurntables() {
         transition={{ duration: 0.5 }}
         className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/50 backdrop-blur-md p-6 rounded-2xl border border-gray-700 shadow-xl"
       >
-        {Object.keys(formData).map((key, idx) => (
-          <input
-            key={idx}
-            name={key}
-            placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-            value={formData[key]}
-            onChange={handleChange}
-            className="p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
-            required
-          />
-        ))}
+        {Object.keys(formData).map((key, idx) =>
+          typeof formData[key] === "boolean" ? (
+            <label key={idx} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                name={key}
+                checked={formData[key]}
+                onChange={handleChange}
+              />
+              Mark as Sold Out
+            </label>
+          ) : (
+            <input
+              key={idx}
+              name={key}
+              placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+              value={formData[key]}
+              onChange={handleChange}
+              className="p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+              required
+            />
+          )
+        )}
 
         <div className="col-span-1 md:col-span-2 flex gap-4 mt-4">
           <button
@@ -166,9 +197,12 @@ export default function ManageTurntables() {
               className="w-full h-36 object-cover rounded-lg mb-3"
             />
             <h3 className="text-lg font-semibold mb-1">{prod.name}</h3>
-            <p className="text-sm text-gray-400">Brand: {prod.brand}</p>
-            <p className="text-sm text-gray-400 mb-3">BDT {prod.price}</p>
-            <div className="flex gap-2">
+            <p className="text-sm text-gray-400 mb-1">BDT {prod.price}</p>
+            <p className="text-sm text-gray-400 mb-1">
+              Stock: {prod.stock}{" "}
+              {prod.soldOut ? "❌ Sold Out" : "✅ Available"}
+            </p>
+            <div className="flex gap-2 mt-2">
               <button
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });

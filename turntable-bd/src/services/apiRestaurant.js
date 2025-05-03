@@ -66,6 +66,8 @@ export async function adminLogin(credentials) {
 
 //////////////////////////////// Turntable Product CRUD //////////////////////////
 
+const token = localStorage.getItem("adminToken");
+
 export async function getMenu() {
   const res = await fetch(`${API_URL}/turntable`);
   if (!res.ok) throw Error("Failed getting menu");
@@ -96,8 +98,6 @@ export const addTurntable = async (productData) => {
     throw error;
   }
 };
-
-const token = localStorage.getItem("adminToken");
 
 // Update Turntable
 export async function updateTurntable(id, data) {
@@ -156,7 +156,13 @@ export const addTurntablePart = async (productData) => {
       body: JSON.stringify(productData),
     });
 
-    const result = await response.json();
+    const text = await response.text(); // first get text response
+    let result;
+    try {
+      result = JSON.parse(text); // then try to parse it
+    } catch (err) {
+      throw new Error(`Invalid JSON response: ${text}`);
+    }
 
     if (!response.ok) {
       throw new Error(result.message || "Failed to add product");
