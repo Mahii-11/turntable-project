@@ -72,9 +72,10 @@ export default function ServicesPage() {
               <motion.img
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.2 }}
-                src="/images/turn.jpg"
+                src="/images/download (1).jpeg"
                 alt="Vintage turntable"
-                className="rounded-lg shadow-md w-full h-auto"
+                className="rounded-lg shadow-md w-92 h-92"
+                loading="lazy"
               />
             </motion.div>
           </div>
