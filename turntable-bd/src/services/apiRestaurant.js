@@ -67,18 +67,10 @@ export async function adminLogin(credentials) {
 //////////////////////////////// Turntable Product CRUD //////////////////////////
 
 const token = localStorage.getItem("adminToken");
-/*
+
 export async function getMenu() {
   const res = await fetch(`${API_URL}/turntable`);
   if (!res.ok) throw Error("Failed getting menu");
-  const data = await res.json();
-  return data;
-} */
-
-export async function getMenu(page = 1, limit = 12) {
-  const res = await fetch(`${API_URL}/turntable?page=${page}&limit=${limit}`);
-  if (!res.ok) throw Error("Failed getting menu");
-
   const data = await res.json();
   return data;
 }

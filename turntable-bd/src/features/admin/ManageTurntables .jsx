@@ -46,6 +46,8 @@ export default function ManageTurntables() {
     setProducts(data);
   };
 
+  fetchTurntables();
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
