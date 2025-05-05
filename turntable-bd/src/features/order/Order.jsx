@@ -20,6 +20,7 @@ import {
   Info,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 function Order() {
   const order = useLoaderData();
@@ -45,134 +46,159 @@ function Order() {
     status === "pending" && deliveryIn <= 0 ? "confirmed" : status;
 
   return (
-    <motion.div
-      className="max-w-6xl mx-auto px-4 py-10 text-black font-sans"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      {/* Header */}
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-yellow-400">
-          Your Turntables Order
-        </h1>
-        <p className="text-sm text-gray-400 mt-1">Order ID: #{id}</p>
-      </div>
+    <>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content={`Order ID #${id} for turntable products. Track status, delivery, and view customer details.`}
+        />
+        <meta
+          name="keywords"
+          content="turntable order, order details, delivery status, customer info, order tracking"
+        />
+        <meta name="author" content="Your Company Name" />
+        <meta property="og:title" content={`Order ID #${id} - Turntables`} />
+        <meta
+          property="og:description"
+          content={`Track your order ID #${id} and get delivery updates for your turntable products.`}
+        />
+        <meta property="og:image" content="URL_TO_IMAGE" />
+        <meta property="og:url" content={`YOUR_PAGE_URL/order/${id}`} />
+        <meta name="robots" content="index, follow" />
+        <title>Order ID #{id} - Turntables</title>
+      </Helmet>
 
-      {/* Order Status & Delivery */}
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
-        {/* Order Status */}
-        <div className=" p-6 rounded-xl shadow-lg">
-          <div className="flex items-center gap-3 mb-3">
-            <Info className="text-blue-400" />
-            <h2 className="text-xl font-semibold">Order Status</h2>
-          </div>
-          <div className="flex items-center gap-3 flex-wrap">
-            {priority && (
-              <span className="text-xs bg-red-600 text-white px-3 py-1 rounded-full flex items-center gap-1">
-                <AlertTriangle size={14} /> Priority
-              </span>
-            )}
-            <span
-              className={`text-xs px-3 py-1 rounded-full flex items-center gap-1 ${
-                displayStatus === "confirmed"
-                  ? "bg-green-600"
-                  : displayStatus === "pending"
-                  ? "bg-yellow-500"
-                  : "bg-gray-500"
-              }`}
-            >
-              {displayStatus === "confirmed" ? (
-                <CheckCircle2 size={14} />
-              ) : (
-                <Clock size={14} />
+      <motion.div
+        className="max-w-6xl mx-auto px-4 py-10 text-black font-sans"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-yellow-400">
+            Your Turntables Order
+          </h1>
+          <p className="text-sm text-gray-400 mt-1">Order ID: #{id}</p>
+        </div>
+
+        {/* Order Status & Delivery */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          {/* Order Status */}
+          <div className=" p-6 rounded-xl shadow-lg">
+            <div className="flex items-center gap-3 mb-3">
+              <Info className="text-blue-400" />
+              <h2 className="text-xl font-semibold">Order Status</h2>
+            </div>
+            <div className="flex items-center gap-3 flex-wrap">
+              {priority && (
+                <span className="text-xs bg-red-600 text-white px-3 py-1 rounded-full flex items-center gap-1">
+                  <AlertTriangle size={14} /> Priority
+                </span>
               )}
-              {displayStatus.toUpperCase()}
-            </span>
-          </div>
-        </div>
-
-        {/* Estimated Delivery */}
-        <div className=" p-6 rounded-xl shadow-lg">
-          <div className="flex items-center gap-3 mb-3">
-            <Timer className="text-pink-400" />
-            <h2 className="text-xl font-semibold">Estimated Delivery</h2>
-          </div>
-          <p className="text-sm text-gray-300">
-            {isLate ? (
-              <span className="text-red-400 flex items-center gap-1">
-                <AlertTriangle size={16} />
-                Order should have arrived
+              <span
+                className={`text-xs px-3 py-1 rounded-full flex items-center gap-1 ${
+                  displayStatus === "confirmed"
+                    ? "bg-green-600"
+                    : displayStatus === "pending"
+                    ? "bg-yellow-500"
+                    : "bg-gray-500"
+                }`}
+              >
+                {displayStatus === "confirmed" ? (
+                  <CheckCircle2 size={14} />
+                ) : (
+                  <Clock size={14} />
+                )}
+                {displayStatus.toUpperCase()}
               </span>
-            ) : (
-              <span className="flex items-center gap-1 text-green-400">
-                <Clock size={16} /> {deliveryIn} minutes left
-              </span>
-            )}
-          </p>
-          <p className="text-xs text-gray-500 mt-1">
-            ({formatDate(estimatedDelivery)})
-          </p>
-        </div>
-      </div>
+            </div>
+          </div>
 
-      {/* Customer Info */}
-      <div className=" p-6 rounded-xl shadow-lg mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <User className="text-purple-400" />
-          <h2 className="text-xl font-semibold">Shipping Info</h2>
-        </div>
-        <p>
-          <strong>Name:</strong> {customer}
-        </p>
-        <p className="flex items-center gap-2">
-          <MapPin size={16} className="text-gray-400" />
-          {address || "Not provided"}
-        </p>
-        <p className="flex items-center gap-2">
-          <Phone size={16} className="text-gray-400" />
-          {phone || "Not provided"}
-        </p>
-        <p className="flex items-center gap-2">
-          <Mail size={16} className="text-gray-400" />
-          {email || "Not provided"}
-        </p>
-      </div>
-
-      {/* Cart Items */}
-      <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-4 text-teal-400">
-          Purchased Items
-        </h2>
-        <ul className="space-y-5">
-          {cart.map((item) => (
-            <OrderItem item={item} key={item._id} />
-          ))}
-        </ul>
-      </div>
-
-      {/* Payment Summary */}
-      <div className=" p-6 rounded-xl shadow-lg">
-        <h2 className="text-xl font-semibold text-green-400 mb-4">
-          Payment Summary
-        </h2>
-        <div className="space-y-2 text-lg">
-          <p>
-            <span className="text-gray-400">Items Total:</span>{" "}
-            {formatCurrency(orderPrice)}
-          </p>
-          {priority && (
-            <p>
-              <span className="text-gray-400">Priority Delivery Fee:</span>{" "}
-              {formatCurrency(priorityPrice)}
+          {/* Estimated Delivery */}
+          <div className=" p-6 rounded-xl shadow-lg">
+            <div className="flex items-center gap-3 mb-3">
+              <Timer className="text-pink-400" />
+              <h2 className="text-xl font-semibold">Estimated Delivery</h2>
+            </div>
+            <p className="text-sm text-gray-300">
+              {isLate ? (
+                <span className="text-red-400 flex items-center gap-1">
+                  <AlertTriangle size={16} />
+                  Order should have arrived
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-green-400">
+                  <Clock size={16} /> {deliveryIn} minutes left
+                </span>
+              )}
             </p>
-          )}
-          <p className="font-bold text-yellow-400 text-xl border-t pt-2 mt-2">
-            Grand Total:{" "}
-            {formatCurrency(orderPrice + (priority ? priorityPrice : 0))}
+            <p className="text-xs text-gray-500 mt-1">
+              ({formatDate(estimatedDelivery)})
+            </p>
+          </div>
+        </div>
+
+        {/* Customer Info */}
+        <div className=" p-6 rounded-xl shadow-lg mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <User className="text-purple-400" />
+            <h2 className="text-xl font-semibold">Shipping Info</h2>
+          </div>
+          <p>
+            <strong>Name:</strong> {customer}
+          </p>
+          <p className="flex items-center gap-2">
+            <MapPin size={16} className="text-gray-400" />
+            {address || "Not provided"}
+          </p>
+          <p className="flex items-center gap-2">
+            <Phone size={16} className="text-gray-400" />
+            {phone || "Not provided"}
+          </p>
+          <p className="flex items-center gap-2">
+            <Mail size={16} className="text-gray-400" />
+            {email || "Not provided"}
           </p>
         </div>
-      </div>
-    </motion.div>
+
+        {/* Cart Items */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 text-teal-400">
+            Purchased Items
+          </h2>
+          <ul className="space-y-5">
+            {cart.map((item) => (
+              <OrderItem item={item} key={item._id} />
+            ))}
+          </ul>
+        </div>
+
+        {/* Payment Summary */}
+        <div className=" p-6 rounded-xl shadow-lg">
+          <h2 className="text-xl font-semibold text-green-400 mb-4">
+            Payment Summary
+          </h2>
+          <div className="space-y-2 text-lg">
+            <p>
+              <span className="text-gray-400">Items Total:</span>{" "}
+              {formatCurrency(orderPrice)}
+            </p>
+            {priority && (
+              <p>
+                <span className="text-gray-400">Priority Delivery Fee:</span>{" "}
+                {formatCurrency(priorityPrice)}
+              </p>
+            )}
+            <p className="font-bold text-yellow-400 text-xl border-t pt-2 mt-2">
+              Grand Total:{" "}
+              {formatCurrency(orderPrice + (priority ? priorityPrice : 0))}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </>
   );
 }
 

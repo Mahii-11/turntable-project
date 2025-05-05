@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, removeItem } from "./cartSlice";
 import { formatCurrency } from "../../utils/helpers";
 import EmptyCart from "./EmptyCart";
+import { Helmet } from "react-helmet";
 
 function Cart() {
   const cart = useSelector(getCart);
@@ -15,91 +16,118 @@ function Cart() {
   const subtotal = cart.reduce((acc, item) => acc + item.totalPrice, 0);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 text-gray-900">
-      <Link
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        to="/🎵Turntables"
-        className="flex items-center text-blue-600 hover:underline mb-6"
-      >
-        <ArrowLeftCircle className="mr-2 w-5 h-5" />
-        Back to Turntables
-      </Link>
+    <>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="View and manage your shopping cart. Add or remove turntables, and proceed to checkout."
+        />
+        <meta
+          name="keywords"
+          content="shopping cart, turntable, remove item, checkout, subtotal"
+        />
+        <meta name="author" content="Your Company Name" />
+        <meta property="og:title" content="Your Shopping Cart - Turntables" />
+        <meta
+          property="og:description"
+          content="Your cart is ready! Manage items and proceed to checkout to purchase your turntables."
+        />
+        <meta property="og:image" content="URL_TO_IMAGE" />
+        <meta property="og:url" content="YOUR_PAGE_URL/cart" />
+        <meta name="robots" content="index, follow" />
+        <title>Your Shopping Cart - Turntables</title>
+      </Helmet>
 
-      <motion.h2
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-3xl font-bold mb-8 flex items-center gap-2"
-      >
-        <ShoppingCart className="w-7 h-7 text-blue-600" />
-        Shopping Cart
-      </motion.h2>
+      <div className="max-w-6xl mx-auto px-4 py-10 text-gray-900">
+        <Link
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to="/🎵Turntables"
+          className="flex items-center text-blue-600 hover:underline mb-6"
+        >
+          <ArrowLeftCircle className="mr-2 w-5 h-5" />
+          Back to Turntables
+        </Link>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="flex-1 bg-white rounded-xl shadow-md p-6 space-y-6">
-          {cart.map((item) => (
-            <motion.div
-              key={item._id}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 border-b pb-4 relative"
-            >
-              <div className="flex items-center gap-4 w-full">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-24 h-24 rounded-md object-cover border"
-                />
-                <div className="flex-1">
-                  <p className="text-lg font-semibold">{item.name}</p>
-                  <p className="text-gray-600 text-sm">Qty: {item.quantity}</p>
-                </div>
-              </div>
+        <motion.h2
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl font-bold mb-8 flex items-center gap-2"
+        >
+          <ShoppingCart className="w-7 h-7 text-blue-600" />
+          Shopping Cart
+        </motion.h2>
 
-              <p className="text-lg font-bold text-gray-800">
-                {formatCurrency(item?.totalPrice ?? 0)}
-              </p>
-
-              <button
-                onClick={() => dispatch(removeItem(item._id))}
-                className="absolute top-0 right-0 mt-2 -mr-3 text-red-500 hover:text-red-400 cursor-pointer"
-                aria-label="Remove item"
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex-1 bg-white rounded-xl shadow-md p-6 space-y-6">
+            {cart.map((item) => (
+              <motion.div
+                key={item._id}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 border-b pb-4 relative"
               >
-                <X className="w-5 h-5" />
-              </button>
-            </motion.div>
-          ))}
+                <div className="flex items-center gap-4 w-full">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-24 h-24 rounded-md object-cover border"
+                  />
+                  <div className="flex-1">
+                    <p className="text-lg font-semibold">{item.name}</p>
+                    <p className="text-gray-600 text-sm">
+                      Qty: {item.quantity}
+                    </p>
+                  </div>
+                </div>
 
-          <button
-            onClick={() => dispatch(clearCart())}
-            className="flex items-center gap-2 text-sm text-red-600 hover:text-red-500 mt-4 cursor-pointer"
-          >
-            <Trash2 className="w-4 h-4" />
-            Clear Cart
-          </button>
-        </div>
+                <p className="text-lg font-bold text-gray-800">
+                  {formatCurrency(item?.totalPrice ?? 0)}
+                </p>
 
-        {/* Right - Summary */}
-        <div className="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6 h-fit">
-          <h3 className="text-xl font-semibold border-b pb-4 mb-4">
-            Order Summary
-          </h3>
-          <div className="flex justify-between mb-4">
-            <span className="text-gray-700">Subtotal</span>
-            <span className="font-bold text-gray-900">
-              {formatCurrency(subtotal)}
-            </span>
+                <button
+                  onClick={() => dispatch(removeItem(item._id))}
+                  className="absolute top-0 right-0 mt-2 -mr-3 text-red-500 hover:text-red-400 cursor-pointer"
+                  aria-label="Remove item"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </motion.div>
+            ))}
+
+            <button
+              onClick={() => dispatch(clearCart())}
+              className="flex items-center gap-2 text-sm text-red-600 hover:text-red-500 mt-4 cursor-pointer"
+            >
+              <Trash2 className="w-4 h-4" />
+              Clear Cart
+            </button>
           </div>
 
-          <Link
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            to="/order/new"
-            className="block bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 text-center rounded-md font-semibold text-white w-full mt-6"
-          >
-            Proceed to Checkout
-          </Link>
+          {/* Right - Summary */}
+          <div className="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6 h-fit">
+            <h3 className="text-xl font-semibold border-b pb-4 mb-4">
+              Order Summary
+            </h3>
+            <div className="flex justify-between mb-4">
+              <span className="text-gray-700">Subtotal</span>
+              <span className="font-bold text-gray-900">
+                {formatCurrency(subtotal)}
+              </span>
+            </div>
+
+            <Link
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              to="/order/new"
+              className="block bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 text-center rounded-md font-semibold text-white w-full mt-6"
+            >
+              Proceed to Checkout
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

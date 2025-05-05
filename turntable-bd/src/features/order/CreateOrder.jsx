@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { createOrder } from "../../services/apiRestaurant";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -27,112 +28,137 @@ function CreateOrder() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="bg-zinc-900">
-      <motion.div
-        className="max-w-2xl mx-auto p-6 bg-zinc-900 text-white rounded-1xl shadow-lg -mt-8"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl font-bold text-center mb-6 flex justify-center items-center gap-2">
-          <ShoppingBag className="w-8 h-8 text-purple-400" />
-          Place Your Order
-        </h2>
+    <>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Place your order for turntable products with easy checkout and priority options."
+        />
+        <meta
+          name="keywords"
+          content="turntable order, music products, priority order, online shopping"
+        />
+        <meta name="author" content="Your Company Name" />
+        <meta property="og:title" content="Place Your Order - Turntables" />
+        <meta
+          property="og:description"
+          content="Order your turntable products with ease and enjoy priority delivery options."
+        />
+        <meta property="og:image" content="URL_TO_IMAGE" />
+        <meta property="og:url" content="YOUR_PAGE_URL" />
+        <meta name="robots" content="index, follow" />
+        <title>Place Your Order - Turntables</title>
+      </Helmet>
 
-        <Form method="POST" className="space-y-5">
-          <div>
-            <label className="block mb-1 font-semibold">First Name</label>
-            <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
-              <CheckCircle className="text-green-400 mr-2" />
-              <input
-                type="text"
-                name="customer"
-                required
-                className="w-full bg-transparent outline-none text-white"
-                placeholder="John Doe"
-              />
+      <div className="bg-zinc-900">
+        <motion.div
+          className="max-w-2xl mx-auto p-6 bg-zinc-900 text-white rounded-1xl shadow-lg -mt-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-6 flex justify-center items-center gap-2">
+            <ShoppingBag className="w-8 h-8 text-purple-400" />
+            Place Your Order
+          </h2>
+
+          <Form method="POST" className="space-y-5">
+            <div>
+              <label className="block mb-1 font-semibold">First Name</label>
+              <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
+                <CheckCircle className="text-green-400 mr-2" />
+                <input
+                  type="text"
+                  name="customer"
+                  required
+                  className="w-full bg-transparent outline-none text-white"
+                  placeholder="John Doe"
+                />
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label className="block mb-1 font-semibold">Email</label>
-            <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
-              <Mail className="text-sky-400 mr-2" />
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full bg-transparent outline-none text-white"
-                placeholder="john@example.com"
-              />
+            <div>
+              <label className="block mb-1 font-semibold">Email</label>
+              <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
+                <Mail className="text-sky-400 mr-2" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full bg-transparent outline-none text-white"
+                  placeholder="john@example.com"
+                />
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label className="block mb-1 font-semibold">Phone</label>
-            <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
-              <Phone className="text-pink-400 mr-2" />
-              <input
-                type="tel"
-                name="phone"
-                required
-                className="w-full bg-transparent outline-none text-white"
-                placeholder="+8801XXXXXXXXX"
-              />
+            <div>
+              <label className="block mb-1 font-semibold">Phone</label>
+              <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
+                <Phone className="text-pink-400 mr-2" />
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  className="w-full bg-transparent outline-none text-white"
+                  placeholder="+8801XXXXXXXXX"
+                />
+              </div>
+              {formErrors?.phone && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
+              )}
             </div>
-            {formErrors?.phone && (
-              <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
-            )}
-          </div>
 
-          <div>
-            <label className="block mb-1 font-semibold">Address</label>
-            <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
-              <MapPin className="text-yellow-400 mr-2" />
-              <input
-                type="text"
-                name="address"
-                required
-                className="w-full bg-transparent outline-none text-white"
-                placeholder="House 123, Dhaka"
-              />
+            <div>
+              <label className="block mb-1 font-semibold">Address</label>
+              <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
+                <MapPin className="text-yellow-400 mr-2" />
+                <input
+                  type="text"
+                  name="address"
+                  required
+                  className="w-full bg-transparent outline-none text-white"
+                  placeholder="House 123, Dhaka"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              name="priority"
-              id="priority"
-              value={priority}
-              onChange={(e) => setPriority(e.target.checked)}
-              className="accent-purple-500 scale-125"
-            />
-            <label
-              htmlFor="priority"
-              className="text-sm font-medium flex items-center"
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                name="priority"
+                id="priority"
+                value={priority}
+                onChange={(e) => setPriority(e.target.checked)}
+                className="accent-purple-500 scale-125"
+              />
+              <label
+                htmlFor="priority"
+                className="text-sm font-medium flex items-center"
+              >
+                <Star className="w-4 h-4 mr-1 text-yellow-500" />
+                Make it a priority order?
+              </label>
+            </div>
+
+            <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg cursor-pointer"
             >
-              <Star className="w-4 h-4 mr-1 text-yellow-500" />
-              Make it a priority order?
-            </label>
-          </div>
-
-          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg cursor-pointer"
-          >
-            {isSubmitting
-              ? "Placing order..."
-              : `🛍️ Order now from ${formatCurrency(totalCartPrice)}`}
-          </motion.button>
-        </Form>
-      </motion.div>
-    </div>
+              {isSubmitting
+                ? "Placing order..."
+                : `🛍️ Order now from ${formatCurrency(totalCartPrice)}`}
+            </motion.button>
+          </Form>
+        </motion.div>
+      </div>
+    </>
   );
 }
 
