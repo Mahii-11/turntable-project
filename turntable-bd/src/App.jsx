@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Home from "./pages/Home";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
@@ -78,7 +79,18 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <Helmet>
+        <title>Turntable Store - Your One Stop Shop</title>
+        <meta
+          name="description"
+          content="Shop premium turntables and parts at unbeatable prices. High-quality products, fast shipping, and excellent customer service."
+        />
+      </Helmet>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

@@ -9,6 +9,7 @@ import React from "react";
 import TestimonialSection from "../ui/TestimonialSection";
 import FAQSection from "../ui/FAQSection";
 import AnimatedHeader from "../ui/AnimatedHeader";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   useEffect(() => {
@@ -37,6 +38,13 @@ export default function Home() {
 
   return (
     <div className="font-sans bg-black text-white overflow-x-hidden -mt-8">
+      <Helmet>
+        <title>Home - Your Turntable Store</title>
+        <meta
+          name="description"
+          content="Discover the best turntables, parts, and accessories at unbeatable prices. Shop now for premium products!"
+        />
+      </Helmet>
       <AnimatedHeader />
       <Hero />
       <Showcase />
