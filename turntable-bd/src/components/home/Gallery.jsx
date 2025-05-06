@@ -33,6 +33,7 @@ export default function Gallery() {
     {
       imageUrl:
         "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+
       title: "Classic Series",
       description: "Timeless design with modern technology",
     },

@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="font-sans bg-black text-white overflow-x-hidden -mt-8">
       <Helmet>
-        <title>Home - The Turntable Store</title>
+        <title>The Turntable Store - BD</title>
         <meta
           name="description"
           content="Discover the best turntables, parts, and accessories at unbeatable prices. Shop now for premium products!"
