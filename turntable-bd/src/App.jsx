@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Home from "./pages/Home";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
+import TurntableDetails, {
+  loader as TurntableDetailsLoader,
+} from "./features/menu/TurntableDetails";
 import Cart from "./features/cart/Cart";
 import CreateOrder, {
   action as createOrderAction,
@@ -15,7 +18,6 @@ import MeetOurFounder from "./pages/MeetOurFounder";
 import TurntableMenu, {
   loader as turntableLoader,
 } from "./features/menu/TurntableMenu";
-
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./features/admin/AdminDashboard";
 import ManageTurntables from "./features/admin/ManageTurntables ";
@@ -32,6 +34,13 @@ const router = createBrowserRouter([
         path: "/🎵Turntables",
         element: <Menu />,
         loader: menuLoader,
+        errorElement: <Error />,
+      },
+
+      {
+        path: "/🎵Turntables/:turntableId",
+        element: <TurntableDetails />,
+        loader: TurntableDetailsLoader,
         errorElement: <Error />,
       },
       {

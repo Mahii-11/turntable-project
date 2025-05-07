@@ -34,7 +34,7 @@ export default function ServicesPage() {
           content="Keep your vinyl in perfect condition with our expert turntable services."
         />
         <meta name="twitter:image" content="/images/your-image.jpg" />
-        <title>The Turntable Shop - BD</title>
+        <title>The Turntable Shop Services - BD</title>
       </Helmet>
 
       <div className="bg-[#222222] -mt-8">

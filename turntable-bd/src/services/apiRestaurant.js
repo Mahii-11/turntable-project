@@ -75,6 +75,19 @@ export async function getMenu() {
   return data;
 }
 
+// apiTurntable.js
+export async function getTurntableDetails(_id) {
+  try {
+    const res = await fetch(`${API_URL}/turntable/${_id}`);
+    if (!res.ok) throw new Error("Failed to fetch turntable details");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 export const addTurntable = async (productData) => {
   try {
     const response = await fetch(`${API_URL}/turntable`, {

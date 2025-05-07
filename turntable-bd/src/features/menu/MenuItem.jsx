@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
@@ -5,30 +6,17 @@ import { FaShoppingCart, FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
+import { useNavigate } from "react-router-dom";
 
 function MenuItem({ item }) {
-  const {
-    _id,
-    name,
-    brand,
-    price,
-    image,
-    description,
-    stock,
-    rating,
-    features,
-    specifications,
-    category,
-    warranty,
-    discount,
-    soldOut,
-  } = item;
+  const navigate = useNavigate();
+  const { _id, name, brand, price, image, rating, discount, soldOut } = item;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
 
-  function handleAddToCart() {
+  /* function handleAddToCart() {
     const newItem = {
       _id,
       image,
@@ -38,7 +26,7 @@ function MenuItem({ item }) {
       totalPrice: price * 1,
     };
     dispatch(addItem(newItem));
-  }
+  }  */
 
   const finalPrice = discount
     ? (price - price * (discount.percent / 100)).toFixed(2)
@@ -85,9 +73,6 @@ function MenuItem({ item }) {
               ({brand})
             </span>
           </h3>
-          <p className="text-sm text-gray-700 mt-1">
-            <strong>Category:</strong> {category || "N/A"}
-          </p>
 
           {!soldOut && (
             <>
@@ -102,10 +87,6 @@ function MenuItem({ item }) {
                   </del>
                 )}
               </p>
-              <p className="text-sm text-green-600 font-medium">
-                <strong>Stock:</strong>{" "}
-                {stock > 0 ? `${stock} available` : "Out of stock"}
-              </p>
             </>
           )}
 
@@ -116,47 +97,18 @@ function MenuItem({ item }) {
               {rating}
             </span>
           </p>
-
-          <p className="text-sm mt-2 text-gray-600 line-clamp-3">
-            <strong>Description:</strong> {description}
-          </p>
-
-          {specifications?.speed && (
-            <p className="text-sm text-gray-700">
-              <strong>Speed:</strong> {specifications.speed}
-            </p>
-          )}
-
-          {specifications?.tonearm && (
-            <p className="text-sm text-gray-700">
-              <strong>Tonearm:</strong> {specifications.tonearm}
-            </p>
-          )}
-
-          <p className="text-sm text-gray-700 mt-1">
-            <strong>Warranty:</strong> {warranty || "No warranty info"}
-          </p>
-
-          {!soldOut && features?.length > 0 && (
-            <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
-              <strong>Features:</strong>{" "}
-              {features.slice(0, 3).map((f, idx) => (
-                <li key={idx}>🔹 {f}</li>
-              ))}
-            </ul>
-          )}
         </div>
 
         {isInCart && <DeleteItem id={_id} />}
 
         {!soldOut && !isInCart && (
           <motion.button
-            onClick={handleAddToCart}
+            onClick={() => navigate(`/🎵Turntables/${item._id}`)}
             whileTap={{ scale: 0.95 }}
             className="mt-4 flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded transition-colors cursor-pointer"
           >
             <FaShoppingCart />
-            Add to Cart
+            View in Cart
           </motion.button>
         )}
       </div>
