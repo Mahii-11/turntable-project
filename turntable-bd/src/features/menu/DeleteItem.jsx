@@ -8,7 +8,7 @@ function DeleteItem({ id }) {
     <motion.button
       onClick={() => dispatch(deleteItem(id))}
       whileTap={{ scale: 0.95 }}
-      className="mt-4 flex items-center justify-center gap-2 bg-amber-700 hover:bg-amber-800 text-white px-4 py-2 rounded-lg transition-colors cursor-pointer"
+      className="mt-4 flex items-center justify-center gap-2 bg-amber-700 hover:bg-amber-800 text-white px-4 py-2 rounded-lg transition-colors cursor-pointer w-full sm:w-auto lg:w-full"
     >
       <FaShoppingCart />
       Remove from cart

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
-import DeleteItem from "./DeleteItem";
+//import DeleteItem from "./DeleteItem";
 import { useNavigate } from "react-router-dom";
 
 function MenuItem({ item }) {
@@ -99,7 +99,7 @@ function MenuItem({ item }) {
           </p>
         </div>
 
-        {isInCart && <DeleteItem id={_id} />}
+        {/*   {isInCart && <DeleteItem id={_id} />} */}
 
         {!soldOut && !isInCart && (
           <motion.button
