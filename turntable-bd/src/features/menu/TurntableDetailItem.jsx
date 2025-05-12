@@ -137,11 +137,11 @@ function TurntableDetailItem() {
               {!soldOut && (
                 <div className="mb-6">
                   <div className="flex items-baseline">
-                    <span className="text-4xl font-bold text-slate-900 dark:text-slate-800">
+                    <span className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-800">
                       {formatCurrency(Number(finalPrice))}
                     </span>
                     {discount?.percent > 0 && (
-                      <span className="ml-3 text-xl text-slate-500 line-through">
+                      <span className="ml-3 sm:text-xl text-sm text-slate-500 line-through">
                         {formatCurrency(price)}
                       </span>
                     )}

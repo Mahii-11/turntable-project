@@ -83,12 +83,6 @@ function TurntablePartDetail() {
                 <span className="text-3xl font-bold text-orange-600">
                   {formatCurrency(price)}
                 </span>
-                <span className="line-through text-gray-400 text-lg">
-                  {formatCurrency(price * 2)}
-                </span>
-                <span className="text-green-600 text-lg font-semibold">
-                  -50%
-                </span>
               </div>
             </div>
           )}
