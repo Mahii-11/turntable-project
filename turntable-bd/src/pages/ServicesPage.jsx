@@ -26,7 +26,10 @@ export default function ServicesPage() {
           content="Expert turntable repair, restoration, and upgrade services to keep your vinyl sounding its best."
         />
         <meta property="og:image" content="/images/your-image.jpg" />
-        <meta property="og:url" content="https://yourwebsite.com/services" />
+        <meta
+          property="og:url"
+          content="https://turntable-project-4sp3.vercel.app/services"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ClassicVinyl Services" />
         <meta

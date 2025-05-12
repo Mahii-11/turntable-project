@@ -2,38 +2,26 @@
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
+import { useSelector } from "react-redux";
+import { getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
+import { useNavigate } from "react-router-dom";
 
 function TurntableItem({ item }) {
+  const navigate = useNavigate();
   const {
     _id,
     name,
     price,
     image,
-    description,
     stock,
     soldOut,
     rating = 0,
     reviews = 0,
   } = item;
 
-  const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
-
-  function handleAddToCart() {
-    const newItem = {
-      _id,
-      image,
-      name,
-      quantity: 1,
-      price,
-      totalPrice: price * 1,
-    };
-    dispatch(addItem(newItem));
-  }
 
   return (
     <motion.li
@@ -65,7 +53,6 @@ function TurntableItem({ item }) {
             {name}
           </h3>
 
-          {/* ⭐ Dynamic Rating */}
           <div className="flex items-center text-yellow-500 text-sm mb-2">
             {Array.from({ length: 5 }, (_, i) => (
               <FaStar
@@ -96,22 +83,18 @@ function TurntableItem({ item }) {
               {stock > 0 ? `${stock} in stock` : "Out of stock"}
             </div>
           )}
-
-          <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
-            {description}
-          </p>
         </div>
 
         {isInCart && <DeleteItem id={_id} />}
 
         {!soldOut && !isInCart && (
           <motion.button
-            onClick={handleAddToCart}
+            onClick={() => navigate(`/PartsHub/${item._id}`)}
             whileTap={{ scale: 0.95 }}
             className="mt-4 w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-gray-900 font-semibold px-4 py-2 rounded-md shadow-sm transition-all duration-200"
           >
             <FaShoppingCart />
-            Add to Cart
+            View IN Cart
           </motion.button>
         )}
       </div>

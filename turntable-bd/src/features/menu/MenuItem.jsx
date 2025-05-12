@@ -1,32 +1,18 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
-//import DeleteItem from "./DeleteItem";
+import { useSelector } from "react-redux";
+import { getCurrentQuantityById } from "../cart/cartSlice";
+
 import { useNavigate } from "react-router-dom";
 
 function MenuItem({ item }) {
   const navigate = useNavigate();
   const { _id, name, brand, price, image, rating, discount, soldOut } = item;
 
-  // const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(_id));
   const isInCart = currentQuantity > 0;
-
-  /* function handleAddToCart() {
-    const newItem = {
-      _id,
-      image,
-      name,
-      quantity: 1,
-      price,
-      totalPrice: price * 1,
-    };
-    dispatch(addItem(newItem));
-  }  */
 
   const finalPrice = discount
     ? (price - price * (discount.percent / 100)).toFixed(2)
@@ -98,8 +84,6 @@ function MenuItem({ item }) {
             </span>
           </p>
         </div>
-
-        {/*   {isInCart && <DeleteItem id={_id} />} */}
 
         {!soldOut && !isInCart && (
           <motion.button

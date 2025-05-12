@@ -1,13 +1,23 @@
-/* eslint-disable react/prop-types */
+// eslint-disable-next-line react/prop-types
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { FiCheckCircle } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
 import { Helmet } from "react-helmet";
+import { getTurntableDetails } from "../../services/apiRestaurant";
+import { useLoaderData } from "react-router-dom";
 
-function TurntableDetailItem({ item }) {
+export async function loader({ params }) {
+  const id = params.id;
+  const item = await getTurntableDetails(id);
+  return item;
+}
+
+function TurntableDetailItem() {
+  const item = useLoaderData();
   const {
     _id,
     name,
@@ -65,13 +75,12 @@ function TurntableDetailItem({ item }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className={`bg-white -mt-7.5 rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-lg transition-shadow duration-300 relative ${
+        className={`bg-slate-900 dark:bg-slate-200 -mt-7.5 rounded-2xl overflow-hidden border border-slate-200  shadow-md hover:shadow-lg transition-shadow duration-300 relative ${
           soldOut && "opacity-80"
         }`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Image Section */}
-          <div className="relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-8 lg:px-12 py-8">
+          <div className="relative overflow-hidden rounded-xl shadow-md">
             <img
               src={image}
               alt={name}
@@ -79,37 +88,33 @@ function TurntableDetailItem({ item }) {
               style={{ minHeight: "300px", maxHeight: "600px" }}
             />
 
-            {/* Discount Badge */}
             {discount?.percent > 0 && !soldOut && (
-              <div className="badge bg-accent-500 text-white shadow-md">
+              <div className="absolute top-4 left-4 bg-rose-500 text-black rounded-full px-3 py-1 text-sm font-medium shadow animate-pulse">
                 {discount.percent}% OFF
               </div>
             )}
 
-            {/* Sold Out Badge */}
             {soldOut && (
-              <div className="badge bg-slate-800 text-white shadow-md">
+              <div className="absolute top-4 left-4 bg-gray-800 text-black rounded-full px-3 py-1 text-sm font-medium shadow animate-pulse">
                 SOLD OUT
               </div>
             )}
           </div>
 
-          {/* Content Section */}
-          <div className="p-6 flex flex-col justify-between h-full">
+          <div className="p-2 flex flex-col justify-between h-full">
             <div>
-              {/* Header */}
               <div className="mb-4">
-                <h1 className="text-2xl font-bold text-slate-800 mb-1">
+                <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-900 mb-1">
                   {name}
-                  <span className="text-slate-500 font-medium text-lg ml-1">
+                  <span className="text-slate-800 dark:text-slate-900 font-medium text-xl ml-1">
                     ({brand})
                   </span>
                 </h1>
                 <div className="flex items-center space-x-2 mt-1">
-                  <span className="text-sm font-medium text-slate-600">
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-800">
                     {category || "N/A"}
                   </span>
-                  <span className="inline-block h-1 w-1 rounded-full bg-slate-400"></span>
+                  <span className="inline-block h-1 w-1 rounded-full bg-slate-800"></span>
                   <div className="flex items-center">
                     {[...Array(5)].map((_, i) => (
                       <FaStar
@@ -117,38 +122,36 @@ function TurntableDetailItem({ item }) {
                         className={
                           i < Math.round(rating)
                             ? "text-yellow-400"
-                            : "text-gray-300"
+                            : "text-gray-800"
                         }
                         size={16}
                       />
                     ))}
-                    <span className="ml-1 text-sm text-slate-600">
+                    <span className="ml-1 text-sm text-slate-700 dark:text-slate-800">
                       ({rating})
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Price Section */}
               {!soldOut && (
                 <div className="mb-6">
                   <div className="flex items-baseline">
-                    <span className="text-3xl font-bold text-slate-900">
+                    <span className="text-4xl font-bold text-slate-900 dark:text-slate-800">
                       {formatCurrency(Number(finalPrice))}
                     </span>
                     {discount?.percent > 0 && (
-                      <span className="ml-2 text-lg text-slate-500 line-through">
+                      <span className="ml-3 text-xl text-slate-500 line-through">
                         {formatCurrency(price)}
                       </span>
                     )}
                   </div>
 
-                  {/* Stock Status */}
                   <div className="mt-2 flex items-center">
                     {stock > 0 ? (
                       <>
                         <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                        <span className="text-sm font-medium text-green-600">
+                        <span className="text-sm font-medium text-green-600 dark:text-green-400">
                           In Stock - {stock} available
                         </span>
                       </>
@@ -164,49 +167,46 @@ function TurntableDetailItem({ item }) {
                 </div>
               )}
 
-              {/* Description */}
-              <div className="mb-5">
-                <p className="text-slate-600 leading-relaxed">{description}</p>
+              <div className="mb-6">
+                <p className="text-slate-600 dark:text-slate-900 leading-relaxed text-[15px] sm:text-base">
+                  {description}
+                </p>
               </div>
 
-              {/* Specifications */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6">
                 {specifications?.speed && (
                   <div className="flex items-start space-x-2">
-                    <span className="font-medium text-slate-700 min-w-[90px]">
+                    <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
                       Speed:
                     </span>
-                    <span className="text-slate-600">
+                    <span className="text-slate-700 dark:text-slate-800">
                       {specifications.speed}
                     </span>
                   </div>
                 )}
-
                 {specifications?.tonearm && (
                   <div className="flex items-start space-x-2">
-                    <span className="font-medium text-slate-700 min-w-[90px]">
+                    <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
                       Tonearm:
                     </span>
-                    <span className="text-slate-600">
+                    <span className="text-slate-700 dark:text-slate-400">
                       {specifications.tonearm}
                     </span>
                   </div>
                 )}
-
                 <div className="flex items-start space-x-2">
-                  <span className="font-medium text-slate-700 min-w-[90px]">
+                  <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
                     Warranty:
                   </span>
-                  <span className="text-slate-600">
+                  <span className="text-slate-800 dark:text-slate-900">
                     {warranty || "No warranty info"}
                   </span>
                 </div>
               </div>
 
-              {/* Features */}
               {!soldOut && features?.length > 0 && (
                 <div className="mb-4">
-                  <h3 className="font-medium text-slate-800 mb-2">
+                  <h3 className="font-medium text-slate-800 dark:text-slate-900 mb-2">
                     Key Features
                   </h3>
                   <ul className="space-y-2">
@@ -218,8 +218,10 @@ function TurntableDetailItem({ item }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: idx * 0.1 }}
                       >
-                        <span className="text-primary-500 mr-2">●</span>
-                        <span className="text-slate-600">{feature}</span>
+                        <FiCheckCircle className="text-primary-500 mt-1 mr-2" />
+                        <span className="text-slate-800 dark:text-slate-900">
+                          {feature}
+                        </span>
                       </motion.li>
                     ))}
                   </ul>
@@ -227,7 +229,6 @@ function TurntableDetailItem({ item }) {
               )}
             </div>
 
-            {/* Action Buttons */}
             <div className="mt-6 flex items-center space-x-3">
               {isInCart && <DeleteItem id={_id} />}
 
@@ -235,7 +236,7 @@ function TurntableDetailItem({ item }) {
                 <motion.button
                   onClick={handleAddToCart}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 w-full sm:w-auto lg:w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded transition-colors cursor-pointer"
+                  className="mt-4 w-full sm:w-auto lg:w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all"
                 >
                   <FaShoppingCart />
                   Add to Cart

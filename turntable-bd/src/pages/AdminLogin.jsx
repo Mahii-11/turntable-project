@@ -61,7 +61,10 @@ const AdminLogin = () => {
           content="Login to the admin dashboard for BD Turntable to manage products and orders."
         />
         <meta property="og:image" content="/path/to/your-image.jpg" />
-        <meta property="og:url" content="https://yourwebsite.com/admin-login" />
+        <meta
+          property="og:url"
+          content="https://turntable-project-4sp3.vercel.app/login"
+        />
         <meta property="og:type" content="website" />
 
         {/* Twitter Cards */}

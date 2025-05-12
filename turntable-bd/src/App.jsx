@@ -2,9 +2,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Home from "./pages/Home";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
-import TurntableDetails, {
+import TurntableDetailItem, {
   loader as TurntableDetailsLoader,
-} from "./features/menu/TurntableDetails";
+} from "./features/menu/TurntableDetailItem";
+import TurntableMenu, {
+  loader as turntableLoader,
+} from "./features/menu/TurntableMenu";
+import TurntablePartDetail, {
+  loader as TurntablePartDetailsLoader,
+} from "./features/menu/TurntablePartDetail";
 import Cart from "./features/cart/Cart";
 import CreateOrder, {
   action as createOrderAction,
@@ -15,9 +21,6 @@ import Error from "./ui/Error";
 import ServicesPage from "./pages/ServicesPage";
 import ContactForm from "./pages/ContactForm";
 import MeetOurFounder from "./pages/MeetOurFounder";
-import TurntableMenu, {
-  loader as turntableLoader,
-} from "./features/menu/TurntableMenu";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./features/admin/AdminDashboard";
 import ManageTurntables from "./features/admin/ManageTurntables ";
@@ -38,15 +41,22 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/🎵Turntables/:turntableId",
-        element: <TurntableDetails />,
+        path: "/🎵Turntables/:id",
+        element: <TurntableDetailItem />,
         loader: TurntableDetailsLoader,
-        errorElement: <Error />,
+        errorElement: <Error />, //TurntablePartDetail
       },
       {
         path: "/PartsHub",
         element: <TurntableMenu />,
         loader: turntableLoader,
+        errorElement: <Error />,
+      },
+
+      {
+        path: "/PartsHub/:id",
+        element: <TurntablePartDetail />,
+        loader: TurntablePartDetailsLoader,
         errorElement: <Error />,
       },
 

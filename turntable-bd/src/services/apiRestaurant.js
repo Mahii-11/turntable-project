@@ -158,6 +158,18 @@ export async function getTurntableParts() {
   return data;
 }
 
+export async function getTurntablePartsDetails(_id) {
+  try {
+    const res = await fetch(`${API_URL}/turntablemenu/${_id}`);
+    if (!res.ok) throw new Error("Failed to fetch turntable parts details");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 export const addTurntablePart = async (productData) => {
   try {
     const response = await fetch(`${API_URL}/turntablemenu`, {

@@ -5,7 +5,6 @@ import Experience from "../components/home/Experience";
 import Gallery from "../components/home/Gallery";
 import CallToAction from "../components/home/CallToAction";
 import { useEffect } from "react";
-import React from "react";
 import TestimonialSection from "../ui/TestimonialSection";
 import FAQSection from "../ui/FAQSection";
 import AnimatedHeader from "../ui/AnimatedHeader";

@@ -55,7 +55,7 @@ const MeetOurFounder = () => {
         <meta property="og:image" content="/images/Amin uncle.jpg" />
         <meta
           property="og:url"
-          content="https://yourwebsite.com/meet-our-founder"
+          content="https://turntable-project-4sp3.vercel.app/meet-our-founder"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Meet Our Founder - BD Turntable" />
