@@ -10,16 +10,20 @@ import {
 export default function ManageTurntables() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [message, setMessage] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     price: "",
     image: "",
     description: "",
+    rating: 0,
+    reviews: 0,
     stock: "",
+    warranty: "1 year limited warranty",
     soldOut: false,
   });
-  const [editId, setEditId] = useState(null);
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetchTurntables();
@@ -47,6 +51,8 @@ export default function ManageTurntables() {
       price: Number(formData.price),
       image: formData.image,
       description: formData.description,
+      rating: Number(formData.rating),
+      reviews: Number(formData.reviews),
       stock: Number(formData.stock),
       soldOut: formData.soldOut,
     };
@@ -77,7 +83,10 @@ export default function ManageTurntables() {
       price: "",
       image: "",
       description: "",
+      rating: 0,
+      reviews: 0,
       stock: "",
+      warranty: "1 year limited warranty",
       soldOut: false,
     });
     setEditId(null);
@@ -95,7 +104,10 @@ export default function ManageTurntables() {
       name: product.name,
       price: product.price,
       image: product.image,
+      reviews: product.reviews || 0,
+      rating: product.rating || 0,
       description: product.description,
+      warranty: product.warranty || "1 year limited warranty",
       stock: product.stock,
       soldOut: product.soldOut || false,
     });

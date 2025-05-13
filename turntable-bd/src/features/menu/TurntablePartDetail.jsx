@@ -106,7 +106,7 @@ function TurntablePartDetail() {
             <motion.button
               whileTap={{ scale: 0.98 }}
               onClick={handleAddToCart}
-              className="w-full mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-black font-semibold text-lg py-3 rounded-md shadow-sm transition-all duration-200"
+              className="w-full mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-black font-semibold text-lg py-3 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
             >
               <FaShoppingCart className="text-lg" />
               Add to Cart
