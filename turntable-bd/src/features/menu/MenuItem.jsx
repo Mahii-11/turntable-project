@@ -87,7 +87,10 @@ function MenuItem({ item }) {
 
         {!soldOut && !isInCart && (
           <motion.button
-            onClick={() => navigate(`/🎵Turntables/${item._id}`)}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate(`/PartsHub/${item._id}`);
+            }}
             whileTap={{ scale: 0.95 }}
             className="mt-4 flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded transition-colors cursor-pointer"
           >
