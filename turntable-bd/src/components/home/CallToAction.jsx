@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { useScrollAnimation, slideUp } from "@/lib/animations";
 import { Link } from "react-router-dom";
+
 export default function CallToAction() {
   const { ref, controls } = useScrollAnimation();
+  const { t } = useTranslation();
 
   return (
     <section id="explore" className="relative py-20 md:py-32 bg-black">
@@ -15,7 +18,6 @@ export default function CallToAction() {
           className="w-full h-full object-cover"
         />
       </div>
-
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           ref={ref}
@@ -26,17 +28,16 @@ export default function CallToAction() {
         >
           <div className="text-center">
             <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
-              Rediscover Music
+              {t("callToAction.title")}
             </h2>
             <p className="text-xl text-gray-300 mb-10">
-              Experience the authentic sound of vinyl with our premium
-              turntables. Elevate your listening experience today.
+              {t("callToAction.description")}
             </p>
             <Link
               to="/products"
               className="inline-block bg-[#D4AF37] text-black font-medium px-10 py-4 rounded-full text-lg hover:bg-white transition duration-300"
             >
-              Explore Collection
+              {t("callToAction.button")}
             </Link>
           </div>
         </motion.div>

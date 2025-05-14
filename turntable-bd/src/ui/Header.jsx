@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import LanguageToggle from "../components/LanguageToggle";
 import { Settings as GearIcon } from "lucide-react";
 import {
   FaRecordVinyl,
@@ -17,6 +18,7 @@ import { Input } from "./Input";
 import { useLocation } from "wouter";
 import { NavLink } from "react-router-dom";
 import CartOverview from "../features/cart/CartOverview";
+import LanguageToggle from "../components/LanguageToggle";
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,8 +39,8 @@ const Header = () => {
   const isActive = (path) => location === path;
 
   return (
-    <header className="bg-gradient-to-b from-[#1b0b0b] to-transparent shadow-sm z-20 fixed left-0 right-0 ">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="bg-gradient-to-b from-[#1b0b0b] to-transparent shadow-sm z-50 fixed w-full">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <NavLink to="/" className="flex items-center space-x-2">
             <FaRecordVinyl className="text-amber-500 text-2xl" />
@@ -50,58 +52,30 @@ const Header = () => {
             </h1>
           </NavLink>
         </div>
-        <nav className="hidden md:flex space-x-8">
-          <NavLink
-            to="/🎵Turntables"
-            className={`font-medium transition-colors ${
-              isActive("/🎵Turntables")
-                ? "text-amber-500"
-                : "hover:text-amber-500"
-            }`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            🎵 Turntables
-          </NavLink>
-          <NavLink
-            to="/PartsHub"
-            className={`font-medium transition-colors ${
-              isActive("/PartsHub") ? "text-amber-500" : "hover:text-amber-500"
-            }`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Parts Hub
-          </NavLink>
-          <NavLink
-            to="/services"
-            className={`font-medium transition-colors ${
-              isActive("/services") ? "text-amber-500" : "hover:text-amber-500"
-            }`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={`font-medium transition-colors ${
-              isActive("/contact") ? "text-amber-500" : "hover:text-amber-500"
-            }`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Contact
-          </NavLink>
 
-          <NavLink
-            to="/login"
-            className={`font-medium transition-colors ${
-              isActive("/login") ? "text-amber-500" : "hover:text-amber-500"
-            }`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Login
-          </NavLink>
+        <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop Menu */}
+          {[
+            { to: "/🎵Turntables", label: "🎵 Turntables" },
+            { to: "/PartsHub", label: "Parts Hub" },
+            { to: "/services", label: "Services" },
+            { to: "/contact", label: "Contact" },
+            { to: "/login", label: "Login" },
+          ].map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={`font-medium transition-colors ${
+                isActive(to) ? "text-amber-500" : "hover:text-amber-500"
+              }`}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <button
             onClick={toggleSearch}
             className="hover:text-amber-500 transition-colors"
@@ -115,7 +89,6 @@ const Header = () => {
           >
             <FaUserTie />
           </NavLink>
-
           <NavLink
             to="/cart"
             className="hover:text-amber-500 transition-colors relative"
@@ -132,14 +105,20 @@ const Header = () => {
           >
             {sidebarOpen ? <FaTimes /> : <FaBars />}
           </Button>
+
+          {/* Language Toggle */}
+          <div className="hidden md:flex">
+            <LanguageToggle />
+          </div>
         </div>
       </div>
 
+      {/* Search Box */}
       {searchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-md p-4 z-20 animate-in slide-in-from-top-5 duration-300 ">
+        <div className="absolute top-full left-0 right-0 bg-white shadow-md p-4 z-40 animate-in slide-in-from-top-5 duration-300">
           <form
             onSubmit={handleSubmit}
-            className="container mx-auto flex items-center"
+            className="max-w-7xl mx-auto flex items-center gap-2"
           >
             <Input
               type="text"
@@ -151,25 +130,21 @@ const Header = () => {
             />
             <Button
               type="submit"
-              className="ml-2 bg-amber-500 hover:bg-amber-600 text-white cursor-pointer"
+              className="bg-amber-500 hover:bg-amber-600 text-white"
             >
               <FaSearch className="mr-2" />
               Search
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={toggleSearch}
-              className="ml-2 cursor-pointer"
-            >
+            <Button type="button" variant="ghost" onClick={toggleSearch}>
               Cancel
             </Button>
           </form>
         </div>
       )}
 
+      {/* Sidebar for Mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-30 transition-transform duration-300 transform ${
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transition-transform duration-300 transform ${
           sidebarOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
@@ -185,98 +160,53 @@ const Header = () => {
           </Button>
         </div>
 
-        <nav className="p-4">
-          <ul className="space-y-4">
-            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
-                to="/PartsHub"
-                className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/PartsHub")
-                    ? "bg-amber-100 text-amber-700"
-                    : "hover:bg-gray-100"
-                }`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <GearIcon className="w-6 h-6 text-gray-700" />
-                <span> Parts Hub</span>
-              </NavLink>
-            </li>
-            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
-                to="/🎵Turntables"
-                className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/🎵Turntables")
-                    ? "bg-amber-100 text-amber-700"
-                    : "hover:bg-gray-100"
-                }`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                🎵 Turntables
-              </NavLink>
-            </li>
-            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
-                to="/services"
-                className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/services")
-                    ? "bg-amber-100 text-amber-700"
-                    : "hover:bg-gray-100"
-                }`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FaTools />
-                <span>Services</span>
-              </NavLink>
-            </li>
-            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
-                to="/contact"
-                className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/contact")
-                    ? "bg-amber-100 text-amber-700"
-                    : "hover:bg-gray-100"
-                }`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FaPhone />
-                <span>Contact</span>
-              </NavLink>
-            </li>
+        <nav className="p-4 space-y-4">
+          {[
+            { to: "/PartsHub", label: "Parts Hub", icon: <GearIcon /> },
+            { to: "/🎵Turntables", label: "🎵 Turntables" },
+            { to: "/services", label: "Services", icon: <FaTools /> },
+            { to: "/contact", label: "Contact", icon: <FaPhone /> },
+            { to: "/login", label: "Login", icon: <FaSignInAlt /> },
+          ].map(({ to, label, icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={`flex items-center space-x-2 p-2 rounded-md ${
+                isActive(to)
+                  ? "bg-amber-100 text-amber-700"
+                  : "hover:bg-gray-100 text-gray-800"
+              }`}
+              onClick={() => {
+                setSidebarOpen(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              {icon}
+              <span>{label}</span>
+            </NavLink>
+          ))}
 
-            <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <NavLink
-                to="/login"
-                className={`flex items-center space-x-2 p-2 rounded-md ${
-                  isActive("/login")
-                    ? "bg-amber-100 text-amber-700"
-                    : "hover:bg-gray-100"
-                }`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FaSignInAlt />
-                <span>Login</span>
-              </NavLink>
-            </li>
-
-            <li className="border-t border-gray-200 pt-4 mt-4"></li>
-            <li>
-              <NavLink
-                to="/cart"
-                className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FaShoppingCart />
-                <span>Shopping Cart</span>
-                <CartOverview />
-              </NavLink>
-            </li>
-          </ul>
+          <div className="border-t border-gray-200 pt-4 mt-4">
+            <NavLink
+              to="/cart"
+              className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <FaShoppingCart />
+              <span>Shopping Cart</span>
+              <CartOverview />
+            </NavLink>
+            <div className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100">
+              <LanguageToggle />
+            </div>
+          </div>
         </nav>
       </div>
 
+      {/* Sidebar Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
           onClick={toggleSidebar}
           aria-hidden="true"
         ></div>

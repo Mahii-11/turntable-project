@@ -1,0 +1,16 @@
+{
+  "callToAction": {
+    "title": "Rediscover Music",
+    "description": "Experience the authentic sound of vinyl with our premium turntables. Elevate your listening experience today.",
+    "button": "Explore Collection"
+  },
+
+  "hero": {
+    "headline1": "Experience Pure",
+    "headline2": "Analog Sound",
+    "span": "Scroll Down",
+    "paragraph": "Premium turntables crafted for audiophiles who appreciate the warmth and richness of vinyl records",
+    "button1": " Explore Collection",
+    "button2": " Learn More"
+  }
+}

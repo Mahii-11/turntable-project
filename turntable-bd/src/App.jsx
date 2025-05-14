@@ -1,3 +1,4 @@
+import "./i18next-config";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Home from "./pages/Home";
