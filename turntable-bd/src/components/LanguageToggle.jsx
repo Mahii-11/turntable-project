@@ -11,7 +11,7 @@ export default function LanguageToggle() {
       i18n.changeLanguage(savedLang);
       setIsBangla(savedLang === "bn");
     }
-  }, []);
+  }, [i18n]);
 
   const handleToggle = () => {
     const newLang = isBangla ? "en" : "bn";
