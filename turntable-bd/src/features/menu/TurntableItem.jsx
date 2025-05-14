@@ -1,7 +1,8 @@
 // eslint-disable-next-line react/prop-types
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
-import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { AiOutlineEye } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
@@ -98,8 +99,8 @@ function TurntableItem({ item }) {
             whileTap={{ scale: 0.95 }}
             className="mt-4 w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-gray-900 font-semibold px-4 py-2 rounded shadow-sm transition-all duration-200 cursor-pointer"
           >
-            <FaShoppingCart />
-            View IN Cart
+            <AiOutlineEye className="inline mr-1" />
+            View Details
           </motion.button>
         )}
       </div>

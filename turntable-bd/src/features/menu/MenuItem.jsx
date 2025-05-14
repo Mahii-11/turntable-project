@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
-import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { AiOutlineEye } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { getCurrentQuantityById } from "../cart/cartSlice";
 
@@ -94,8 +95,8 @@ function MenuItem({ item }) {
             whileTap={{ scale: 0.95 }}
             className="mt-4 flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded transition-colors cursor-pointer"
           >
-            <FaShoppingCart />
-            View in Cart
+            <AiOutlineEye className="inline mr-1" />
+            View Details
           </motion.button>
         )}
       </div>
