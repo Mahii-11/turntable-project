@@ -23,8 +23,10 @@ function EmptyCart() {
           property="og:description"
           content="Looks like you haven't added any turntables yet. Browse and add some vinyl magic to your cart."
         />
-        <meta property="og:image" content="URL_TO_IMAGE" />
-        <meta property="og:url" content="YOUR_PAGE_URL/empty-cart" />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <title>Your Cart is Empty - Turntables</title>
       </Helmet>

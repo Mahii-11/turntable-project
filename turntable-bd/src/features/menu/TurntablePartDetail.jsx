@@ -6,6 +6,7 @@ import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
 import { getTurntablePartsDetails } from "../../services/apiRestaurant";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Loader
 export async function loader({ params }) {
@@ -45,76 +46,87 @@ function TurntablePartDetail() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 -mt-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left: Product Image */}
-        <div className="w-full overflow-hidden rounded-lg shadow-sm">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-auto object-contain transition-transform duration-500 hover:scale-105"
-          />
-        </div>
-
-        {/* Right: Info */}
-        <div className="space-y-4">
-          <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
-
-          {/* Rating */}
-          <div className="flex items-center text-yellow-500 text-sm">
-            {Array.from({ length: 5 }, (_, i) => (
-              <FaStar
-                key={i}
-                className={
-                  i < Math.round(rating) ? "text-yellow-500" : "text-gray-300"
-                }
-              />
-            ))}
-            <span className="ml-2 text-gray-500 text-sm">({reviews})</span>
+    <>
+      <Helmet>
+        <title>{`${name} by  | Buy Turntables Online`}</title>
+        <meta name="description" content={description?.slice(0, 150)} />
+        <meta name="keywords" content={`${name},  turntable, audio gear`} />
+        <meta property="og:title" content={`${name} `} />
+        <meta property="og:description" content={description?.slice(0, 150)} />
+        <meta property="og:image" content={image} />
+        <meta property="og:type" content="product parts" />
+      </Helmet>
+      <div className="max-w-7xl mx-auto px-4 py-10 -mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left: Product Image */}
+          <div className="w-full overflow-hidden rounded-lg shadow-sm">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-auto object-contain transition-transform duration-500 hover:scale-105"
+            />
           </div>
 
-          {/* Price */}
-          {!soldOut && (
-            <div>
-              <span className="block text-sm text-gray-500 font-medium">
-                Price
-              </span>
-              <div className="flex items-center gap-3">
-                <span className="text-3xl font-bold text-orange-600">
-                  {formatCurrency(price)}
+          {/* Right: Info */}
+          <div className="space-y-4">
+            <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
+
+            {/* Rating */}
+            <div className="flex items-center text-yellow-500 text-sm">
+              {Array.from({ length: 5 }, (_, i) => (
+                <FaStar
+                  key={i}
+                  className={
+                    i < Math.round(rating) ? "text-yellow-500" : "text-gray-300"
+                  }
+                />
+              ))}
+              <span className="ml-2 text-gray-500 text-sm">({reviews})</span>
+            </div>
+
+            {/* Price */}
+            {!soldOut && (
+              <div>
+                <span className="block text-sm text-gray-500 font-medium">
+                  Price
                 </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl font-bold text-orange-600">
+                    {formatCurrency(price)}
+                  </span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Stock */}
-          {!soldOut && (
-            <div className="text-green-700 font-semibold text-sm">
-              {stock > 0 ? `${stock} in stock` : "Out of stock"}
-            </div>
-          )}
+            {/* Stock */}
+            {!soldOut && (
+              <div className="text-green-700 font-semibold text-sm">
+                {stock > 0 ? `${stock} in stock` : "Out of stock"}
+              </div>
+            )}
 
-          {/* Description */}
-          <p className="text-gray-700 text-base leading-relaxed">
-            {description}
-          </p>
+            {/* Description */}
+            <p className="text-gray-700 text-base leading-relaxed">
+              {description}
+            </p>
 
-          {/* Buttons */}
-          {isInCart ? (
-            <DeleteItem id={_id} />
-          ) : !soldOut ? (
-            <motion.button
-              whileTap={{ scale: 0.98 }}
-              onClick={handleAddToCart}
-              className="w-full mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-black font-semibold text-lg py-3 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
-            >
-              <FaShoppingCart className="text-lg" />
-              Add to Cart
-            </motion.button>
-          ) : null}
+            {/* Buttons */}
+            {isInCart ? (
+              <DeleteItem id={_id} />
+            ) : !soldOut ? (
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAddToCart}
+                className="w-full mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-black font-semibold text-lg py-3 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
+              >
+                <FaShoppingCart className="text-lg" />
+                Add to Cart
+              </motion.button>
+            ) : null}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

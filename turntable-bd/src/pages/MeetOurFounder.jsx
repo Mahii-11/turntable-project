@@ -52,7 +52,10 @@ const MeetOurFounder = () => {
           property="og:description"
           content="Get to know Mohammed Al Amin, the visionary behind BD Turntable, and the story of how his love for vintage audio sparked a business."
         />
-        <meta property="og:image" content="/images/Amin uncle.jpg" />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
         <meta
           property="og:url"
           content="https://turntable-project-4sp3.vercel.app/meet-our-founder"

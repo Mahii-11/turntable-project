@@ -34,8 +34,14 @@ function Cart() {
           property="og:description"
           content="Your cart is ready! Manage items and proceed to checkout to purchase your turntables."
         />
-        <meta property="og:image" content="URL_TO_IMAGE" />
-        <meta property="og:url" content="YOUR_PAGE_URL/cart" />
+        <meta
+          property="og:url"
+          content="https://turntable-project-4sp3.vercel.app/cart"
+        />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <title>Your Shopping Cart - Turntables</title>
       </Helmet>

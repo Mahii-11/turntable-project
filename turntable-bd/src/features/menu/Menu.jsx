@@ -10,7 +10,7 @@ function Menu() {
   return (
     <div>
       <Helmet>
-        <title>Menu - Your Turntable Store</title>
+        <title>🎵Turntables - Your Turntable Store</title>
         <meta
           name="description"
           content="Explore a wide selection of turntables, parts, and accessories available for purchase."
@@ -19,7 +19,10 @@ function Menu() {
           name="keywords"
           content="turntables, audio, music, accessories, parts, shop"
         />
-        <meta property="og:title" content="Menu - Your Turntable Store" />
+        <meta
+          property="og:title"
+          content="🎵Turntables - Your Turntable Store"
+        />
         <meta
           property="og:description"
           content="Explore a wide selection of turntables, parts, and accessories available for purchase."
@@ -31,83 +34,7 @@ function Menu() {
         />
         <meta
           property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-1.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-2.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-3.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-4.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-5.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-6.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-7.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-8.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-8.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-10.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-11.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-12.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-13.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-14.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-15.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-16.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-17.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-18.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-19.jpg"
-        />
-        <meta
-          property="og:image"
-          content="https://turntable-pi.vercel.app/images/turntable-20.jpg"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
         />
       </Helmet>
 

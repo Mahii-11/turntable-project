@@ -64,8 +64,14 @@ function Order() {
           property="og:description"
           content={`Track your order ID #${id} and get delivery updates for your turntable products.`}
         />
-        <meta property="og:image" content="URL_TO_IMAGE" />
-        <meta property="og:url" content={`YOUR_PAGE_URL/order/${id}`} />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
+        <meta
+          property="og:url"
+          content={`https://turntable-project-4sp3.vercel.app/order/${id}`}
+        />
         <meta name="robots" content="index, follow" />
         <title>Order ID #{id} - Turntables</title>
       </Helmet>

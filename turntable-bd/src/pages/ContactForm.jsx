@@ -78,7 +78,10 @@ const ContactPage = () => {
           property="og:description"
           content="Contact BD Turntable for repairs, inquiries, and product support."
         />
-        <meta property="og:image" content="/path/to/contact-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
         <meta
           property="og:url"
           content="https://turntable-project-4sp3.vercel.app/contact"

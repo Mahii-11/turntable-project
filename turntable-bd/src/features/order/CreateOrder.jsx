@@ -46,8 +46,14 @@ function CreateOrder() {
           property="og:description"
           content="Order your turntable products with ease and enjoy priority delivery options."
         />
-        <meta property="og:image" content="URL_TO_IMAGE" />
-        <meta property="og:url" content="YOUR_PAGE_URL" />
+        <meta
+          property="og:url"
+          content="https://turntable-project-4sp3.vercel.app/order/new"
+        />
+        <meta
+          property="og:image"
+          content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <title>Place Your Order - Turntables</title>
       </Helmet>
