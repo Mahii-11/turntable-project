@@ -29,12 +29,9 @@ export default function Experience() {
             variants={slideUp}
             className={`${
               isBangla ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
-            } font-serif font-bold mb-8`}
+            } text-[#D4AF37] font-serif font-bold mb-8`}
           >
-            {t("experience.title.prefix")}{" "}
-            <span className="text-[#D4AF37]">
-              {t("experience.title.highlight")}
-            </span>
+            {t("experience.title.highlight")}
           </motion.h2>
 
           <motion.p
