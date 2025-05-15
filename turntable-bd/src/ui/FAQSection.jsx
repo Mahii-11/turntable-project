@@ -1,86 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-
-const faqs = [
-  {
-    question: "Do You Buy/Sell/Consign Turntables?",
-    answer:
-      "Yes! The Turntable Shop buys, sells, and consigns Hi-Fi equipment and turntables. Please call the shop and we can assist you in selecting the best option for your needs.",
-  },
-  {
-    question: "Do You Repair Turntables?",
-    answer:
-      "Yes, we specialize in turntable repairs and offer servicing for a wide range of models.",
-  },
-  {
-    question: "Do You Work on Electronics? (Amps, Preamps, etc.)",
-    answer:
-      "Absolutely! We repair and service amps, preamps, and other vintage audio electronics.",
-  },
-  {
-    question: "Do You Work on Consoles? (Vintage Cabinet Stereos)",
-    answer: "Yes, we work on vintage stereo consoles and cabinetry systems.",
-  },
-  {
-    question: "How Much do Repairs Cost?",
-    answer:
-      "Repair costs vary depending on the issue. Call us or stop by for a free consultation.",
-  },
-
-  {
-    question: "Do I Need an Appointment?",
-    answer: "No appointment is necessary — just drop by during business hours!",
-  },
-  {
-    question: "Do You Sell Accessories (Needles, Belts, etc.)?",
-    answer:
-      "Yes! We carry a variety of accessories like needles, cartridges, belts, and cleaning kits.",
-  },
-
-  {
-    question: "Do You Offer Warranty on Repairs?",
-    answer:
-      "Yes, all our repairs come with a 90-day limited warranty covering parts and labor.",
-  },
-  {
-    question: "How Long Does a Typical Repair Take?",
-    answer:
-      "Turnaround time varies, but most repairs are completed within 7–10 business days.",
-  },
-
-  {
-    question: "Can I Bring in My Own Parts for Repair?",
-    answer:
-      "Yes, but we recommend discussing it with our technicians first to ensure compatibility and safety.",
-  },
-  {
-    question: "Do you selling cartridges, pin and stylus?",
-    answer:
-      "Yes we sale, repair and modify cartridges, stylus and headshell. Charges are depend on quality.",
-  },
-  {
-    question:
-      "Do you have dust cover, hinges, motor, belts and other accessories?",
-    answer:
-      "Yes, we have vintage and modern enormous quantities of accessories. All solutions under one roof.",
-  },
-  {
-    question: "Do you build new chassis and plinth?",
-    answer:
-      "Yes, we have more than 15 years of experience to built old and malfunctioning turntables, changer and record player refurbishment work to make it brand new condition..",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const { t } = useTranslation();
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const faqs = t("faq.items", { returnObjects: true });
+
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-black">
-      <h2 className="text-3xl font-semibold mb-10 text-center">FAQs</h2>
+      <h2 className="text-3xl font-semibold mb-10 text-center text-white">
+        {t("faq.headline")}
+      </h2>
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, index) => (
           <div key={index} className="border-b border-gray-300 pb-4">
@@ -88,7 +24,7 @@ const FAQSection = () => {
               className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleFAQ(index)}
             >
-              <h3 className="text-lg font-medium">{faq.question}</h3>
+              <h3 className="text-lg font-medium text-white">{faq.question}</h3>
               <span className="text-yellow-500">
                 {openIndex === index ? <Minus size={20} /> : <Plus size={20} />}
               </span>

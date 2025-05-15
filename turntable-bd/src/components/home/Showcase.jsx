@@ -1,21 +1,27 @@
 import { motion } from "framer-motion";
 import { Check, Link } from "lucide-react";
 import { useScrollAnimation } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
+import useIsBangla from "../../utils/useIsBangla";
 
 export default function Showcase() {
   const { ref, controls } = useScrollAnimation();
+  const { t } = useTranslation();
+  const isBangla = useIsBangla();
 
   return (
     <section id="showcase" className="py-20 md:py-32 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2
-            className="font-serif text-4xl md:text-5xl font-bold mb-6"
+            className={`${
+              isBangla ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
+            } font-serif  font-bold mb-6`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Premium Turntable Collection
+            {t("showcase.midheadline")}
           </motion.h2>
           <motion.p
             className="text-gray-400 max-w-2xl mx-auto text-lg"
@@ -23,8 +29,7 @@ export default function Showcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Discover our handcrafted turntables that deliver exceptional sound
-            quality and timeless elegance.
+            {t("showcase.paragraph1")}
           </motion.p>
         </div>
 
@@ -63,53 +68,32 @@ export default function Showcase() {
               },
             }}
           >
-            <h3 className="font-serif text-3xl text-[#D4AF37] font-semibold mb-6">
-              Maestro Pro T-1
+            <h3
+              className={`${
+                isBangla ? "text-2xl" : "text-3xl"
+              } font-serif text-[#D4AF37] font-semibold mb-6 `}
+            >
+              {t("showcase.smallheadline")}
             </h3>
-            <p className="text-gray-300 mb-8">
-              A masterpiece of engineering, the Maestro Pro T-1 delivers
-              unparalleled sound quality with its precision-engineered
-              components and innovative design. Experience vinyl as the artists
-              intended.
-            </p>
-            <ul className="space-y-4 mb-8">
+            <p className="text-gray-300 mb-8">{t("showcase.paragraph2")}</p>
+            <ul className={`${isBangla ? "text-sm" : ""} space-y-4 mb-8`}>
               <li className="flex items-center">
-                <Check className="h-5 w-5 text-[#D4AF37] mr-3" />
-                <span>Direct drive motor with precise speed control</span>
+                <Check className="h-5 w-5  text-[#D4AF37] mr-3" />
+                <span>{t("showcase.span1")}</span>
               </li>
               <li className="flex items-center">
-                <Check className="h-5 w-5 text-[#D4AF37] mr-3" />
-                <span>Static balanced S-shaped tonearm</span>
+                <Check className="h-5 w-5  text-[#D4AF37] mr-3" />
+                <span>{t("showcase.span2")}</span>
               </li>
               <li className="flex items-center">
-                <Check className="h-5 w-5 text-[#D4AF37] mr-3" />
-                <span>Premium MM cartridge included</span>
+                <Check className="h-5 w-5  text-[#D4AF37] mr-3" />
+                <span>{t("showcase.span3")}</span>
               </li>
               <li className="flex items-center">
-                <Check className="h-5 w-5 text-[#D4AF37] mr-3" />
-                <span>Anti-vibration aluminum chassis</span>
+                <Check className="h-5 w-5  text-[#D4AF37] mr-3" />
+                <span>{t("showcase.span4")}</span>
               </li>
             </ul>
-            <Link
-              to="#"
-              className="inline-flex items-center font-medium text-[#D4AF37] hover:underline"
-            >
-              View Specifications
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </Link>
           </motion.div>
         </div>
       </div>

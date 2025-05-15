@@ -31,7 +31,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {t("hero.headline1")}{" "}
+            {t("hero.headline1")}
             <span className="text-[#D4AF37]"> {t("hero.headline2")}</span>
           </motion.h1>
 

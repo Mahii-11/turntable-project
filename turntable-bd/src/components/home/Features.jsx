@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import useIsBangla from "../../utils/useIsBangla";
 import {
   Music,
   Cog,
@@ -35,45 +37,19 @@ function FeatureCard({ icon, title, description }) {
 
 export default function Features() {
   const { ref, controls } = useScrollAnimation();
+  const { t } = useTranslation();
+  const isBangla = useIsBangla();
 
-  const features = [
-    {
-      icon: <Music className="text-2xl text-black" />,
-      title: "Superior Sound Quality",
-      description:
-        "Experience the warmth and richness of vinyl with our precision-engineered components that capture every detail of your records.",
-    },
-    {
-      icon: <Cog className="text-2xl text-black" />,
-      title: "Precision Engineering",
-      description:
-        "Meticulously crafted with high-quality materials and innovative technology to ensure accurate playback and durability.",
-    },
-    {
-      icon: <PaintbrushVertical className="text-2xl text-black" />,
-      title: "Timeless Design",
-      description:
-        "Elegant aesthetics that complement any interior, combining modern minimalism with classic turntable styling.",
-    },
-    {
-      icon: <Sliders className="text-2xl text-black" />,
-      title: "Customizable Settings",
-      description:
-        "Fine-tune your listening experience with adjustable settings for pitch control, anti-skate, and tracking force.",
-    },
-    {
-      icon: <Shield className="text-2xl text-black" />,
-      title: "Anti-Vibration Technology",
-      description:
-        "Advanced dampening systems isolate your records from external vibrations for clearer, more precise sound reproduction.",
-    },
-    {
-      icon: <Plug className="text-2xl text-black" />,
-      title: "Connectivity Options",
-      description:
-        "Seamlessly integrate with your existing audio setup through multiple connection options, including phono preamp outputs.",
-    },
+  const icons = [
+    <Music className="text-2xl text-black" />,
+    <Cog className="text-2xl text-black" />,
+    <PaintbrushVertical className="text-2xl text-black" />,
+    <Sliders className="text-2xl text-black" />,
+    <Shield className="text-2xl text-black" />,
+    <Plug className="text-2xl text-black" />,
   ];
+
+  const features = t("features.list", { returnObjects: true });
 
   return (
     <section
@@ -83,12 +59,14 @@ export default function Features() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
           <motion.h2
-            className="font-serif text-4xl md:text-5xl font-bold mb-6"
+            className={`${
+              isBangla ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
+            } font-serif font-bold mb-6`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Experience Excellence
+            {t("features.midheadline")}
           </motion.h2>
           <motion.p
             className="text-gray-400 max-w-2xl mx-auto text-lg"
@@ -96,8 +74,7 @@ export default function Features() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Our turntables combine innovative technology with timeless design to
-            deliver an authentic vinyl experience.
+            {t("features.paragraph")}
           </motion.p>
         </div>
 
@@ -111,7 +88,7 @@ export default function Features() {
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
-              icon={feature.icon}
+              icon={icons[index]}
               title={feature.title}
               description={feature.description}
             />

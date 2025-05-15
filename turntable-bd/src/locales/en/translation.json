@@ -12,5 +12,232 @@
     "paragraph": "Premium turntables crafted for audiophiles who appreciate the warmth and richness of vinyl records",
     "button1": " Explore Collection",
     "button2": " Learn More"
+  },
+  "showcase": {
+    "midheadline": " Premium Turntable Collection",
+    "paragraph1": " Discover our handcrafted turntables that deliver exceptional sound quality and timeless elegance.",
+    "smallheadline": " Maestro Pro T-1",
+    "paragraph2": " A masterpiece of engineering, the Maestro Pro T-1 delivers unparalleled sound quality with its precision-engineered components and innovative design. Experience vinyl as the artists intended.",
+    "span1": "Direct drive motor with precise speed control",
+    "span2": "Static balanced S-shaped tonearm",
+    "span3": "Premium MM cartridge included",
+    "span4": "Anti-vibration aluminum chassis"
+  },
+  "features": {
+    "midheadline": "Experience Excellence",
+    "paragraph": "Our turntables combine innovative technology with timeless design to deliver an authentic vinyl experience.",
+    "list": [
+      {
+        "title": "Superior Sound Quality",
+        "description": "Experience the warmth and richness of vinyl with our precision-engineered components that capture every detail of your records."
+      },
+      {
+        "title": "Precision Engineering",
+        "description": "Meticulously crafted with high-quality materials and innovative technology to ensure accurate playback and durability."
+      },
+      {
+        "title": "Timeless Design",
+        "description": "Elegant aesthetics that complement any interior, combining modern minimalism with classic turntable styling."
+      },
+      {
+        "title": "Customizable Settings",
+        "description": "Fine-tune your listening experience with adjustable settings for pitch control, anti-skate, and tracking force."
+      },
+      {
+        "title": "Anti-Vibration Technology",
+        "description": "Advanced dampening systems isolate your records from external vibrations for clearer, more precise sound reproduction."
+      },
+      {
+        "title": "Connectivity Options",
+        "description": "Seamlessly integrate with your existing audio setup through multiple connection options, including phono preamp outputs."
+      }
+    ]
+  },
+  "experience": {
+    "title": {
+      "prefix": "The",
+      "highlight": "Vinyl Experience"
+    },
+    "paragraph": "There's something magical about placing the needle on a vinyl record. The subtle crackle, the warm tones, and the tactile experience create a connection to music that digital formats simply can't replicate.",
+    "cards": [
+      {
+        "title": "Rich, Warm Sound",
+        "description": "Experience the full dynamic range and warmth that makes vinyl sound legendary."
+      },
+      {
+        "title": "Tactile Experience",
+        "description": "From handling the record to watching it spin, vinyl creates a physical connection to music."
+      },
+      {
+        "title": "Artistic Expression",
+        "description": "Album artwork, liner notes, and physical media enhance the artistic experience."
+      }
+    ]
+  },
+  "gallery": {
+    "headline": "Our Collection",
+    "paragraph": "Explore our range of premium turntables designed for every audiophile.",
+    "items": [
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "title": "Classic Series",
+        "description": "Timeless design with modern technology"
+      },
+      {
+        "imageUrl": "/images/record-1.jpg",
+        "title": "Modern Series",
+        "description": "Contemporary styling with premium components"
+      },
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "title": "Professional Series",
+        "description": "Studio-grade performance for true audiophiles"
+      }
+    ]
+  },
+
+  "faq": {
+    "headline": "Your Questions, Our Answers",
+    "items": [
+      {
+        "question": "Do You Buy/Sell/Consign Turntables?",
+        "answer": "Yes! The Turntable Shop buys, sells, and consigns Hi-Fi equipment and turntables. Please call the shop and we can assist you in selecting the best option for your needs."
+      },
+      {
+        "question": "Do You Repair Turntables?",
+        "answer": "Yes, we specialize in turntable repairs and offer servicing for a wide range of models."
+      },
+      {
+        "question": "Do You Work on Electronics? (Amps, Preamps, etc.)",
+        "answer": "Absolutely! We repair and service amps, preamps, and other vintage audio electronics."
+      },
+      {
+        "question": "Do You Work on Consoles? (Vintage Cabinet Stereos)",
+        "answer": "Yes, we work on vintage stereo consoles and cabinetry systems."
+      },
+      {
+        "question": "How Much do Repairs Cost?",
+        "answer": "Repair costs vary depending on the issue. Call us or stop by for a free consultation."
+      },
+      {
+        "question": "Do I Need an Appointment?",
+        "answer": "No appointment is necessary — just drop by during business hours!"
+      },
+      {
+        "question": "Do You Sell Accessories (Needles, Belts, etc.)?",
+        "answer": "Yes! We carry a variety of accessories like needles, cartridges, belts, and cleaning kits."
+      },
+      {
+        "question": "Do You Offer Warranty on Repairs?",
+        "answer": "Yes, all our repairs come with a 90-day limited warranty covering parts and labor."
+      },
+      {
+        "question": "How Long Does a Typical Repair Take?",
+        "answer": "Turnaround time varies, but most repairs are completed within 7–10 business days."
+      },
+      {
+        "question": "Can I Bring in My Own Parts for Repair?",
+        "answer": "Yes, but we recommend discussing it with our technicians first to ensure compatibility and safety."
+      },
+      {
+        "question": "Do you selling cartridges, pin and stylus?",
+        "answer": "Yes we sale, repair and modify cartridges, stylus and headshell. Charges are depend on quality."
+      },
+      {
+        "question": "Do you have dust cover, hinges, motor, belts and other accessories?",
+        "answer": "Yes, we have vintage and modern enormous quantities of accessories. All solutions under one roof."
+      },
+      {
+        "question": "Do you build new chassis and plinth?",
+        "answer": "Yes, we have more than 15 years of experience to built old and malfunctioning turntables, changer and record player refurbishment work to make it brand new condition."
+      }
+    ]
+  },
+
+  "testimonials": {
+    "headline": "What Our Clients Have to Say:",
+    "items": [
+      {
+        "quote": "There is No Better Place, Hands Down.",
+        "rating": 4.8,
+        "content": "If you are looking for a turntable or any knowledge surrounding them – there is no better place, hands down. Nick found the perfect table for us and made it all meaningful."
+      },
+      {
+        "quote": "Amazing service and expertise!",
+        "rating": 4.6,
+        "content": "I was a total beginner, but the staff walked me through everything I needed. I now own a beautiful setup that fits my budget perfectly."
+      },
+
+      {
+        "quote": "Highly recommended for vinyl lovers.",
+        "rating": 4.4,
+        "content": "Found exactly what I needed. The team explained every feature and made sure I was confident with my choice."
+      },
+      {
+        "quote": "Very satisfied with the experience.",
+        "rating": 4.8,
+        "content": "Smooth purchase and fantastic post-sales support. I’ll definitely come back here for future upgrades."
+      },
+      {
+        "quote": "Top-notch turntables!",
+        "rating": 4.6,
+        "content": "From vintage designs to modern builds, they had everything I dreamed of. Left the store smiling!"
+      },
+      {
+        "quote": "Great budget-friendly options.",
+        "rating": 4.4,
+        "content": "Didn’t expect such quality at this price range. It’s perfect for my home studio."
+      },
+      {
+        "quote": "Excellent knowledge and advice.",
+        "rating": 4.4,
+        "content": "The team knew their stuff and helped me avoid beginner mistakes. Much appreciated."
+      },
+      {
+        "quote": "A vinyl paradise!",
+        "rating": 4.5,
+        "content": "If you’re into vinyl, this is heaven. Great gear, good vibes, and even better people."
+      },
+      {
+        "quote": "Fast delivery and packaging!",
+        "rating": 4.2,
+        "content": "Bought online and it arrived within two days in perfect condition. Very impressed."
+      },
+      {
+        "quote": "Unmatched product quality.",
+        "rating": 4.4,
+        "content": "The turntable I bought here sounds better than anything I’ve used before. Pure joy!"
+      },
+      {
+        "quote": "Everything was crystal clear.",
+        "rating": 4.3,
+        "content": "They explained every part and component in detail. I never felt lost during the process."
+      },
+      {
+        "quote": "Great after-sales support.",
+        "rating": 4.7,
+        "content": "Had a small issue, and they resolved it quickly without hassle. Truly customer-first!"
+      },
+      {
+        "quote": "Perfect gift for my dad.",
+        "rating": 4.2,
+        "content": "Bought a turntable here as a gift and he hasn’t stopped using it since. Thanks for the help!"
+      },
+      {
+        "quote": "Staff were really friendly.",
+        "rating": 4.1,
+        "content": "Felt like I was shopping with old friends. No pressure, just good advice."
+      },
+      {
+        "quote": "Felt like a VIP.",
+        "rating": 4.2,
+        "content": "From the welcome to the walkthrough, I was treated with so much care. They really care about music lovers."
+      },
+      {
+        "quote": "Saved me from a bad buy elsewhere.",
+        "rating": 4.8,
+        "content": "Almost bought a cheap knockoff online. Came here just in time and got educated and equipped!"
+      }
+    ]
   }
 }

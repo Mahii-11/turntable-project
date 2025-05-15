@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation, slideUp } from "@/lib/animations";
 import { Link } from "react-router-dom";
+import useIsBangla from "../../utils/useIsBangla";
 
 export default function CallToAction() {
   const { ref, controls } = useScrollAnimation();
   const { t } = useTranslation();
+  const isBangla = useIsBangla();
 
   return (
     <section id="explore" className="relative py-20 md:py-32 bg-black">
@@ -27,15 +29,25 @@ export default function CallToAction() {
           className="max-w-4xl mx-auto bg-gray-900 rounded-2xl p-10 md:p-16 shadow-2xl"
         >
           <div className="text-center">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+            <h2
+              className={`${
+                isBangla ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
+              } font-serif  font-bold mb-6`}
+            >
               {t("callToAction.title")}
             </h2>
-            <p className="text-xl text-gray-300 mb-10">
+            <p
+              className={`${
+                isBangla ? "text-lg" : "text-xl"
+              }  text-gray-300 mb-10`}
+            >
               {t("callToAction.description")}
             </p>
             <Link
               to="/products"
-              className="inline-block bg-[#D4AF37] text-black font-medium px-10 py-4 rounded-full text-lg hover:bg-white transition duration-300"
+              className={`${
+                isBangla ? "text-sm" : "text-lg"
+              } inline-block bg-[#D4AF37] text-black font-medium px-10 py-4 rounded-full text-lg hover:bg-white transition duration-300`}
             >
               {t("callToAction.button")}
             </Link>

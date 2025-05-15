@@ -1,138 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    quote: "There is No Better Place, Hands Down.",
-    rating: 5,
-    content:
-      "If you are looking for a turntable or any knowledge surrounding them – there is no better place, hands down. Nick found the perfect table for us and made it all meaningful.",
-  },
-  {
-    quote: "Amazing service and expertise!",
-    rating: 5,
-    content:
-      "I was a total beginner, but the staff walked me through everything I needed. I now own a beautiful setup that fits my budget perfectly.",
-  },
-  {
-    quote: "Highly recommended for vinyl lovers.",
-    rating: 4,
-    content:
-      "Found exactly what I needed. The team explained every feature and made sure I was confident with my choice.",
-  },
-  {
-    quote: "Very satisfied with the experience.",
-    rating: 5,
-    content:
-      "Smooth purchase and fantastic post-sales support. I’ll definitely come back here for future upgrades.",
-  },
-  {
-    quote: "Top-notch turntables!",
-    rating: 5,
-    content:
-      "From vintage designs to modern builds, they had everything I dreamed of. Left the store smiling!",
-  },
-  {
-    quote: "Great budget-friendly options.",
-    rating: 4,
-    content:
-      "Didn’t expect such quality at this price range. It’s perfect for my home studio.",
-  },
-  {
-    quote: "Excellent knowledge and advice.",
-    rating: 5,
-    content:
-      "The team knew their stuff and helped me avoid beginner mistakes. Much appreciated.",
-  },
-  {
-    quote: "A vinyl paradise!",
-    rating: 5,
-    content:
-      "If you’re into vinyl, this is heaven. Great gear, good vibes, and even better people.",
-  },
-  {
-    quote: "Fast delivery and packaging!",
-    rating: 5,
-    content:
-      "Bought online and it arrived within two days in perfect condition. Very impressed.",
-  },
-  {
-    quote: "Unmatched product quality.",
-    rating: 5,
-    content:
-      "The turntable I bought here sounds better than anything I’ve used before. Pure joy!",
-  },
-  {
-    quote: "Everything was crystal clear.",
-    rating: 4,
-    content:
-      "They explained every part and component in detail. I never felt lost during the process.",
-  },
-  {
-    quote: "Great after-sales support.",
-    rating: 5,
-    content:
-      "Had a small issue, and they resolved it quickly without hassle. Truly customer-first!",
-  },
-  {
-    quote: "Perfect gift for my dad.",
-    rating: 5,
-    content:
-      "Bought a turntable here as a gift and he hasn’t stopped using it since. Thanks for the help!",
-  },
-  {
-    quote: "Staff were really friendly.",
-    rating: 5,
-    content:
-      "Felt like I was shopping with old friends. No pressure, just good advice.",
-  },
-  {
-    quote: "I’ll be back for sure.",
-    rating: 4,
-    content:
-      "They made my first vinyl setup experience unforgettable. I already have my eye on more accessories.",
-  },
-  {
-    quote: "Top-tier components and sound.",
-    rating: 5,
-    content:
-      "The clarity, the build, the attention to detail – this place delivers quality.",
-  },
-  {
-    quote: "Effortless setup process.",
-    rating: 4,
-    content:
-      "They even helped me set it up at home via video call. Super helpful!",
-  },
-  {
-    quote: "Saved me from a bad buy elsewhere.",
-    rating: 5,
-    content:
-      "Almost bought a cheap knockoff online. Came here just in time and got educated and equipped!",
-  },
-  {
-    quote: "My records sound brand new.",
-    rating: 5,
-    content:
-      "With my new setup, even old records sound fresh. Never going back to digital-only!",
-  },
-  {
-    quote: "Felt like a VIP.",
-    rating: 5,
-    content:
-      "From the welcome to the walkthrough, I was treated with so much care. They really care about music lovers.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const TestimonialSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [show, setShow] = useState(true);
+  const { t } = useTranslation();
+
+  const testimonials = t("testimonials.items", { returnObjects: true });
 
   const handleChange = (newIndex) => {
-    setShow(false); // Start hiding
+    setShow(false);
     setTimeout(() => {
       setCurrentIndex(newIndex);
-      setShow(true); // Show with animation
+      setShow(true);
     }, 100);
   };
 
@@ -165,7 +46,7 @@ const TestimonialSection = () => {
       {/* Content over background */}
       <div className="relative z-10">
         <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8 text-white">
-          What Our Clients Have to Say:
+          {t("testimonials.headline")}
         </h2>
 
         <div

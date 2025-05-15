@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   useScrollAnimation,
   staggerContainer,
@@ -28,27 +29,9 @@ function GalleryItem({ imageUrl, title, description }) {
 
 export default function Gallery() {
   const { ref, controls } = useScrollAnimation();
+  const { t } = useTranslation();
 
-  const galleryItems = [
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-
-      title: "Classic Series",
-      description: "Timeless design with modern technology",
-    },
-    {
-      imageUrl: "/images/record-1.jpg",
-      title: "Modern Series",
-      description: "Contemporary styling with premium components",
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Professional Series",
-      description: "Studio-grade performance for true audiophiles",
-    },
-  ];
+  const galleryItems = t("gallery.items", { returnObjects: true });
 
   return (
     <section id="gallery" className="py-20 md:py-32 bg-black">
@@ -60,7 +43,7 @@ export default function Gallery() {
             transition={{ duration: 0.8 }}
             className="font-serif text-4xl md:text-5xl font-bold mb-6"
           >
-            Our Collection
+            {t("gallery.headline")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -68,8 +51,7 @@ export default function Gallery() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto text-lg"
           >
-            Explore our range of premium turntables designed for every
-            audiophile.
+            {t("gallery.paragraph")}
           </motion.p>
         </div>
 
