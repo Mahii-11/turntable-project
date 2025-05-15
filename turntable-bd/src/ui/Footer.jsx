@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+//import useIsBangla from "../../utils/useIsBangla";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,18 +13,17 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  // const isBangla = useIsBangla();
   return (
     <footer className="bg-gray-900 text-gray-400 pt-12 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">
-              BD Turntable
+              {t("footer.smallheadline")}
             </h3>
-            <p className="mb-4 text-sm">
-              Your premier destination for turntables, vinyl records, and
-              accessories. Bringing music to life since 2005.
-            </p>
+            <p className="mb-4 text-sm">{t("footer.paragraph")}</p>
             <div className="flex space-x-4">
               <div className="flex space-x-4">
                 <a
@@ -58,14 +59,16 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Shop</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              {t("footer.smallheadline1")}
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/turntables"
                   className="hover:text-white transition-colors"
                 >
-                  Turntables
+                  {t("footer.li1")}
                 </Link>
               </li>
               <li>
@@ -73,7 +76,7 @@ const Footer = () => {
                   to="/records"
                   className="hover:text-white transition-colors"
                 >
-                  Vinyl Records
+                  {t("footer.li2")}
                 </Link>
               </li>
               <li>
@@ -81,7 +84,7 @@ const Footer = () => {
                   to="/speakers"
                   className="hover:text-white transition-colors"
                 >
-                  Speakers
+                  {t("footer.li3")}
                 </Link>
               </li>
               <li>
@@ -89,7 +92,7 @@ const Footer = () => {
                   to="/amplifiers"
                   className="hover:text-white transition-colors"
                 >
-                  Amplifiers
+                  {t("footer.li4")}
                 </Link>
               </li>
               <li>
@@ -97,7 +100,7 @@ const Footer = () => {
                   to="/accessories"
                   className="hover:text-white transition-colors"
                 >
-                  Accessories
+                  {t("footer.li5")}
                 </Link>
               </li>
               <li>
@@ -105,18 +108,20 @@ const Footer = () => {
                   to="/gift-cards"
                   className="hover:text-white transition-colors"
                 >
-                  Gift Cards
+                  {t("footer.li6")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Help</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              {t("footer.smallheadline2")}
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/faq" className="hover:text-white transition-colors">
-                  FAQ
+                  {t("footer.li7")}
                 </Link>
               </li>
               <li>
@@ -124,15 +129,7 @@ const Footer = () => {
                   to="/shipping-returns"
                   className="hover:text-white transition-colors"
                 >
-                  Shipping & Returns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/track-order"
-                  className="hover:text-white transition-colors"
-                >
-                  Track Order
+                  {t("footer.li8")}
                 </Link>
               </li>
               <li>
@@ -140,15 +137,7 @@ const Footer = () => {
                   to="/contact"
                   className="hover:text-white transition-colors"
                 >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy-policy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
+                  {t("footer.li10")}
                 </Link>
               </li>
               <li>
@@ -156,22 +145,24 @@ const Footer = () => {
                   to="/terms"
                   className="hover:text-white transition-colors"
                 >
-                  Terms & Conditions
+                  {t("footer.li11")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              {t("footer.smallheadline3")}
+            </h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start">
                 <FaMapMarkerAlt className="mt-1 mr-2" />
-                <span>Dhaka City, Lalbagh MC 12345</span>
+                <span>{t("footer.li12")}</span>
               </li>
               <li className="flex items-center">
                 <FaPhone className="mr-2" />
-                <span>01715-616234</span>
+                <span>{t("footer.li13")}</span>
               </li>
               <li className="flex items-center">
                 <FaEnvelope className="mr-2" />
@@ -179,7 +170,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <FaClock className="mr-2" />
-                <span>Mon-Fri: 9am-6pm, Sat: 10am-4pm</span>
+                <span>{t("footer.li15")}</span>
               </li>
             </ul>
           </div>
@@ -187,31 +178,8 @@ const Footer = () => {
 
         <div className="pt-8 mt-8 border-t border-gray-800 text-sm text-center">
           <p>
-            &copy; {new Date().getFullYear()} Bangladesh Turntable. All rights
-            reserved.
+            &copy; {t("footer.li16")} {new Date().getFullYear()}
           </p>
-          {/*  <div className="flex justify-center space-x-4 mt-4">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
-              alt="Visa"
-              className="h-6"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
-              alt="Mastercard"
-              className="h-6"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg"
-              alt="American Express"
-              className="h-6"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
-              alt="PayPal"
-              className="h-6"
-            />
-          </div> */}
         </div>
       </div>
     </footer>

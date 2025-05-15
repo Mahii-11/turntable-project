@@ -238,5 +238,28 @@
         "content": "Almost bought a cheap knockoff online. Came here just in time and got educated and equipped!"
       }
     ]
+  },
+
+  "footer": {
+    "smallheadline": " BD Turntable",
+    "smallheadline1": "Shop",
+    "paragraph": "Your premier destination for turntables, vinyl records, and accessories. Bringing music to life since 2005.",
+    "li1": "Turntables",
+    "li2": "Vinyl Records",
+    "li3": "Speakers",
+    "li4": "Amplifiers",
+    "li5": "Accessories",
+    "li6": "Gift Cards",
+    "smallheadline2": "Help",
+    "li7": " FAQ",
+    "li8": "Shipping & Returns",
+    "li10": " Contact Us",
+    "li11": " Terms & Conditions",
+    "smallheadline3": "Contact",
+    "li12": "Dhaka City, Lalbagh MC 12345",
+    "li13": "01715-616234",
+    "li14": "bangladeshturntable@gmail.com",
+    "li15": "Mon-Fri: 9am-6pm, Sat: 10am-4pm",
+    "li16": "Bangladesh Turntable. All rights reserved."
   }
 }
