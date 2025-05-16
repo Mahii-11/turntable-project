@@ -52,7 +52,6 @@ const Header = () => {
             </h1>
           </NavLink>
         </div>
-
         <nav className="hidden md:flex items-center gap-6">
           {/* Desktop Menu */}
           {[
@@ -75,11 +74,10 @@ const Header = () => {
             </NavLink>
           ))}
         </nav>
-
         <div className="flex items-center gap-3">
           <button
             onClick={toggleSearch}
-            className="hover:text-amber-500 transition-colors"
+            className="hover:text-amber-500 transition-colors hidden md:flex"
             aria-label="Search"
           >
             <FaSearch />
@@ -154,6 +152,32 @@ const Header = () => {
         </div>
 
         <nav className="p-4 space-y-4">
+          {/* Search input in sidebar */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!query.trim()) return;
+              navigate(`/order/${query}`);
+              setQuery("");
+              setSidebarOpen(false);
+            }}
+            className="flex items-center gap-2 p-2 rounded-md bg-gray-100"
+          >
+            <Input
+              type="text"
+              placeholder="Check order status..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="flex-grow"
+            />
+            <Button
+              type="submit"
+              className="bg-amber-500 hover:bg-amber-600 text-white"
+            >
+              <FaSearch />
+            </Button>
+          </form>
+
           {[
             { to: "/PartsHub", label: "Parts Hub", icon: <GearIcon /> },
             { to: "/🎵Turntables", label: "🎵 Turntables" },
