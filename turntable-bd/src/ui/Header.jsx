@@ -60,6 +60,7 @@ const Header = () => {
             { to: "/PartsHub", label: "Parts Hub" },
             { to: "/services", label: "Services" },
             { to: "/contact", label: "Contact" },
+            { to: "/meet-our-founder", label: "Founder", icon: <FaUserTie /> },
             { to: "/login", label: "Login" },
           ].map(({ to, label }) => (
             <NavLink
@@ -75,7 +76,7 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={toggleSearch}
             className="hover:text-amber-500 transition-colors"
@@ -84,18 +85,15 @@ const Header = () => {
             <FaSearch />
           </button>
           <NavLink
-            to="/meet-our-founder"
-            className="hover:text-amber-500 transition-colors"
-          >
-            <FaUserTie />
-          </NavLink>
-          <NavLink
             to="/cart"
             className="hover:text-amber-500 transition-colors relative"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <CartOverview />
           </NavLink>
+          <div className="md:flex">
+            <LanguageToggle />
+          </div>
           <Button
             variant="ghost"
             size="icon"
@@ -105,11 +103,6 @@ const Header = () => {
           >
             {sidebarOpen ? <FaTimes /> : <FaBars />}
           </Button>
-
-          {/* Language Toggle */}
-          <div className="hidden md:flex">
-            <LanguageToggle />
-          </div>
         </div>
       </div>
 
@@ -167,6 +160,7 @@ const Header = () => {
             { to: "/services", label: "Services", icon: <FaTools /> },
             { to: "/contact", label: "Contact", icon: <FaPhone /> },
             { to: "/login", label: "Login", icon: <FaSignInAlt /> },
+            { to: "/meet-our-founder", label: "Founder", icon: <FaUserTie /> },
           ].map(({ to, label, icon }) => (
             <NavLink
               key={to}
@@ -196,9 +190,6 @@ const Header = () => {
               <span>Shopping Cart</span>
               <CartOverview />
             </NavLink>
-            <div className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100">
-              <LanguageToggle />
-            </div>
           </div>
         </nav>
       </div>
