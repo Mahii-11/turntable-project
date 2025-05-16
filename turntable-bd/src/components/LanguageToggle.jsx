@@ -22,9 +22,7 @@ export default function LanguageToggle() {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm font-medium">
-        {isBangla ? "বাংলা" : "English"}
-      </span>
+      <span className="text-sm font-medium">{isBangla ? "বাংলা" : "Eng"}</span>
       <button
         onClick={handleToggle}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ${
