@@ -22,8 +22,11 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 
+import { useTranslation } from "react-i18next";
+
 function Order() {
   const order = useLoaderData();
+  const { t } = useTranslation();
 
   const {
     id,
@@ -48,21 +51,15 @@ function Order() {
   return (
     <>
       <Helmet>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content={`Order ID #${id} for turntable products. Track status, delivery, and view customer details.`}
-        />
-        <meta
-          name="keywords"
-          content="turntable order, order details, delivery status, customer info, order tracking"
-        />
+        <meta name="description" content={t("meta2.description", { id })} />
+        <meta name="keywords" content={t("meta2.keywords")} />
         <meta name="author" content="Your Company Name" />
-        <meta property="og:title" content={`Order ID #${id} - Turntables`} />
+        <meta property="og:title" content={t("meta.title", { id })} />
         <meta
           property="og:description"
-          content={`Track your order ID #${id} and get delivery updates for your turntable products.`}
+          content={t("meta2.ogDescription", { id })}
         />
         <meta
           property="og:image"
@@ -73,7 +70,7 @@ function Order() {
           content={`https://turntable-project-4sp3.vercel.app/order/${id}`}
         />
         <meta name="robots" content="index, follow" />
-        <title>Order ID #{id} - Turntables</title>
+        <title>{t("meta2.title", { id })}</title>
       </Helmet>
 
       <motion.div
@@ -84,9 +81,9 @@ function Order() {
         {/* Header */}
         <div className="mb-10 text-center">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-yellow-400">
-            Your Turntables Order
+            {t("order.header")}
           </h1>
-          <p className="text-sm text-gray-400 mt-1">Order ID: #{id}</p>
+          <p className="text-sm text-gray-400 mt-1">{t("order.id", { id })}</p>
         </div>
 
         {/* Order Status & Delivery */}
@@ -95,12 +92,14 @@ function Order() {
           <div className=" p-6 rounded-xl shadow-lg">
             <div className="flex items-center gap-3 mb-3">
               <Info className="text-blue-400" />
-              <h2 className="text-xl font-semibold">Order Status</h2>
+              <h2 className="text-xl font-semibold">
+                {t("order.statusTitle")}
+              </h2>
             </div>
             <div className="flex items-center gap-3 flex-wrap">
               {priority && (
                 <span className="text-xs bg-red-600 text-white px-3 py-1 rounded-full flex items-center gap-1">
-                  <AlertTriangle size={14} /> Priority
+                  <AlertTriangle size={14} /> {t("order.priority")}
                 </span>
               )}
               <span
@@ -117,7 +116,7 @@ function Order() {
                 ) : (
                   <Clock size={14} />
                 )}
-                {displayStatus.toUpperCase()}
+                {t(`order.status.${displayStatus}`)}
               </span>
             </div>
           </div>
@@ -126,17 +125,19 @@ function Order() {
           <div className=" p-6 rounded-xl shadow-lg">
             <div className="flex items-center gap-3 mb-3">
               <Timer className="text-pink-400" />
-              <h2 className="text-xl font-semibold">Estimated Delivery</h2>
+              <h2 className="text-xl font-semibold">
+                {t("order.estimatedDelivery")}
+              </h2>
             </div>
             <p className="text-sm text-gray-300">
               {isLate ? (
                 <span className="text-red-400 flex items-center gap-1">
                   <AlertTriangle size={16} />
-                  Order should have arrived
+                  {t("order.lateMessage")}
                 </span>
               ) : (
                 <span className="flex items-center gap-1 text-green-400">
-                  <Clock size={16} /> {deliveryIn} minutes left
+                  <Clock size={16} /> {deliveryIn} {t("order.minutesLeft")}
                 </span>
               )}
             </p>
@@ -150,29 +151,29 @@ function Order() {
         <div className=" p-6 rounded-xl shadow-lg mb-8">
           <div className="flex items-center gap-3 mb-3">
             <User className="text-purple-400" />
-            <h2 className="text-xl font-semibold">Shipping Info</h2>
+            <h2 className="text-xl font-semibold">{t("order.shippingInfo")}</h2>
           </div>
           <p>
-            <strong>Name:</strong> {customer}
+            <strong>{t("order.name")}:</strong> {customer}
           </p>
           <p className="flex items-center gap-2">
             <MapPin size={16} className="text-gray-400" />
-            {address || "Not provided"}
+            {address || t("order.notProvided")}
           </p>
           <p className="flex items-center gap-2">
             <Phone size={16} className="text-gray-400" />
-            {phone || "Not provided"}
+            {phone || t("order.notProvided")}
           </p>
           <p className="flex items-center gap-2">
             <Mail size={16} className="text-gray-400" />
-            {email || "Not provided"}
+            {email || t("order.notProvided")}
           </p>
         </div>
 
         {/* Cart Items */}
         <div className="mb-10">
           <h2 className="text-2xl font-bold mb-4 text-teal-400">
-            Purchased Items
+            {t("order.purchasedItems")}
           </h2>
           <ul className="space-y-5">
             {cart.map((item) => (
@@ -184,21 +185,21 @@ function Order() {
         {/* Payment Summary */}
         <div className=" p-6 rounded-xl shadow-lg">
           <h2 className="text-xl font-semibold text-green-400 mb-4">
-            Payment Summary
+            {t("order.paymentSummary")}
           </h2>
           <div className="space-y-2 text-lg">
             <p>
-              <span className="text-gray-400">Items Total:</span>{" "}
+              <span className="text-gray-400">{t("order.itemsTotal")}:</span>{" "}
               {formatCurrency(orderPrice)}
             </p>
             {priority && (
               <p>
-                <span className="text-gray-400">Priority Delivery Fee:</span>{" "}
+                <span className="text-gray-400">{t("order.priorityFee")}:</span>{" "}
                 {formatCurrency(priorityPrice)}
               </p>
             )}
             <p className="font-bold text-yellow-400 text-xl border-t pt-2 mt-2">
-              Grand Total:{" "}
+              {t("order.grandTotal")}:{" "}
               {formatCurrency(orderPrice + (priority ? priorityPrice : 0))}
             </p>
           </div>

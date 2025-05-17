@@ -9,6 +9,7 @@ import DeleteItem from "./DeleteItem";
 import { Helmet } from "react-helmet";
 import { getTurntableDetails } from "../../services/apiRestaurant";
 import { useLoaderData } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export async function loader({ params }) {
   const id = params.id;
@@ -17,6 +18,8 @@ export async function loader({ params }) {
 }
 
 function TurntableDetailItem() {
+  const { t } = useTranslation();
+
   const item = useLoaderData();
   const {
     _id,
@@ -58,7 +61,7 @@ function TurntableDetailItem() {
   return (
     <>
       <Helmet>
-        <title>{`${name} by ${brand} | Buy Turntables Online`}</title>
+        <title>{`${name} by ${brand} | ${t("buyTurntablesOnline")}`}</title>
         <meta name="description" content={description?.slice(0, 150)} />
         <meta
           name="keywords"
@@ -90,13 +93,13 @@ function TurntableDetailItem() {
 
             {discount?.percent > 0 && !soldOut && (
               <div className="absolute top-4 left-4 bg-rose-500 text-black rounded-full px-3 py-1 text-sm font-medium shadow animate-pulse">
-                {discount.percent}% OFF
+                {discount.percent}% {t("off2")}
               </div>
             )}
 
             {soldOut && (
               <div className="absolute top-4 left-4 bg-gray-800 text-black rounded-full px-3 py-1 text-sm font-medium shadow animate-pulse">
-                SOLD OUT
+                {t("soldOut2")}
               </div>
             )}
           </div>
@@ -112,7 +115,7 @@ function TurntableDetailItem() {
                 </h1>
                 <div className="flex items-center space-x-2 mt-1">
                   <span className="text-sm font-medium text-slate-700 dark:text-slate-800">
-                    {category || "N/A"}
+                    {category || t("notAvailable")}
                   </span>
                   <span className="inline-block h-1 w-1 rounded-full bg-slate-800"></span>
                   <div className="flex items-center">
@@ -152,14 +155,14 @@ function TurntableDetailItem() {
                       <>
                         <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
                         <span className="text-sm font-medium text-green-600 dark:text-green-400">
-                          In Stock - {stock} available
+                          {t("inStock")} - {stock} {t("available")}
                         </span>
                       </>
                     ) : (
                       <>
                         <span className="inline-block h-2 w-2 rounded-full bg-red-500 mr-2"></span>
                         <span className="text-sm font-medium text-red-600">
-                          Out of stock
+                          {t("outOfStock")}
                         </span>
                       </>
                     )}
@@ -177,7 +180,7 @@ function TurntableDetailItem() {
                 {specifications?.speed && (
                   <div className="flex items-start space-x-2">
                     <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
-                      Speed:
+                      {t("speed")}:
                     </span>
                     <span className="text-slate-700 dark:text-slate-800">
                       {specifications.speed}
@@ -187,7 +190,7 @@ function TurntableDetailItem() {
                 {specifications?.tonearm && (
                   <div className="flex items-start space-x-2">
                     <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
-                      Tonearm:
+                      {t("tonearm")}:
                     </span>
                     <span className="text-slate-700 dark:text-slate-400">
                       {specifications.tonearm}
@@ -196,10 +199,10 @@ function TurntableDetailItem() {
                 )}
                 <div className="flex items-start space-x-2">
                   <span className="font-medium text-slate-700 dark:text-slate-900 min-w-[90px]">
-                    Warranty:
+                    {t("warranty")}:
                   </span>
                   <span className="text-slate-800 dark:text-slate-900">
-                    {warranty || "No warranty info"}
+                    {warranty || t("noWarrantyInfo")}
                   </span>
                 </div>
               </div>
@@ -207,7 +210,7 @@ function TurntableDetailItem() {
               {!soldOut && features?.length > 0 && (
                 <div className="mb-4">
                   <h3 className="font-medium text-slate-800 dark:text-slate-900 mb-2">
-                    Key Features
+                    {t("keyFeatures")}
                   </h3>
                   <ul className="space-y-2">
                     {features.slice(0, 3).map((feature, idx) => (
@@ -239,7 +242,7 @@ function TurntableDetailItem() {
                   className="mt-4 w-full sm:w-auto lg:w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   <FaShoppingCart />
-                  Add to Cart
+                  {t("addToCart")}
                 </motion.button>
               )}
             </div>

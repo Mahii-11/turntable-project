@@ -11,6 +11,7 @@ import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import store from "../../store";
 import { formatCurrency } from "../../utils/helpers";
+import { useTranslation } from "react-i18next"; // <-- Import useTranslation
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -18,6 +19,7 @@ const isValidPhone = (str) =>
   );
 
 function CreateOrder() {
+  const { t } = useTranslation(); // <-- useTranslation hook
   const cart = useSelector(getCart);
   const [priority, setPriority] = useState(false);
   const totalCartPrice = useSelector(getTotalCartPrice);
@@ -30,22 +32,13 @@ function CreateOrder() {
   return (
     <>
       <Helmet>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Place your order for turntable products with easy checkout and priority options."
-        />
-        <meta
-          name="keywords"
-          content="turntable order, music products, priority order, online shopping"
-        />
+        <meta name="description" content={t("meta.description")} />
+        <meta name="keywords" content={t("meta.keywords")} />
         <meta name="author" content="Your Company Name" />
-        <meta property="og:title" content="Place Your Order - Turntables" />
-        <meta
-          property="og:description"
-          content="Order your turntable products with ease and enjoy priority delivery options."
-        />
+        <meta property="og:title" content={t("meta.ogTitle")} />
+        <meta property="og:description" content={t("meta.ogDescription")} />
         <meta
           property="og:url"
           content="https://turntable-project-4sp3.vercel.app/order/new"
@@ -55,7 +48,7 @@ function CreateOrder() {
           content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
         />
         <meta name="robots" content="index, follow" />
-        <title>Place Your Order - Turntables</title>
+        <title>{t("pageTitle")}</title>
       </Helmet>
 
       <div className="bg-zinc-900">
@@ -67,12 +60,14 @@ function CreateOrder() {
         >
           <h2 className="text-3xl font-bold text-center mb-6 flex justify-center items-center gap-2">
             <ShoppingBag className="w-8 h-8 text-purple-400" />
-            Place Your Order
+            {t("placeYourOrder")}
           </h2>
 
           <Form method="POST" className="space-y-5">
             <div>
-              <label className="block mb-1 font-semibold">First Name</label>
+              <label className="block mb-1 font-semibold">
+                {t("firstName")}
+              </label>
               <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
                 <CheckCircle className="text-green-400 mr-2" />
                 <input
@@ -80,13 +75,13 @@ function CreateOrder() {
                   name="customer"
                   required
                   className="w-full bg-transparent outline-none text-white"
-                  placeholder="John Doe"
+                  placeholder={t("firstNamePlaceholder")}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block mb-1 font-semibold">Email</label>
+              <label className="block mb-1 font-semibold">{t("email")}</label>
               <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
                 <Mail className="text-sky-400 mr-2" />
                 <input
@@ -94,13 +89,13 @@ function CreateOrder() {
                   name="email"
                   required
                   className="w-full bg-transparent outline-none text-white"
-                  placeholder="john@example.com"
+                  placeholder={t("emailPlaceholder")}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block mb-1 font-semibold">Phone</label>
+              <label className="block mb-1 font-semibold">{t("phone")}</label>
               <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
                 <Phone className="text-pink-400 mr-2" />
                 <input
@@ -108,7 +103,7 @@ function CreateOrder() {
                   name="phone"
                   required
                   className="w-full bg-transparent outline-none text-white"
-                  placeholder="+8801XXXXXXXXX"
+                  placeholder={t("phonePlaceholder")}
                 />
               </div>
               {formErrors?.phone && (
@@ -117,7 +112,7 @@ function CreateOrder() {
             </div>
 
             <div>
-              <label className="block mb-1 font-semibold">Address</label>
+              <label className="block mb-1 font-semibold">{t("address")}</label>
               <div className="flex items-center bg-zinc-800 p-2 rounded-xl">
                 <MapPin className="text-yellow-400 mr-2" />
                 <input
@@ -125,7 +120,7 @@ function CreateOrder() {
                   name="address"
                   required
                   className="w-full bg-transparent outline-none text-white"
-                  placeholder="House 123, Dhaka"
+                  placeholder={t("addressPlaceholder")}
                 />
               </div>
             </div>
@@ -144,7 +139,7 @@ function CreateOrder() {
                 className="text-sm font-medium flex items-center"
               >
                 <Star className="w-4 h-4 mr-1 text-yellow-500" />
-                Make it a priority order?
+                {t("makePriorityOrder")}
               </label>
             </div>
 
@@ -158,8 +153,8 @@ function CreateOrder() {
               className="w-full bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-3 rounded-xl text-lg font-semibold shadow-lg cursor-pointer"
             >
               {isSubmitting
-                ? "Placing order..."
-                : `🛍️ Order now from ${formatCurrency(totalCartPrice)}`}
+                ? t("placingOrder")
+                : `${t("orderNowFrom")} ${formatCurrency(totalCartPrice)}`}
             </motion.button>
           </Form>
         </motion.div>

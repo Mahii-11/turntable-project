@@ -1,8 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+import useIsBangla from "../utils/useIsBangla";
 
 const MeetOurFounder = () => {
+  const { t } = useTranslation();
+  const isBangla = useIsBangla();
+
   const brands = [
     "ADC",
     "Audio Technica",
@@ -42,16 +47,10 @@ const MeetOurFounder = () => {
       <Helmet>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Meet the founder of BD Turntable, a passionate advocate for vintage turntable restoration."
-        />
+        <meta name="description" content={t("founder.metaDescription")} />
         <meta name="author" content="Mohammed Al Amin" />
-        <meta property="og:title" content="Meet Our Founder - BD Turntable" />
-        <meta
-          property="og:description"
-          content="Get to know Mohammed Al Amin, the visionary behind BD Turntable, and the story of how his love for vintage audio sparked a business."
-        />
+        <meta property="og:title" content={t("founder.ogTitle")} />
+        <meta property="og:description" content={t("founder.ogDescription")} />
         <meta
           property="og:image"
           content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
@@ -61,26 +60,26 @@ const MeetOurFounder = () => {
           content="https://turntable-project-4sp3.vercel.app/meet-our-founder"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Meet Our Founder - BD Turntable" />
+        <meta name="twitter:title" content={t("founder.twitterTitle")} />
         <meta
           name="twitter:description"
-          content="Discover the story behind BD Turntable and meet the founder, Mohammed Al Amin, who revitalizes vintage turntables with passion."
+          content={t("founder.twitterDescription")}
         />
         <meta name="twitter:image" content="/images/Amin uncle.jpg" />
-        <title>Meet Our Founder - BD Turntable</title>
+        <title>{t("founder.pageTitle")}</title>
       </Helmet>
       <div className="bg-black text-white px-4 py-16 md:px-16 -mt-8">
-        {/* Animated Heading */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-center text-yellow-400 mb-12"
+          className={`${
+            isBangla ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
+          } font-bold text-center text-yellow-400 mb-12`}
         >
-          Meet Our Founder
+          {t("founder.heading")}
         </motion.h2>
 
-        {/* Founder Section */}
         <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
           <motion.img
             src="/images/Amin uncle.jpg"
@@ -92,19 +91,15 @@ const MeetOurFounder = () => {
           />
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-semibold text-amber-400">
-              Mohammmed Al Amin
+              Mohammed Al Amin
             </h3>
-            <p className="text-sm text-gray-400 mb-2">Founder & Visionary</p>
-            <p className="max-w-xl">
-              "Music is not just sound; it's a movement, a lifestyle. BD
-              Turntable is my way of bringing timeless sound back to life."
-            </p>
+            <p className="text-sm text-gray-400 mb-2">{t("founder.role")}</p>
+            <p className="max-w-xl">{t("founder.quote")}</p>
           </div>
         </div>
 
-        {/* Story & History */}
         <h3 className="text-3xl font-semibold text-center mb-8 text-yellow-400">
-          How BD Turntable Was Born
+          {t("founder.storyHeading")}
         </h3>
         <motion.p
           className="max-w-3xl mx-auto text-center text-gray-300 px-4 sm:px-8 md:px-12 leading-relaxed space-y-4"
@@ -113,31 +108,16 @@ const MeetOurFounder = () => {
           transition={{ duration: 0.8 }}
         >
           <span className="block text-lg sm:text-xl md:text-2xl font-semibold text-purple-400">
-            My journey began with a deep fascination for the timeless design and
-            engineering of Technics turntables. What started as an attempt to
-            revive a single worn-out unit slowly unfolded into something far
-            more meaningful.
+            {t("founder.story1")}
           </span>
           <span className="block text-base sm:text-lg md:text-xl font-light">
-            That first project wasn’t just a repair — it was a doorway into a
-            world I’d unknowingly been searching for. As I restored more
-            turntables, word quietly spread. Inquiries came in — not just for
-            buying, but for repairing, restoring, and preserving these analog
-            masterpieces. The passion only intensified with each build, each
-            unique model, each story a customer shared about their turntable.
+            {t("founder.story2")}
           </span>
           <span className="block text-base sm:text-lg md:text-xl font-light">
-            Driven by a desire to give vintage audio a second life, I officially
-            founded BD Turntable. Over the years, I’ve had the privilege of
-            servicing hundreds of models from legendary names in the industry.
-            Each restoration isn't just a technical task — it's a chance to
-            preserve history, revive sound, and deliver nostalgia in its purest
-            form. This isn’t just a business. It’s a commitment to those who
-            believe music deserves to be heard the way it was meant to — warm,
-            rich, and real.
+            {t("founder.story3")}
           </span>
           <span className="block mt-4 text-xl font-bold text-purple-500">
-            — Mohammed Al Amin, Founder of BD Turntable
+            — Mohammed Al Amin, {t("founder.title")}
           </span>
         </motion.p>
 
@@ -148,10 +128,10 @@ const MeetOurFounder = () => {
           className="mt-20"
         >
           <h3 className="text-3xl font-semibold text-center mb-6 text-yellow-400">
-            Common Turntable Brands We’ve Serviced
+            {t("founder.brandsHeading")}
           </h3>
           <p className="text-center text-gray-300 mb-4">
-            Over the years, we’ve proudly worked on models from:
+            {t("founder.brandsSubheading")}
           </p>
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {brands.map((brand, index) => (

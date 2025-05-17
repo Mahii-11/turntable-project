@@ -7,6 +7,7 @@ import DeleteItem from "./DeleteItem";
 import { getTurntablePartsDetails } from "../../services/apiRestaurant";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 // Loader
 export async function loader({ params }) {
@@ -16,6 +17,7 @@ export async function loader({ params }) {
 }
 
 function TurntablePartDetail() {
+  const { t } = useTranslation();
   const item = useLoaderData();
   const {
     _id,
@@ -48,10 +50,10 @@ function TurntablePartDetail() {
   return (
     <>
       <Helmet>
-        <title>{`${name} by  | Buy Turntables Online`}</title>
+        <title>{`${name} | ${t("meta3.title")}`}</title>
         <meta name="description" content={description?.slice(0, 150)} />
-        <meta name="keywords" content={`${name},  turntable, audio gear`} />
-        <meta property="og:title" content={`${name} `} />
+        <meta name="keywords" content={`${name}, turntable, audio gear`} />
+        <meta property="og:title" content={`${name}`} />
         <meta property="og:description" content={description?.slice(0, 150)} />
         <meta property="og:image" content={image} />
         <meta property="og:type" content="product parts" />
@@ -88,7 +90,7 @@ function TurntablePartDetail() {
             {!soldOut && (
               <div>
                 <span className="block text-sm text-gray-500 font-medium">
-                  Price
+                  {t("price2")}
                 </span>
                 <div className="flex items-center gap-3">
                   <span className="text-3xl font-bold text-orange-600">
@@ -101,7 +103,7 @@ function TurntablePartDetail() {
             {/* Stock */}
             {!soldOut && (
               <div className="text-green-700 font-semibold text-sm">
-                {stock > 0 ? `${stock} in stock` : "Out of stock"}
+                {stock > 0 ? `${stock} ${t("inStock2")}` : t("outOfStock2")}
               </div>
             )}
 
@@ -120,7 +122,7 @@ function TurntablePartDetail() {
                 className="w-full mt-4 flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-black font-semibold text-lg py-3 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
               >
                 <FaShoppingCart className="text-lg" />
-                Add to Cart
+                {t("addToCart2")}
               </motion.button>
             ) : null}
           </div>

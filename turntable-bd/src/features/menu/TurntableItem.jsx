@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
 import { formatCurrency } from "../../utils/helpers";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
@@ -7,9 +6,12 @@ import { useSelector } from "react-redux";
 import { getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "./DeleteItem";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function TurntableItem({ item }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const {
     _id,
     name,
@@ -45,7 +47,7 @@ function TurntableItem({ item }) {
         />
         {soldOut && (
           <span className="absolute bg-red-600 text-white text-xs px-3 py-1 rounded-full top-2 left-2 font-semibold">
-            SOLD OUT
+            {t("turntable.sold_out")}
           </span>
         )}
       </div>
@@ -53,13 +55,13 @@ function TurntableItem({ item }) {
       <div className="flex flex-col justify-between h-full p-4">
         <div>
           <h3 className="text-base font-semibold text-gray-900 mb-1 leading-tight">
-            <strong>Name:</strong> {name}
+            <strong>{t("turntable.name")}</strong> {name}
           </h3>
 
           {!soldOut && (
             <>
               <p className="text-sm text-gray-700">
-                <strong>Price:</strong>{" "}
+                <strong>{t("turntable.price")}</strong>{" "}
                 <span className="text-red-600 font-semibold">
                   {formatCurrency(price)}
                 </span>
@@ -83,7 +85,9 @@ function TurntableItem({ item }) {
 
           {!soldOut && (
             <div className="text-xs font-semibold text-green-700 mb-2">
-              {stock > 0 ? `${stock} in stock` : "Out of stock"}
+              {stock > 0
+                ? `${stock} ${t("turntable.in_stock")}`
+                : t("turntable.out_of_stock")}
             </div>
           )}
         </div>
@@ -100,7 +104,7 @@ function TurntableItem({ item }) {
             className="mt-4 w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-gray-900 font-semibold px-4 py-2 rounded shadow-sm transition-all duration-200 cursor-pointer"
           >
             <AiOutlineEye className="inline mr-1" />
-            View Details
+            {t("turntable.view_details")}
           </motion.button>
         )}
       </div>
