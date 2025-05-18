@@ -6,8 +6,10 @@ import { clearCart, getCart, removeItem } from "./cartSlice";
 import { formatCurrency } from "../../utils/helpers";
 import EmptyCart from "./EmptyCart";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 function Cart() {
+  const { t } = useTranslation();
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
 
@@ -18,22 +20,13 @@ function Cart() {
   return (
     <>
       <Helmet>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="View and manage your shopping cart. Add or remove turntables, and proceed to checkout."
-        />
-        <meta
-          name="keywords"
-          content="shopping cart, turntable, remove item, checkout, subtotal"
-        />
-        <meta name="author" content="Your Company Name" />
-        <meta property="og:title" content="Your Shopping Cart - Turntables" />
-        <meta
-          property="og:description"
-          content="Your cart is ready! Manage items and proceed to checkout to purchase your turntables."
-        />
+        <meta name="description" content={t("meta4.description")} />
+        <meta name="keywords" content={t("meta4.keywords")} />
+        <meta name="author" content="Turntable BD" />
+        <meta property="og:title" content={t("meta4.ogTitle")} />
+        <meta property="og:description" content={t("meta4.ogDescription")} />
         <meta
           property="og:url"
           content="https://turntable-project-4sp3.vercel.app/cart"
@@ -43,7 +36,7 @@ function Cart() {
           content="https://turntable-project-4sp3.vercel.app/og-image.jpg"
         />
         <meta name="robots" content="index, follow" />
-        <title>Your Shopping Cart - Turntables</title>
+        <title>{t("pageTitle2")}</title>
       </Helmet>
 
       <div className="max-w-6xl mx-auto px-4 py-10 text-gray-900">
@@ -53,7 +46,7 @@ function Cart() {
           className="flex items-center text-blue-600 hover:underline mb-6"
         >
           <ArrowLeftCircle className="mr-2 w-5 h-5" />
-          Back to Turntables
+          {t("backToTurntables")}
         </Link>
 
         <motion.h2
@@ -62,7 +55,7 @@ function Cart() {
           className="text-3xl font-bold mb-8 flex items-center gap-2"
         >
           <ShoppingCart className="w-7 h-7 text-blue-600" />
-          Shopping Cart
+          {t("shoppingCart")}
         </motion.h2>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -83,7 +76,7 @@ function Cart() {
                   <div className="flex-1">
                     <p className="text-lg font-semibold">{item.name}</p>
                     <p className="text-gray-600 text-sm">
-                      Qty: {item.quantity}
+                      {t("quantity")}: {item.quantity}
                     </p>
                   </div>
                 </div>
@@ -95,7 +88,7 @@ function Cart() {
                 <button
                   onClick={() => dispatch(removeItem(item._id))}
                   className="absolute top-0 right-0 mt-2 -mr-3 text-red-500 hover:text-red-400 cursor-pointer"
-                  aria-label="Remove item"
+                  aria-label={t("removeItem")}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -107,17 +100,17 @@ function Cart() {
               className="flex items-center gap-2 text-sm text-red-600 hover:text-red-500 mt-4 cursor-pointer"
             >
               <Trash2 className="w-4 h-4" />
-              Clear Cart
+              {t("clearCart")}
             </button>
           </div>
 
           {/* Right - Summary */}
           <div className="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6 h-fit">
             <h3 className="text-xl font-semibold border-b pb-4 mb-4">
-              Order Summary
+              {t("orderSummary")}
             </h3>
             <div className="flex justify-between mb-4">
-              <span className="text-gray-700">Subtotal</span>
+              <span className="text-gray-700">{t("subtotal")}</span>
               <span className="font-bold text-gray-900">
                 {formatCurrency(subtotal)}
               </span>
@@ -128,7 +121,7 @@ function Cart() {
               to="/order/new"
               className="block bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 text-center rounded-md font-semibold text-white w-full mt-6"
             >
-              Proceed to Checkout
+              {t("proceedToCheckout")}
             </Link>
           </div>
         </div>

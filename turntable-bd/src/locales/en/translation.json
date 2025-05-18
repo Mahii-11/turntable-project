@@ -448,5 +448,32 @@
   "inStock2": "in stock",
   "outOfStock2": "Out of stock",
   "addToCart2": "Add to Cart",
-  "reviews": "({{count}} reviews)"
+  "reviews": "({{count}} reviews)",
+
+  "pageTitle2": "Your Shopping Cart - Turntables",
+  "meta4": {
+    "description": "View and manage your shopping cart. Add or remove turntables, and proceed to checkout.",
+    "keywords": "shopping cart, turntable, remove item, checkout, subtotal",
+    "ogTitle": "Your Shopping Cart - Turntables",
+    "ogDescription": "Your cart is ready! Manage items and proceed to checkout to purchase your turntables."
+  },
+  "backToTurntables": "Back to Turntables",
+  "shoppingCart": "Shopping Cart",
+  "quantity": "Qty",
+  "removeItem": "Remove item",
+  "clearCart": "Clear Cart",
+  "orderSummary": "Order Summary",
+  "subtotal": "Subtotal",
+  "proceedToCheckout": "Proceed to Checkout",
+
+  "meta5": {
+    "description": "Your cart is empty. Browse and add some turntables to your collection.",
+    "keywords": "empty cart, turntable, shopping, add to cart, vinyl",
+    "ogTitle": "Your Cart is Empty - Turntables",
+    "ogDescription": "Looks like you haven't added any turntables yet. Browse and add some vinyl magic to your cart."
+  },
+  "title": "Your Cart is Empty - Turntables",
+  "heading": "Your Cart is Spinning Empty",
+  "message": "Looks like you haven’t added any turntables yet. Crank up your style and add some vinyl magic to your collection!",
+  "backButton": "Back to Turntables"
 }
