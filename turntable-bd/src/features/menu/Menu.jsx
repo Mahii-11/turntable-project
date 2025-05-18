@@ -10,7 +10,7 @@ function Menu() {
   return (
     <div>
       <Helmet>
-        <title>🎵Turntables - Your Turntable Store</title>
+        <title>🎵Turntables - Turntable BD Store</title>
         <meta
           name="description"
           content="Explore a wide selection of turntables, parts, and accessories available for purchase."
