@@ -46,13 +46,13 @@ const Header = () => {
             <FaRecordVinyl className="text-amber-500 text-2xl" />
             <h1
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-2xl font-bold text-yellow-400"
+              className="text-xl lg:text-2xl font-bold text-yellow-400 "
             >
               BD Turntable
             </h1>
           </NavLink>
         </div>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 text-xs lg:text-lg">
           {/* Desktop Menu */}
           {[
             { to: "/🎵Turntables", label: "🎵 Turntables" },
