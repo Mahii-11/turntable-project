@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")).render(
   </StrictMode>
 ); */
 
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -22,12 +22,28 @@ import store, { persistor } from "./store.js";
 import "./i18next-config"; // use the updated filename
 import { PersistGate } from "redux-persist/integration/react";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </StrictMode>
-);
+// Create a wrapper component to handle the Google Tag initialization
+const RootWithTracking = () => {
+  useEffect(() => {
+    // Initialize gtag after script is loaded
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+    gtag("config", "AW-17097082216");
+  }, []);
+
+  return (
+    <StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </StrictMode>
+  );
+};
+
+createRoot(document.getElementById("root")).render(<RootWithTracking />);
