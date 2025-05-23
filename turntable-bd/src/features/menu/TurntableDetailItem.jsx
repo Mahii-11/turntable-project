@@ -51,7 +51,16 @@ function TurntableDetailItem() {
       price,
       totalPrice: price * 1,
     };
+
+    // আপনার কার্টে আইটেম যোগ করার লজিক
     dispatch(addItem(newItem));
+
+    // Google Ads কনভার্সন ইভেন্ট ট্র্যাকিং
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17097082216/j-zvCOuGo8waEOiKw9g_",
+      });
+    }
   }
 
   const finalPrice = discount
