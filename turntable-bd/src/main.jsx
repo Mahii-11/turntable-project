@@ -17,7 +17,7 @@ const RootWithTracking = () => {
     }
 
     gtag("js", new Date());
-    gtag("config", "AW-17097082216");
+    gtag("config", "AW-17108788133");
   }, []);
 
   return (

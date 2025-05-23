@@ -56,11 +56,11 @@ function TurntableDetailItem() {
     dispatch(addItem(newItem));
 
     // Google Ads কনভার্সন ইভেন্ট ট্র্যাকিং
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17097082216/j-zvCOuGo8waEOiKw9g_",
-      });
-    }
+    window.gtag("event", "conversion", {
+      send_to: "AW-17108788133/CONVERSION_LABEL_HERE",
+      value: 1.0,
+      currency: "USD",
+    });
   }
 
   const finalPrice = discount
