@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
-
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 function Order() {
@@ -47,6 +47,16 @@ function Order() {
 
   const displayStatus =
     status === "pending" && deliveryIn <= 0 ? "confirmed" : status;
+
+  // Google Ads Purchase conversion tracking on order page load
+  useEffect(() => {
+    if (window.gtag && displayStatus === "confirmed") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17108788133/ZjdECIGM1MwaEKXHjd4_",
+        transaction_id: id || "",
+      });
+    }
+  }, [id, displayStatus]);
 
   return (
     <>
