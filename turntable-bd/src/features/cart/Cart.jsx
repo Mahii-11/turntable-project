@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Trash2, X, ArrowLeftCircle, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,9 +12,22 @@ function Cart() {
   const { t } = useTranslation();
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleBeginCheckout = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17108788133/UkK1CLma4cwaEKXHjd4_",
+      });
+    }
+
+    // Checkout পেজে যাও
+    navigate("/order/new");
+  };
 
   if (!cart.length) return <EmptyCart />;
-
   const subtotal = cart.reduce((acc, item) => acc + item.totalPrice, 0);
 
   return (
@@ -116,13 +129,12 @@ function Cart() {
               </span>
             </div>
 
-            <Link
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              to="/order/new"
+            <button
+              onClick={handleBeginCheckout}
               className="block bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 text-center rounded-md font-semibold text-white w-full mt-6"
             >
               {t("proceedToCheckout")}
-            </Link>
+            </button>
           </div>
         </div>
       </div>
